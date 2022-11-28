@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingRight="15dp"
+        android:orientation="vertical">
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#FFFFFF"
+            android:layout_gravity="right"
+            >
+            <TextView
+                android:id="@+id/tv_personal"
+                android:layout_width="190dp"
+                android:layout_height="wrap_content"
+                android:textSize="18dp"
+                android:gravity="right"
+                android:textColor="#404040"
+                android:text="Sick Personal Leave"/>
+            <TextView
+                android:id="@+id/tv_colon1"
+                android:layout_toRightOf="@id/tv_personal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:textSize="18dp"
+                android:textStyle="bold"
+                android:textColor="#404040"
+                android:text=":"/>
+            <TextView
+                android:id="@+id/tv_personal_hrs"
+                android:layout_width="80dp"
+                android:gravity="right"
+                android:layout_height="22dp"
+                android:layout_toRightOf="@id/tv_colon1"
+                android:textSize="18dp"
+                android:textColor="#404040"
+                android:text="00:00"/>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

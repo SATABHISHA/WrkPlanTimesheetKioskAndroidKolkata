@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="org.arb.wrkplantimesheetkiosk">
+<uses-permission android:name="android.permission.CAMERA"/>
+    <uses-feature android:name="android.hardware.camera" android:required="false" />
+    <uses-feature android:name="android.hardware.camera.front" android:required="false" />
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/kioskapplogo"
+        android:label="@string/app_name"
+        android:roundIcon="@drawable/kioskapplogo"
+        android:usesCleartextTraffic="true"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.WrkplanTimesheetKiosk"
+        android:largeHeap="true">
+        <activity android:name=".Home.HomeActivity"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".Recognize.RecognizeHomeActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Recognize.RecognitionOptionActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Recognize.AttendanceRecordActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Recognize.TaskSelectionActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Recognize.PunchOutBreakActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Admin.LoginActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Admin.AdminHomeActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Admin.KioskUnitSettings.KioskUnitSettingsActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Admin.EmployeeImageSettings.EmployeeImageSettingsActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Recognize.RecognizeHomeRealtimeActivity"
+            android:screenOrientation="portrait"/>
+
+        <uses-library android:name="org.apache.http.legacy" android:required="false"/>
+    </application>
+
+</manifest>

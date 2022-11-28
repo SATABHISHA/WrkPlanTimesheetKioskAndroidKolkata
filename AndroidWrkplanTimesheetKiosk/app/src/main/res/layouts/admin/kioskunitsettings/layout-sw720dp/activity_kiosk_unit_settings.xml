@@ -1,0 +1,357 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/app_bar_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#2e5772"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        android:fitsSystemWindows="true">
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:background="#2E5772"
+            app:layout_collapseMode="pin"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light" >
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="34sp"
+                    android:text="Kiosk Unit Settings"
+                    android:layout_marginLeft="15dp"
+                    android:layout_centerVertical="true"
+                    android:textColor="#ffffff"
+                    />
+
+              <!--  <TextView
+                    android:id="@+id/tv_logout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:text="Logout"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:layout_marginRight="15dp" /> -->
+            </RelativeLayout>
+        </androidx.appcompat.widget.Toolbar>
+    </com.google.android.material.appbar.AppBarLayout>
+    <RelativeLayout
+        android:id="@+id/relativeLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:background="#ffffff"
+        android:orientation="vertical">
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@id/ll_button">
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginLeft="35dp"
+    android:layout_marginTop="40dp"
+    android:layout_marginRight="35dp"
+    android:orientation="vertical">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Corp ID"
+        android:textSize="29sp"
+        android:textColor="#4F4F4F"/>
+    <EditText
+        android:id="@+id/ed_corp_id"
+        android:layout_width="match_parent"
+        android:layout_height="90dp"
+        android:layout_marginTop="10dp"
+        android:paddingLeft="12dp"
+        android:textSize="30sp"
+        android:background="@drawable/layout6"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:text="Kiosk Unit Name"
+        android:textSize="29sp"
+        android:textColor="#4F4F4F"/>
+    <EditText
+        android:id="@+id/ed_kios_unit_name"
+        android:layout_width="match_parent"
+        android:layout_height="90dp"
+        android:layout_marginTop="10dp"
+        android:paddingLeft="12dp"
+        android:textSize="30sp"
+        android:background="@drawable/layout6"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:text="Device ID"
+        android:textSize="29sp"
+        android:textColor="#4F4F4F"/>
+    <EditText
+        android:id="@+id/ed_device_id"
+        android:layout_width="match_parent"
+        android:layout_height="90dp"
+        android:layout_marginTop="10dp"
+        android:paddingLeft="12dp"
+        android:textSize="30sp"
+        android:editable="false"
+        android:background="@drawable/layout6"/>
+
+    <!--code for face attendance,(view/se;ect task), leave balance, starts -->
+
+    <!--Face attendance part starts-->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="40dp">
+        <LinearLayout
+            android:id="@+id/ll_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:textColor="#4F4F4F"
+            android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Yes"
+            android:textSize="26sp"
+            android:textColor="#4F4F4F"
+            android:layout_marginRight="70dp"
+            android:layout_alignParentRight="true"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="No"
+            android:textSize="26sp"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="0dp"/>
+        </LinearLayout>
+        <RelativeLayout
+            android:id="@+id/rl_faceattendance"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/ll_status">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="Face Attendance"
+            android:textColor="#4F4F4F"
+            android:textSize="29sp"/>
+
+            <RadioGroup
+                android:id="@+id/rg_faceattendance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/rdbtn_face_attnd_yes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:scaleX="2"
+                    android:scaleY="2"
+                    android:layout_marginRight="50dp"
+                    android:layout_marginLeft="12dp"/>
+
+                <RadioButton
+                    android:id="@+id/rdbtn_face_attnd_no"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:scaleX="2"
+                    android:scaleY="2"
+                    android:layout_marginRight="5dp" />
+            </RadioGroup>
+        </RelativeLayout>
+        <!--Face attendance part ends-->
+    <!--View Select part starts-->
+        <LinearLayout
+            android:id="@+id/ll_status_view_select"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_below="@id/rl_faceattendance"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Yes"
+                android:textSize="26sp"
+                android:layout_marginRight="70dp"
+                android:textColor="#4F4F4F"
+                android:layout_alignParentRight="true"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="No"
+                android:textSize="26sp"
+                android:textColor="#4F4F4F"
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="0dp"/>
+        </LinearLayout>
+        <RelativeLayout
+            android:id="@+id/rl_view_select"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/ll_status_view_select">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:textColor="#4F4F4F"
+                android:text="View / Select / Switch Task"
+                android:textSize="29sp"/>
+            <RadioGroup
+                android:id="@+id/rg_view_select"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:orientation="horizontal">
+                <RadioButton
+                    android:id="@+id/rdbtn_view_select_yes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:scaleX="2"
+                    android:scaleY="2"
+                    android:layout_marginRight="50dp"
+                    android:layout_marginLeft="12dp"/>
+                <RadioButton
+                    android:id="@+id/rdbtn_view_select_no"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:scaleX="2"
+                    android:scaleY="2"
+                    android:layout_marginRight="5dp"/>
+            </RadioGroup>
+        </RelativeLayout>
+        <!--View Select part ends-->
+
+        <!--View Leave Balance part starts-->
+        <LinearLayout
+            android:id="@+id/ll_leave_balance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_below="@id/rl_view_select"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Yes"
+                android:textSize="26sp"
+                android:textColor="#4F4F4F"
+                android:layout_marginRight="70dp"
+                android:layout_alignParentRight="true"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="No"
+                android:textSize="26sp"
+                android:textColor="#4F4F4F"
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="0dp"/>
+        </LinearLayout>
+        <RelativeLayout
+            android:id="@+id/rl_leave_balance"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/ll_leave_balance">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="View Leave Balance"
+                android:textColor="#4F4F4F"
+                android:textSize="29sp"/>
+            <RadioGroup
+                android:id="@+id/rg_leave_balance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:orientation="horizontal">
+                <RadioButton
+                    android:id="@+id/rdbtn_leave_balance_yes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:scaleX="2"
+                    android:scaleY="2"
+                    android:layout_marginRight="50dp"
+                    android:layout_marginLeft="12dp"/>
+                <RadioButton
+                    android:id="@+id/rdbtn_leave_balance_no"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:scaleX="2"
+                    android:scaleY="2"
+                    android:layout_marginRight="5dp"/>
+            </RadioGroup>
+        </RelativeLayout>
+        <!--View Leave Balance part ends-->
+    </RelativeLayout>
+    <!--code for face attendance,(view/se;ect task), leave balance, ends -->
+</LinearLayout>
+        </ScrollView>
+        <!--button code starts -->
+        <LinearLayout
+            android:id="@+id/ll_button"
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/top_border_button"
+            android:orientation="horizontal">
+
+           <!-- <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/btn_layout1"> -->
+                <TextView
+                    android:id="@+id/tv_cancel"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:textColor="#4F4F4F"
+                    android:textSize="32sp"
+                    android:text="Cancel"/>
+           <!-- </LinearLayout> -->
+           <!-- <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/btn_layout1"> -->
+            <View
+                android:layout_width="2dp"
+                android:background="#B3B3B2"
+                android:layout_height="match_parent"/>
+                <TextView
+                    android:id="@+id/tv_done"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:textColor="#4F4F4F"
+                    android:textSize="32sp"
+                    android:text="Done"/>
+           <!-- </LinearLayout> -->
+        </LinearLayout>
+        <!--button code ends -->
+
+    </RelativeLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

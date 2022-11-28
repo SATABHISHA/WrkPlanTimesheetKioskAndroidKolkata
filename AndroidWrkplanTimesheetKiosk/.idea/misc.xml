@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="app/src/main/res/drawable/custom_vertical_line.xml" value="0.22870370370370371" />
+        <entry key="app/src/main/res/drawable/top_border_button.xml" value="0.23743589743589744" />
+        <entry key="app/src/main/res/layouts/admin/adminhome/layout-sw720dp/activity_admin_home.xml" value="0.1" />
+        <entry key="app/src/main/res/layouts/admin/adminhome/layout/activity_admin_home.xml" value="0.22056159420289856" />
+        <entry key="app/src/main/res/layouts/admin/employeesettings/layout-sw720dp/activity_employee_settings.xml" value="0.1" />
+        <entry key="app/src/main/res/layouts/admin/employeesettings/layout-sw720dp/dialog_employee_delete_alert.xml" value="0.15" />
+        <entry key="app/src/main/res/layouts/admin/employeesettings/layout-sw720dp/dialog_employee_image_alert.xml" value="0.18" />
+        <entry key="app/src/main/res/layouts/admin/employeesettings/layout/activity_employee_settings.xml" value="0.22056159420289856" />
+        <entry key="app/src/main/res/layouts/admin/employeesettings/layout/activity_employee_settings_row.xml" value="0.25" />
+        <entry key="app/src/main/res/layouts/admin/employeesettings/layout/dialog_employee_delete_alert.xml" value="0.14" />
+        <entry key="app/src/main/res/layouts/admin/employeesettings/layout/dialog_employee_image_alert.xml" value="0.21" />
+        <entry key="app/src/main/res/layouts/admin/kioskunitsettings/layout-sw720dp/activity_kiosk_unit_settings.xml" value="0.10475632355374627" />
+        <entry key="app/src/main/res/layouts/admin/kioskunitsettings/layout/activity_kiosk_unit_settings.xml" value="0.21" />
+        <entry key="app/src/main/res/layouts/admin/login/layout/activity_login.xml" value="0.18469431380932022" />
+        <entry key="app/src/main/res/layouts/home/layout-sw720dp/activity_home.xml" value="0.1" />
+        <entry key="app/src/main/res/layouts/home/layout/activity_home.xml" value="0.14" />
+        <entry key="app/src/main/res/layouts/recognize/layout-sw720dp/activity_attendance_record.xml" value="0.15" />
+        <entry key="app/src/main/res/layouts/recognize/layout-sw720dp/activity_recognize_option.xml" value="0.22" />
+        <entry key="app/src/main/res/layouts/recognize/layout-sw720dp/activity_task_selection.xml" value="0.12" />
+        <entry key="app/src/main/res/layouts/recognize/layout-sw720dp/dialog_punchout_break.xml" value="0.1" />
+        <entry key="app/src/main/res/layouts/recognize/layout/activity_attendance_record.xml" value="0.25" />
+        <entry key="app/src/main/res/layouts/recognize/layout/activity_punch_out_break.xml" value="0.17" />
+        <entry key="app/src/main/res/layouts/recognize/layout/activity_recognize_home_realtime.xml" value="0.21422101449275363" />
+        <entry key="app/src/main/res/layouts/recognize/layout/activity_recognize_option.xml" value="0.2" />
+        <entry key="app/src/main/res/layouts/recognize/layout/activity_task_selection.xml" value="0.1" />
+        <entry key="app/src/main/res/layouts/recognize/layout/activity_task_selection_row.xml" value="0.1094224924012158" />
+        <entry key="app/src/main/res/layouts/recognize/layout/dialog_punchout_break.xml" value="0.17" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>
