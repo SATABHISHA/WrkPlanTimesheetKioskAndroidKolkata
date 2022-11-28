@@ -47,7 +47,7 @@ public class AdminHomeActivity extends AppCompatActivity implements View.OnClick
 
         rl_logout.setOnClickListener(this);
 
-        Log.d("cordidtesting-=>",userSingletonModel.getCorpID());
+//        Log.d("cordidtesting-=>",userSingletonModel.getCorpID());
     }
 
     @Override
