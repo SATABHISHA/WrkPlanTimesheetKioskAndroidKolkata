@@ -14,7 +14,7 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="100dp"
-            android:background="#2E5772"
+            android:background="#5A63DC"
             app:layout_collapseMode="pin"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light" >
             <RelativeLayout
@@ -72,11 +72,11 @@
                 android:layout_height="match_parent"
                 android:layout_weight="90"
                 android:gravity="center"
-                android:background="@drawable/rounded_border_login_remake_linearlayout">
+                android:background="@drawable/rouned_broder__admin_login_leftside_logo_background_vk1">
                 <ImageView
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:background="@drawable/org"
+                    android:layout_width="50dp"
+                    android:layout_height="45dp"
+                    android:background="@drawable/orgvk1"
                     android:scaleType="center"/>
             </LinearLayout>
 
@@ -89,7 +89,7 @@
                     android:id="@+id/activity_login_edt_corp_ID"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="@drawable/rounded_border_login_remake"
+                    android:background="@drawable/rouned_broder_vk1"
                     android:paddingLeft="20dp"
                     android:hint="Corporate ID"
                     android:singleLine="true"
@@ -112,7 +112,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="90"
                 android:gravity="center"
-                android:background="@drawable/rounded_border_login_remake_linearlayout">
+                android:background="@drawable/rouned_broder__admin_login_leftside_logo_background_vk1">
                 <ImageView
                     android:layout_width="60dp"
                     android:layout_height="60dp"
@@ -151,14 +151,14 @@
                 android:layout_height="match_parent"
                 android:layout_weight="90"
                 android:gravity="center"
-                android:background="@drawable/rounded_border_login_remake_linearlayout">
+                android:background="@drawable/rouned_broder__admin_login_leftside_logo_background_vk1">
 
                 <ImageView
                     android:id="@+id/imageView"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
+                    android:layout_width="45dp"
+                    android:layout_height="50dp"
                     android:scaleType="center"
-                    android:background="@drawable/passwordnew" />
+                    android:background="@drawable/passwordnewvk1" />
             </LinearLayout>
 
             <LinearLayout
@@ -188,7 +188,7 @@
             android:layout_marginLeft="0dp"
             android:layout_marginRight="0dp"
             android:layout_marginTop="20dp"
-            android:background="@drawable/border_login_button_remake"
+            android:background="@drawable/rouned_broder_login_vk1"
             android:padding="5dp"
             android:textAllCaps="true"
             android:focusableInTouchMode="true"
@@ -198,7 +198,7 @@
                 android:id="@+id/tv_login"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="Login"
+                android:text="Login  >"
                 android:textSize="40sp"
                 android:gravity="center"
                 android:textColor="#ffffff"/>
