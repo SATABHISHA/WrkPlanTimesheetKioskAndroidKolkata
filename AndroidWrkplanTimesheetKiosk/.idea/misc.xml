@@ -3,7 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/drawable-v24/layout_admin_dashboard_vk1.xml" value="0.124" />
         <entry key="app/src/main/res/drawable-v24/rouned_broder__admin_login_leftside_logo_background_vk1.xml" value="0.152" />
+        <entry key="app/src/main/res/drawable-v24/rouned_broder_dashboard_base_border_items.xml" value="0.124" />
         <entry key="app/src/main/res/drawable-v24/rouned_broder_login_vk1.xml" value="0.124" />
         <entry key="app/src/main/res/drawable-v24/rouned_broder_vk1.xml" value="0.152" />
         <entry key="app/src/main/res/drawable/custom_vertical_line.xml" value="0.22870370370370371" />
@@ -11,7 +13,7 @@
         <entry key="app/src/main/res/drawable/rouned_broder.xml" value="0.152" />
         <entry key="app/src/main/res/drawable/top_border_button.xml" value="0.23743589743589744" />
         <entry key="app/src/main/res/layout/rounded_border_vk1.xml" value="0.14583333333333334" />
-        <entry key="app/src/main/res/layouts/admin/adminhome/layout-sw720dp/activity_admin_home.xml" value="0.1" />
+        <entry key="app/src/main/res/layouts/admin/adminhome/layout-sw720dp/activity_admin_home.xml" value="0.18" />
         <entry key="app/src/main/res/layouts/admin/adminhome/layout/activity_admin_home.xml" value="0.22056159420289856" />
         <entry key="app/src/main/res/layouts/admin/employeesettings/layout-sw720dp/activity_employee_settings.xml" value="0.1" />
         <entry key="app/src/main/res/layouts/admin/employeesettings/layout-sw720dp/dialog_employee_delete_alert.xml" value="0.15" />
@@ -22,6 +24,7 @@
         <entry key="app/src/main/res/layouts/admin/employeesettings/layout/dialog_employee_image_alert.xml" value="0.21" />
         <entry key="app/src/main/res/layouts/admin/kioskunitsettings/layout-sw720dp/activity_kiosk_unit_settings.xml" value="0.10475632355374627" />
         <entry key="app/src/main/res/layouts/admin/kioskunitsettings/layout/activity_kiosk_unit_settings.xml" value="0.21" />
+        <entry key="app/src/main/res/layouts/admin/login/layout-sw720dp/activity_login.xml" value="0.15" />
         <entry key="app/src/main/res/layouts/admin/login/layout/activity_login.xml" value="0.18469431380932022" />
         <entry key="app/src/main/res/layouts/home/layout-sw720dp/activity_home.xml" value="0.1" />
         <entry key="app/src/main/res/layouts/home/layout/activity_home.xml" value="0.14" />

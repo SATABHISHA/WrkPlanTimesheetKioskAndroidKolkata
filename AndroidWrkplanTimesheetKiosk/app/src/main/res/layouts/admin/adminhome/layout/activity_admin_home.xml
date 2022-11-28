@@ -14,7 +14,7 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="#2E5772"
+            android:background="#5A63DC"
             app:layout_collapseMode="pin"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light" >
             <RelativeLayout
@@ -71,7 +71,7 @@
                 android:layout_width="220dp"
                 android:layout_height="220dp"
                 android:layout_gravity="center"
-                android:background="@drawable/layout6"
+                android:background="@drawable/layout_admin_dashboard_vk1"
                 android:orientation="vertical">
 
                 <ImageView
@@ -87,7 +87,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="#4F4F4F"
+                    android:background="@drawable/rouned_broder_dashboard_base_border_items"
                     android:gravity="center"
                     android:text="Kiosk Unit Settings"
                     android:textColor="#ffffff"
@@ -100,7 +100,7 @@
                 android:layout_height="220dp"
                 android:layout_gravity="center"
                 android:layout_marginTop="30dp"
-                android:background="@drawable/layout6"
+                android:background="@drawable/layout_admin_dashboard_vk1"
                 android:orientation="vertical">
 
                 <ImageView
@@ -116,7 +116,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="#4F4F4F"
+                    android:background="@drawable/rouned_broder_dashboard_base_border_items"
                     android:gravity="center"
                     android:text="Employee Image Settings"
                     android:textColor="#ffffff"
