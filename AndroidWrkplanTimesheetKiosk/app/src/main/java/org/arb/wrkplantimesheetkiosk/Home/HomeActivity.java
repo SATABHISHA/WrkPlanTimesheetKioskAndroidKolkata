@@ -41,7 +41,6 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         rl_recognize = findViewById(R.id.rl_recognize);
         imgview_btn_profile = findViewById(R.id.imgview_btn_profile);
         builder = new AlertDialog.Builder(this);
-
         tv_rcognize.setOnClickListener(this);
         imgview_btn_profile.setOnClickListener(this);
         rl_recognize.setOnClickListener(this);
