@@ -14,7 +14,7 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="#2E5772"
+            android:background="#5A63DC"
             app:layout_collapseMode="pin"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light" >
             <RelativeLayout
@@ -47,12 +47,12 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="20dp"
-        android:layout_marginLeft="0dp"
-        android:layout_marginRight="0dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
         android:layout_marginBottom="20dp"
         android:gravity="center"
+        android:background="@drawable/layout_background_layer_vk1"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        android:background="#ffffff"
         android:orientation="vertical">
         <LinearLayout
             android:id="@+id/ll_recycler"
@@ -61,15 +61,15 @@
             android:layout_height="match_parent"
             android:paddingLeft="0dp"
             android:paddingRight="0dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             android:visibility="visible"
             android:orientation="vertical">
             <!--Search section newly added on 15th April, code starts -->
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:background="#fff"
+                android:background="#DDE5FF"
                 >
 
                 <EditText
@@ -106,7 +106,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_marginTop="1dp"
-                android:background="#DDDDDD"/>
+                android:background="#AEAEAE"/>
             <!--Search section newly added on 15th April, code ends -->
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recycler_view"

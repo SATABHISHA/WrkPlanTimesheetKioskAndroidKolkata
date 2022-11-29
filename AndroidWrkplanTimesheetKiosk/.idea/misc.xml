@@ -12,6 +12,8 @@
         <entry key="app/src/main/res/drawable/layout.xml" value="0.154" />
         <entry key="app/src/main/res/drawable/layout6.xml" value="0.154" />
         <entry key="app/src/main/res/drawable/layout_background_layer_vk1.xml" value="0.154" />
+        <entry key="app/src/main/res/drawable/layout_emp_settings_row_Vk1.xml" value="0.104" />
+        <entry key="app/src/main/res/drawable/layout_emp_settings_vk1.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/layout_enrollimage_border_remake_enroll.xml" value="0.154" />
         <entry key="app/src/main/res/drawable/rounded_border_login_remake.xml" value="0.152" />
         <entry key="app/src/main/res/drawable/rouned_broder.xml" value="0.152" />
@@ -20,9 +22,10 @@
         <entry key="app/src/main/res/layouts/admin/adminhome/layout-sw720dp/activity_admin_home.xml" value="0.18" />
         <entry key="app/src/main/res/layouts/admin/adminhome/layout/activity_admin_home.xml" value="0.22056159420289856" />
         <entry key="app/src/main/res/layouts/admin/employeesettings/layout-sw720dp/activity_employee_settings.xml" value="0.1" />
+        <entry key="app/src/main/res/layouts/admin/employeesettings/layout-sw720dp/activity_employee_settings_row.xml" value="0.22" />
         <entry key="app/src/main/res/layouts/admin/employeesettings/layout-sw720dp/dialog_employee_delete_alert.xml" value="0.15" />
         <entry key="app/src/main/res/layouts/admin/employeesettings/layout-sw720dp/dialog_employee_image_alert.xml" value="0.18" />
-        <entry key="app/src/main/res/layouts/admin/employeesettings/layout/activity_employee_settings.xml" value="0.22056159420289856" />
+        <entry key="app/src/main/res/layouts/admin/employeesettings/layout/activity_employee_settings.xml" value="0.2" />
         <entry key="app/src/main/res/layouts/admin/employeesettings/layout/activity_employee_settings_row.xml" value="0.25" />
         <entry key="app/src/main/res/layouts/admin/employeesettings/layout/dialog_employee_delete_alert.xml" value="0.14" />
         <entry key="app/src/main/res/layouts/admin/employeesettings/layout/dialog_employee_image_alert.xml" value="0.21" />

@@ -154,8 +154,8 @@
 
                 <ImageView
                     android:id="@+id/imageView"
-                    android:layout_width="22dp"
-                    android:layout_height="25dp"
+                    android:layout_width="14dp"
+                    android:layout_height="16dp"
                     android:scaleType="center"
                     android:background="@drawable/passwordnewvk1" />
             </LinearLayout>

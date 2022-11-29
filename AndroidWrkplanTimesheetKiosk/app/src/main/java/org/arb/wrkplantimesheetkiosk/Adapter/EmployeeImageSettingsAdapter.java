@@ -90,7 +90,8 @@ public class EmployeeImageSettingsAdapter extends RecyclerView.Adapter<EmployeeI
 
             holder.tv_enroll_remove_image.setText("Enroll\nImage");
 //            holder.tv_enroll_remove_image.setTextColor(Color.parseColor("#4f4f4f"));
-            holder.tv_enroll_remove_image.setTextColor(Color.parseColor("#494949"));
+//            holder.tv_enroll_remove_image.setTextColor(Color.parseColor("#494949"));  //---commented on  29th Nov, 2022
+            holder.tv_enroll_remove_image.setTextColor(Color.parseColor("#ffffff")); //---added on 29th Nov, 2022
 //            holder.ll_enroll.setBackgroundColor(Color.parseColor("#D6D6D6"));
             holder.ll_enroll.setBackgroundResource(R.drawable.layout_enrollimage_border_remake_enroll);
 

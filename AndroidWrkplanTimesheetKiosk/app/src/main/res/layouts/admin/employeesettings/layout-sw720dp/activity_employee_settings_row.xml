@@ -19,7 +19,7 @@
         android:paddingBottom="10dp"
         android:layout_marginBottom="0dp"
         android:layout_marginTop="0dp"
-        android:background="#ffffff">
+        android:background="#DDE5FF">
         <RelativeLayout
             android:id="@+id/relative_layout"
             android:layout_width="match_parent"
@@ -27,7 +27,7 @@
             android:paddingLeft="0dp"
             android:paddingRight="0dp"
             android:focusableInTouchMode="true"
-            android:background="#ffffff">
+            android:background="#DDE5FF">
 
             <TextView
                 android:id="@+id/tv_name"
