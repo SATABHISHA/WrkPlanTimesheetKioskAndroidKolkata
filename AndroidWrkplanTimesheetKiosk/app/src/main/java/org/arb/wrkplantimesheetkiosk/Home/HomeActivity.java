@@ -14,6 +14,7 @@ import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,6 +28,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
 
     TextView tv_rcognize;
     ImageView imgview_btn_profile;
+    RelativeLayout rl_recognize;
     public static final int RequestPermissionCode = 1;
     SharedPreferences sharedPreferences;
     UserSingletonModel userSingletonModel = UserSingletonModel.getInstance();
@@ -36,11 +38,13 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         tv_rcognize = findViewById(R.id.tv_rcognize);
+        rl_recognize = findViewById(R.id.rl_recognize);
         imgview_btn_profile = findViewById(R.id.imgview_btn_profile);
         builder = new AlertDialog.Builder(this);
 
         tv_rcognize.setOnClickListener(this);
         imgview_btn_profile.setOnClickListener(this);
+        rl_recognize.setOnClickListener(this);
 
         sharedPreferences = getApplication().getSharedPreferences("LoginDetails", Context.MODE_PRIVATE);
         EnableRuntimePermission();
@@ -49,7 +53,33 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
         switch (v.getId()){
-            case R.id.tv_rcognize:
+            case R.id.rl_recognize:
+                if(!sharedPreferences.getString("CorpID", "").isEmpty()){
+                    userSingletonModel.setCorpID(sharedPreferences.getString("CorpID", ""));
+                    startActivity(new Intent(this, RecognizeHomeRealtimeActivity.class));
+                }else{
+
+                    builder.setMessage("The device is not ready yet! Please fill up all required information through admin login > Kiosk Unit Settings.")
+                            .setCancelable(false)
+                            .setNegativeButton("Ok", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+                                    //  Action for 'NO' Button
+                                    Intent intent=new Intent(HomeActivity.this,HomeActivity.class);
+                                    startActivity(intent);
+                                    finish();
+                                    dialog.cancel();
+
+                                }
+                            });
+                    //Creating dialog box
+                    AlertDialog alert_logout = builder.create();
+                    //Setting the title manually
+                    alert_logout.setTitle("Alert!");
+                    alert_logout.show();
+                }
+
+                break;
+            /*case R.id.tv_rcognize:
                 if(!sharedPreferences.getString("CorpID", "").isEmpty()){
                   userSingletonModel.setCorpID(sharedPreferences.getString("CorpID", ""));
                     startActivity(new Intent(this, RecognizeHomeRealtimeActivity.class));
@@ -74,7 +104,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
                     alert_logout.show();
             }
 
-                break;
+                break;*/
             case R.id.imgview_btn_profile:
                 startActivity(new Intent(this, LoginActivity.class));
                 break;

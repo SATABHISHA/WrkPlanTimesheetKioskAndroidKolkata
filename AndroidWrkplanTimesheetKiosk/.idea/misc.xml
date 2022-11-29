@@ -15,13 +15,14 @@
         <entry key="app/src/main/res/drawable/layout_emp_settings_row_Vk1.xml" value="0.104" />
         <entry key="app/src/main/res/drawable/layout_emp_settings_vk1.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/layout_enrollimage_border_remake_enroll.xml" value="0.154" />
+        <entry key="app/src/main/res/drawable/layout_home_recognize.xml" value="0.154" />
         <entry key="app/src/main/res/drawable/rounded_border_login_remake.xml" value="0.152" />
         <entry key="app/src/main/res/drawable/rouned_broder.xml" value="0.152" />
         <entry key="app/src/main/res/drawable/top_border_button.xml" value="0.23743589743589744" />
         <entry key="app/src/main/res/layout/rounded_border_vk1.xml" value="0.14583333333333334" />
         <entry key="app/src/main/res/layouts/admin/adminhome/layout-sw720dp/activity_admin_home.xml" value="0.18" />
         <entry key="app/src/main/res/layouts/admin/adminhome/layout/activity_admin_home.xml" value="0.22056159420289856" />
-        <entry key="app/src/main/res/layouts/admin/employeesettings/layout-sw720dp/activity_employee_settings.xml" value="0.1" />
+        <entry key="app/src/main/res/layouts/admin/employeesettings/layout-sw720dp/activity_employee_settings.xml" value="0.15" />
         <entry key="app/src/main/res/layouts/admin/employeesettings/layout-sw720dp/activity_employee_settings_row.xml" value="0.22" />
         <entry key="app/src/main/res/layouts/admin/employeesettings/layout-sw720dp/dialog_employee_delete_alert.xml" value="0.15" />
         <entry key="app/src/main/res/layouts/admin/employeesettings/layout-sw720dp/dialog_employee_image_alert.xml" value="0.18" />
@@ -33,7 +34,7 @@
         <entry key="app/src/main/res/layouts/admin/kioskunitsettings/layout/activity_kiosk_unit_settings.xml" value="0.21" />
         <entry key="app/src/main/res/layouts/admin/login/layout-sw720dp/activity_login.xml" value="0.15" />
         <entry key="app/src/main/res/layouts/admin/login/layout/activity_login.xml" value="0.18469431380932022" />
-        <entry key="app/src/main/res/layouts/home/layout-sw720dp/activity_home.xml" value="0.1" />
+        <entry key="app/src/main/res/layouts/home/layout-sw720dp/activity_home.xml" value="0.15" />
         <entry key="app/src/main/res/layouts/home/layout/activity_home.xml" value="0.14" />
         <entry key="app/src/main/res/layouts/recognize/layout-sw720dp/activity_attendance_record.xml" value="0.15" />
         <entry key="app/src/main/res/layouts/recognize/layout-sw720dp/activity_recognize_option.xml" value="0.22" />

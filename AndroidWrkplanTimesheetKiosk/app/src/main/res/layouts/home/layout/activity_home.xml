@@ -33,28 +33,41 @@
 
         <ImageView
             android:id="@+id/imgview_btn_profile"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_alignParentRight="true"
-            android:layout_marginTop="20dp"
-            android:layout_marginRight="20dp"
-            android:background="@drawable/profile"/>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginRight="50dp"
-            android:layout_marginLeft="50dp"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="80dp"
+            android:background="@drawable/profile" />
+
+        <RelativeLayout
+            android:id="@+id/rl_recognize"
+            android:layout_width="150dp"
+            android:layout_height="180dp"
             android:layout_centerInParent="true"
-            android:background="@drawable/layout6"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
+            android:background="@drawable/layout_home_recognize_vk1"
+
             android:textColor="#000000">
+
+            <ImageView
+                android:id="@+id/img_camera"
+                android:layout_width="55dp"
+                android:layout_height="55dp"
+                android:layout_centerInParent="true"
+                android:background="@drawable/recognizecamera" />
+
             <TextView
                 android:id="@+id/tv_rcognize"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/img_camera"
+                android:layout_centerHorizontal="true"
                 android:layout_gravity="center"
-                android:gravity="center"
-                android:text="Recognize Me"/>
-        </LinearLayout>
+                android:layout_marginTop="3dp"
+                android:text="Recognize Me"
+                android:textColor="#ffffff" />
+        </RelativeLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
