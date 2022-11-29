@@ -38,21 +38,24 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="160dp"
             android:background="@drawable/profile" />
+
         <RelativeLayout
             android:id="@+id/rl_recognize"
-            android:layout_width="300dp"
+            android:layout_width="350dp"
             android:layout_height="350dp"
-            android:layout_marginRight="100dp"
-            android:layout_marginLeft="100dp"
             android:layout_centerInParent="true"
+            android:layout_marginLeft="100dp"
+            android:layout_marginRight="100dp"
             android:background="@drawable/layout_home_recognize_vk1"
             android:textColor="#000000">
+
             <ImageView
                 android:id="@+id/img_camera"
-                android:layout_width="70dp"
-                android:layout_height="70dp"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
                 android:layout_centerInParent="true"
                 android:background="@drawable/recognizecamera" />
+
             <TextView
                 android:id="@+id/tv_rcognize"
                 android:layout_width="wrap_content"
@@ -60,9 +63,9 @@
                 android:layout_below="@id/img_camera"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="3dp"
-                android:textSize="40sp"
+                android:text="Recognize Me"
                 android:textColor="#ffffff"
-                android:text="Recognize Me"/>
+                android:textSize="40sp" />
         </RelativeLayout>
 
         <LinearLayout
