@@ -73,8 +73,8 @@
                 android:gravity="center"
                 android:background="@drawable/rouned_broder__admin_login_leftside_logo_background_vk1">
                 <ImageView
-                    android:layout_width="25dp"
-                    android:layout_height="22dp"
+                    android:layout_width="21dp"
+                    android:layout_height="15dp"
                     android:background="@drawable/orgvk1"
                     android:scaleType="center"/>
             </LinearLayout>

@@ -9,6 +9,10 @@
         <entry key="app/src/main/res/drawable-v24/rouned_broder_login_vk1.xml" value="0.124" />
         <entry key="app/src/main/res/drawable-v24/rouned_broder_vk1.xml" value="0.152" />
         <entry key="app/src/main/res/drawable/custom_vertical_line.xml" value="0.22870370370370371" />
+        <entry key="app/src/main/res/drawable/layout.xml" value="0.154" />
+        <entry key="app/src/main/res/drawable/layout6.xml" value="0.154" />
+        <entry key="app/src/main/res/drawable/layout_background_layer_vk1.xml" value="0.154" />
+        <entry key="app/src/main/res/drawable/layout_enrollimage_border_remake_enroll.xml" value="0.154" />
         <entry key="app/src/main/res/drawable/rounded_border_login_remake.xml" value="0.152" />
         <entry key="app/src/main/res/drawable/rouned_broder.xml" value="0.152" />
         <entry key="app/src/main/res/drawable/top_border_button.xml" value="0.23743589743589744" />
@@ -22,7 +26,7 @@
         <entry key="app/src/main/res/layouts/admin/employeesettings/layout/activity_employee_settings_row.xml" value="0.25" />
         <entry key="app/src/main/res/layouts/admin/employeesettings/layout/dialog_employee_delete_alert.xml" value="0.14" />
         <entry key="app/src/main/res/layouts/admin/employeesettings/layout/dialog_employee_image_alert.xml" value="0.21" />
-        <entry key="app/src/main/res/layouts/admin/kioskunitsettings/layout-sw720dp/activity_kiosk_unit_settings.xml" value="0.10475632355374627" />
+        <entry key="app/src/main/res/layouts/admin/kioskunitsettings/layout-sw720dp/activity_kiosk_unit_settings.xml" value="0.15" />
         <entry key="app/src/main/res/layouts/admin/kioskunitsettings/layout/activity_kiosk_unit_settings.xml" value="0.21" />
         <entry key="app/src/main/res/layouts/admin/login/layout-sw720dp/activity_login.xml" value="0.15" />
         <entry key="app/src/main/res/layouts/admin/login/layout/activity_login.xml" value="0.18469431380932022" />
