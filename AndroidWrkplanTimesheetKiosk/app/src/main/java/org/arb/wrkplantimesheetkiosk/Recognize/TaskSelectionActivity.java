@@ -92,7 +92,6 @@ public class TaskSelectionActivity extends AppCompatActivity implements View.OnC
 public void loadData(){
     String url = Config.BaseUrl + "KioskService.asmx/EmployeeTimeSheetDailyTaskList";
 
-
     final ProgressDialog loading = ProgressDialog.show(TaskSelectionActivity.this, "Loading", "Please wait while loading data", false, false);
     StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
             new Response.Listener<String>() {
