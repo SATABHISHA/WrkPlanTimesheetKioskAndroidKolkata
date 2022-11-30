@@ -35,123 +35,169 @@
         android:paddingRight="0dp"
         app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
 
-        <TextView
-            android:id="@+id/tv_empname"
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin = "10dp"
+        android:background="@drawable/layout_background_layer_vk1">
+
+        <RelativeLayout
+            android:id="@+id/rl_view1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
             android:layout_marginTop="20dp"
-            android:text="Hello\n Bhattachraya, Achintya"
-            android:textAlignment="center"
-            android:textColor="#000000"
-            android:textSize="25dp" />
-        <TextView
-            android:id="@+id/tv_date"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/tv_empname"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="15dp"
-            android:gravity="center"
-            android:text="06-Aug-2021"
-            android:textSize="17sp" />
-        <TextView
-            android:id="@+id/tv_time"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/tv_date"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="5dp"
-            android:gravity="center"
-            android:text="06:10 PM"
-            android:textSize="17sp" />
-        <LinearLayout
-            android:id="@+id/ll_headlines"
-            android:layout_below="@id/tv_time"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="25dp"
-            android:layout_marginRight="25dp"
-            android:layout_marginTop="23dp"
-            android:orientation="vertical">
-            <LinearLayout
-                android:id="@+id/ll_child1"
+            android:layout_marginRight="20dp"
+            android:background="@drawable/layout_background_layer_view_vk1"
+            android:padding="10dp">
+
+            <TextView
+                android:id="@+id/tv_empname"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal">
-                <TextView
-                    android:layout_width="100dp"
-                    android:layout_height="wrap_content"
-                    android:textSize="14sp"
-                    android:textColor="#4f4f4f"
-                    android:text="Employee ID"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="#4f4f4f"
-                    android:text=":"/>
-                <TextView
-                    android:id="@+id/tv_emp_id"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:textSize="14sp"
-                    android:text="33"/>
-            </LinearLayout>
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Hello\n Bhattachraya, Achintya"
+                android:textAlignment="center"
+                android:textColor="#ffffff"
+                android:textSize="25dp" />
+
             <LinearLayout
-                android:id="@+id/ll_child2"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:id="@+id/ll_view1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_empname"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="10dp"
                 android:orientation="horizontal">
+
                 <TextView
-                    android:layout_width="100dp"
-                    android:layout_height="wrap_content"
-                    android:textSize="14sp"
-                    android:textColor="#4f4f4f"
-                    android:text="Supervisor 1"/>
-                <TextView
+                    android:id="@+id/tv_date"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="#4f4f4f"
-                    android:text=":"/>
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="0dp"
+                    android:gravity="center"
+                    android:text="06-Aug-2021"
+                    android:textColor="#ffffff"
+                    android:textSize="17sp" />
+
                 <TextView
-                    android:id="@+id/tv_supervisor1"
+                    android:id="@+id/tv_time"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
                     android:layout_marginLeft="10dp"
-                    android:textSize="14sp"
-                    android:text="a,b"/>
+                    android:layout_marginTop="0dp"
+                    android:gravity="center"
+                    android:text="06:10 PM"
+                    android:textColor="#ffffff"
+                    android:textSize="17sp" />
             </LinearLayout>
+
             <LinearLayout
-                android:id="@+id/ll_child3"
+                android:id="@+id/ll_headlines"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal">
-                <TextView
-                    android:layout_width="100dp"
-                    android:layout_height="wrap_content"
-                    android:textSize="14sp"
-                    android:textColor="#4f4f4f"
-                    android:text="Supervisor 2"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="#4f4f4f"
-                    android:text=":"/>
-                <TextView
-                    android:id="@+id/tv_supervisor2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:textSize="14sp"
-                    android:text=""/>
+                android:layout_height="wrap_content"
+                android:layout_below="@id/ll_view1"
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="23dp"
+                android:layout_marginRight="25dp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:id="@+id/ll_child1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:text="Employee ID"
+                        android:textColor="#ffffff"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=":"
+                        android:textColor="#ffffff" />
+
+                    <TextView
+                        android:id="@+id/tv_emp_id"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:text="33"
+                        android:textColor="#ffffff"
+                        android:textSize="14sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_child2"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:text="Supervisor 1"
+                        android:textColor="#ffffff"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=":"
+                        android:textColor="#ffffff" />
+
+                    <TextView
+                        android:id="@+id/tv_supervisor1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:text="a,b"
+                        android:textColor="#ffffff"
+                        android:textSize="14sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_child3"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:text="Supervisor 2"
+                        android:textColor="#ffffff"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=":"
+                        android:textColor="#ffffff" />
+
+                    <TextView
+                        android:id="@+id/tv_supervisor2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:text=""
+                        android:textColor="#ffffff"
+                        android:textSize="14sp" />
+                </LinearLayout>
             </LinearLayout>
-        </LinearLayout>
+        </RelativeLayout>
         <LinearLayout
             android:id="@+id/ll_buttons"
-            android:layout_below="@id/ll_headlines"
+            android:layout_below="@id/rl_view1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="25dp"
             android:layout_marginLeft="25dp"
             android:layout_marginRight="25dp"
             android:orientation="vertical">
@@ -160,24 +206,25 @@
                 android:layout_width="match_parent"
                 android:layout_height="80dp"
                 android:gravity="center"
-                android:background="@drawable/layout6">
+                android:background="@drawable/layout_custom_btn_reusable_vk1">
                 <TextView
                     android:id="@+id/tv_punchtitle1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
                     android:textSize="13sp"
-                    android:textColor="#4f4f4f"
+                    android:textColor="#ffffff"
                     android:text="Punch"/>
+
                 <TextView
                     android:id="@+id/tv_punchtitle2"
-                    android:layout_below="@id/tv_punchtitle1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_below="@id/tv_punchtitle1"
                     android:layout_centerHorizontal="true"
-                    android:textSize="22sp"
-                    android:textColor="#4f4f4f"
-                    android:text="IN"/>
+                    android:text="IN"
+                    android:textColor="#ffffff"
+                    android:textSize="22sp" />
             </RelativeLayout>
             <LinearLayout
                 android:id="@+id/ll_break_punchout"
@@ -189,7 +236,7 @@
                     android:id="@+id/rl_break"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:background="@drawable/layout6"
+                    android:background="@drawable/layout_custom_break_btn"
                     android:layout_marginRight="17dp"
                     android:gravity="center"
                     android:focusableInTouchMode="true"
@@ -200,23 +247,24 @@
                         android:layout_height="wrap_content"
                         android:layout_centerHorizontal="true"
                         android:textSize="13sp"
-                        android:textColor="#4f4f4f"
+                        android:textColor="#ffffff"
                         android:text="Take a"/>
+
                     <TextView
                         android:id="@+id/tv_breaktitle2"
-                        android:layout_below="@id/tv_breaktitle1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_below="@id/tv_breaktitle1"
                         android:layout_centerHorizontal="true"
-                        android:textSize="22sp"
-                        android:textColor="#4f4f4f"
-                        android:text="BREAK"/>
+                        android:text="BREAK"
+                        android:textColor="#ffffff"
+                        android:textSize="22sp" />
                 </RelativeLayout>
                 <RelativeLayout
                     android:id="@+id/rl_punch_out"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:background="@drawable/layout6"
+                    android:background="@drawable/layout_custom_punch_out_btn"
                     android:gravity="center"
                     android:focusableInTouchMode="true"
                     android:layout_marginLeft="17dp"
@@ -227,7 +275,7 @@
                         android:layout_height="wrap_content"
                         android:layout_centerHorizontal="true"
                         android:textSize="13sp"
-                        android:textColor="#4f4f4f"
+                        android:textColor="#ffffff"
                         android:text="Punch"/>
                     <TextView
                         android:id="@+id/tv_punch_out_title2"
@@ -236,7 +284,7 @@
                         android:layout_height="wrap_content"
                         android:layout_centerHorizontal="true"
                         android:textSize="22sp"
-                        android:textColor="#4f4f4f"
+                        android:textColor="#ffffff"
                         android:text="OUT"/>
                 </RelativeLayout>
             </LinearLayout>
@@ -248,14 +296,14 @@
                 android:gravity="center"
                 android:visibility="visible"
                 android:focusableInTouchMode="true"
-                android:background="@drawable/layout6">
+                android:background="@drawable/layout_custom_btn_reusable_vk1">
                 <TextView
                     android:id="@+id/tv_view_select_task"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
                     android:textSize="22sp"
-                    android:textColor="#4f4f4f"
+                    android:textColor="#ffffff"
                     android:text="View / Select / Switch Task"/>
             </RelativeLayout>
 
@@ -266,14 +314,14 @@
                 android:layout_marginTop="10dp"
                 android:gravity="center"
                 android:visibility="visible"
-                android:background="@drawable/layout6">
+                android:background="@drawable/layout_custom_btn_reusable_vk1">
                 <TextView
                     android:id="@+id/tv_view_leave_balance"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:textSize="22sp"
-                    android:textColor="#4f4f4f"
+                    android:textColor="#ffffff"
                     android:text="View Leave Balance"/>
             </RelativeLayout>
             <RelativeLayout
@@ -283,17 +331,18 @@
                 android:layout_marginTop="10dp"
                 android:gravity="center"
                 android:visibility="visible"
-                android:background="@drawable/layout6">
+                android:background="@drawable/layout_custom_btn_reusable_vk1">
                 <TextView
                     android:id="@+id/tv_cancel"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
                     android:textSize="22sp"
-                    android:textColor="#4f4f4f"
+                    android:textColor="#ffffff"
                     android:text="Cancel"/>
             </RelativeLayout>
 
         </LinearLayout>
+    </RelativeLayout>
     </RelativeLayout>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

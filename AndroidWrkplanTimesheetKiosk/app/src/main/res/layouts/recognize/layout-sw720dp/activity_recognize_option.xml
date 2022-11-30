@@ -34,127 +34,173 @@
         android:paddingLeft="0dp"
         android:paddingRight="0dp"
         app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin = "30dp"
+        android:background="@drawable/layout_background_layer_vk1">
 
-        <TextView
-            android:id="@+id/tv_empname"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
-            android:text="Hello\n Bhattachraya, Achintya"
-            android:textAlignment="center"
-            android:textColor="#000000"
-            android:textSize="40dp" />
-
-        <TextView
-            android:id="@+id/tv_date"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/tv_empname"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="15dp"
-            android:gravity="center"
-            android:text="06-Aug-2021"
-            android:textSize="27sp" />
-        <TextView
-            android:id="@+id/tv_time"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/tv_date"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="5dp"
-            android:gravity="center"
-            android:text="06:10 PM"
-            android:textSize="27sp" />
-        <LinearLayout
-            android:id="@+id/ll_headlines"
-            android:layout_below="@id/tv_time"
+        <RelativeLayout
+            android:id="@+id/rl_view1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="45dp"
+            android:layout_marginTop="50dp"
             android:layout_marginRight="45dp"
-            android:layout_marginTop="35dp"
-            android:orientation="vertical">
-            <LinearLayout
-                android:id="@+id/ll_child1"
+            android:background="@drawable/layout_background_layer_view_vk1"
+            android:padding="10dp">
+
+            <TextView
+                android:id="@+id/tv_empname"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal">
-                <TextView
-                    android:layout_width="200dp"
-                    android:layout_height="wrap_content"
-                    android:textSize="30sp"
-                    android:textColor="#4f4f4f"
-                    android:text="Employee ID"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="30sp"
-                    android:textColor="#4f4f4f"
-                    android:text=":"/>
-                <TextView
-                    android:id="@+id/tv_emp_id"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:textSize="30sp"
-                    android:text="33"/>
-            </LinearLayout>
+                android:layout_height="wrap_content"
+                android:layout_marginTop="50dp"
+                android:text="Hello\n Bhattachraya, Achintya"
+                android:textAlignment="center"
+                android:textColor="#ffffff"
+                android:textSize="40dp" />
+
             <LinearLayout
-                android:id="@+id/ll_child2"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:id="@+id/ll_view1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_empname"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="10dp"
                 android:orientation="horizontal">
+
                 <TextView
-                    android:layout_width="200dp"
-                    android:layout_height="wrap_content"
-                    android:textSize="30sp"
-                    android:textColor="#4f4f4f"
-                    android:text="Supervisor 1"/>
-                <TextView
+                    android:id="@+id/tv_date"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="30sp"
-                    android:textColor="#4f4f4f"
-                    android:text=":"/>
+                    android:layout_below="@id/tv_empname"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="15dp"
+                    android:gravity="center"
+                    android:text="06-Aug-2021"
+                    android:textColor="#ffffff"
+                    android:textSize="27sp" />
+
                 <TextView
-                    android:id="@+id/tv_supervisor1"
+                    android:id="@+id/tv_time"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:textSize="30sp"
-                    android:text="a,b"/>
+                    android:layout_below="@id/tv_date"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="15dp"
+                    android:gravity="center"
+                    android:text="06:10 PM"
+                    android:textColor="#ffffff"
+                    android:textSize="27sp" />
             </LinearLayout>
+
             <LinearLayout
-                android:id="@+id/ll_child3"
+                android:id="@+id/ll_headlines"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal">
-                <TextView
-                    android:layout_width="200dp"
-                    android:layout_height="wrap_content"
-                    android:textSize="30sp"
-                    android:textColor="#4f4f4f"
-                    android:text="Supervisor 2"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="30sp"
-                    android:textColor="#4f4f4f"
-                    android:text=":"/>
-                <TextView
-                    android:id="@+id/tv_supervisor2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:textSize="30sp"
-                    android:text=""/>
+                android:layout_height="wrap_content"
+                android:layout_below="@id/ll_view1"
+                android:layout_marginLeft="45dp"
+                android:layout_marginTop="35dp"
+                android:layout_marginRight="45dp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:id="@+id/ll_child1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content"
+                        android:text="Employee ID"
+                        android:textColor="#ffffff"
+                        android:textSize="30sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=":"
+                        android:textColor="#ffffff"
+                        android:textSize="30sp" />
+
+                    <TextView
+                        android:id="@+id/tv_emp_id"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:text="33"
+                        android:textColor="#ffffff"
+                        android:textSize="30sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_child2"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content"
+                        android:text="Supervisor 1"
+                        android:textColor="#ffffff"
+                        android:textSize="30sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=":"
+                        android:textColor="#ffffff"
+                        android:textSize="30sp" />
+
+                    <TextView
+                        android:id="@+id/tv_supervisor1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:text="a,b"
+                        android:textColor="#ffffff"
+                        android:textSize="30sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_child3"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content"
+                        android:text="Supervisor 2"
+                        android:textColor="#ffffff"
+                        android:textSize="30sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=":"
+                        android:textColor="#ffffff"
+                        android:textSize="30sp" />
+
+                    <TextView
+                        android:id="@+id/tv_supervisor2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:text=""
+                        android:textColor="#ffffff"
+                        android:textSize="30sp" />
+                </LinearLayout>
             </LinearLayout>
-        </LinearLayout>
+        </RelativeLayout>
         <LinearLayout
             android:id="@+id/ll_buttons"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/ll_headlines"
+            android:layout_below="@id/rl_view1"
             android:layout_centerInParent="true"
             android:layout_marginTop="30dp"
             android:layout_marginLeft="45dp"
@@ -165,14 +211,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="120dp"
                 android:gravity="center"
-                android:background="@drawable/layout6">
+                android:background="@drawable/layout_custom_btn_reusable_vk1">
                 <TextView
                     android:id="@+id/tv_punchtitle1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
                     android:textSize="30sp"
-                    android:textColor="#4f4f4f"
+                    android:textColor="#ffffff"
                     android:text="Punch"/>
                 <TextView
                     android:id="@+id/tv_punchtitle2"
@@ -181,7 +227,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
                     android:textSize="40sp"
-                    android:textColor="#4f4f4f"
+                    android:textColor="#ffffff"
                     android:text="IN"/>
             </RelativeLayout>
             <LinearLayout
@@ -194,7 +240,7 @@
                     android:id="@+id/rl_break"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:background="@drawable/layout6"
+                    android:background="@drawable/layout_custom_break_btn"
                     android:layout_marginRight="17dp"
                     android:gravity="center"
                     android:focusableInTouchMode="true"
@@ -205,7 +251,7 @@
                         android:layout_height="wrap_content"
                         android:layout_centerHorizontal="true"
                         android:textSize="30sp"
-                        android:textColor="#4f4f4f"
+                        android:textColor="#ffffff"
                         android:text="Take a"/>
                     <TextView
                         android:id="@+id/tv_breaktitle2"
@@ -214,14 +260,14 @@
                         android:layout_height="wrap_content"
                         android:layout_centerHorizontal="true"
                         android:textSize="40sp"
-                        android:textColor="#4f4f4f"
+                        android:textColor="#ffffff"
                         android:text="BREAK"/>
                 </RelativeLayout>
                 <RelativeLayout
                     android:id="@+id/rl_punch_out"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:background="@drawable/layout6"
+                    android:background="@drawable/layout_custom_punch_out_btn"
                     android:gravity="center"
                     android:focusableInTouchMode="true"
                     android:layout_marginLeft="17dp"
@@ -232,7 +278,7 @@
                         android:layout_height="wrap_content"
                         android:layout_centerHorizontal="true"
                         android:textSize="30sp"
-                        android:textColor="#4f4f4f"
+                        android:textColor="#ffffff"
                         android:text="Punch"/>
                     <TextView
                         android:id="@+id/tv_punch_out_title2"
@@ -241,7 +287,7 @@
                         android:layout_height="wrap_content"
                         android:layout_centerHorizontal="true"
                         android:textSize="40sp"
-                        android:textColor="#4f4f4f"
+                        android:textColor="#ffffff"
                         android:text="OUT"/>
                 </RelativeLayout>
             </LinearLayout>
@@ -253,14 +299,14 @@
                 android:gravity="center"
                 android:visibility="visible"
                 android:focusableInTouchMode="true"
-                android:background="@drawable/layout6">
+                android:background="@drawable/layout_custom_btn_reusable_vk1">
                 <TextView
                     android:id="@+id/tv_view_select_task"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
                     android:textSize="40sp"
-                    android:textColor="#4f4f4f"
+                    android:textColor="#ffffff"
                     android:text="View / Select / Switch Task"/>
             </RelativeLayout>
 
@@ -271,14 +317,14 @@
                 android:layout_marginTop="20dp"
                 android:gravity="center"
                 android:visibility="visible"
-                android:background="@drawable/layout6">
+                android:background="@drawable/layout_custom_btn_reusable_vk1">
                 <TextView
                     android:id="@+id/tv_view_leave_balance"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:textSize="40sp"
-                    android:textColor="#4f4f4f"
+                    android:textColor="#ffffff"
                     android:text="View Leave Balance"/>
             </RelativeLayout>
             <RelativeLayout
@@ -288,17 +334,18 @@
                 android:layout_marginTop="20dp"
                 android:gravity="center"
                 android:visibility="visible"
-                android:background="@drawable/layout6">
+                android:background="@drawable/layout_custom_btn_reusable_vk1">
                 <TextView
                     android:id="@+id/tv_cancel"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
                     android:textSize="40sp"
-                    android:textColor="#4f4f4f"
+                    android:textColor="#ffffff"
                     android:text="Cancel"/>
             </RelativeLayout>
 
         </LinearLayout>
+    </RelativeLayout>
     </RelativeLayout>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

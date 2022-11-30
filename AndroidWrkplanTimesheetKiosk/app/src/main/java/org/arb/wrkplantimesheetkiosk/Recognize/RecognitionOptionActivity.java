@@ -117,8 +117,8 @@ public class RecognitionOptionActivity extends AppCompatActivity implements View
         String formattedDate = df.format(c);
         String formattedTime = df_time.format(c);
 
-        tv_date.setText(formattedDate);
-        tv_time.setText(formattedTime);
+        tv_date.setText("Date: "+formattedDate);
+        tv_time.setText("Time: "+formattedTime);
         //=========get current date and set curretnt date, code ends========
 
         rl_punch_in.setOnClickListener(this);

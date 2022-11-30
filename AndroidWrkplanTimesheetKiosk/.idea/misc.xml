@@ -4,6 +4,10 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="app/src/main/res/drawable-v24/layout_admin_dashboard_vk1.xml" value="0.124" />
+        <entry key="app/src/main/res/drawable-v24/layout_background_layer_view_vk1.xml" value="0.125" />
+        <entry key="app/src/main/res/drawable-v24/layout_custom_break_btn.xml" value="0.125" />
+        <entry key="app/src/main/res/drawable-v24/layout_custom_btn_reusable_vk1.xml" value="0.125" />
+        <entry key="app/src/main/res/drawable-v24/layout_custom_punch_out_btn.xml" value="0.125" />
         <entry key="app/src/main/res/drawable-v24/rouned_broder__admin_login_leftside_logo_background_vk1.xml" value="0.152" />
         <entry key="app/src/main/res/drawable-v24/rouned_broder_dashboard_base_border_items.xml" value="0.124" />
         <entry key="app/src/main/res/drawable-v24/rouned_broder_login_vk1.xml" value="0.124" />
@@ -14,6 +18,7 @@
         <entry key="app/src/main/res/drawable/layout_background_layer_vk1.xml" value="0.154" />
         <entry key="app/src/main/res/drawable/layout_emp_settings_row_Vk1.xml" value="0.104" />
         <entry key="app/src/main/res/drawable/layout_emp_settings_vk1.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/layout_enroll_image_popup_border_remake.xml" value="0.125" />
         <entry key="app/src/main/res/drawable/layout_enrollimage_border_remake_enroll.xml" value="0.154" />
         <entry key="app/src/main/res/drawable/layout_home_recognize.xml" value="0.154" />
         <entry key="app/src/main/res/drawable/rounded_border_login_remake.xml" value="0.152" />
@@ -37,7 +42,7 @@
         <entry key="app/src/main/res/layouts/home/layout-sw720dp/activity_home.xml" value="0.15" />
         <entry key="app/src/main/res/layouts/home/layout/activity_home.xml" value="0.14" />
         <entry key="app/src/main/res/layouts/recognize/layout-sw720dp/activity_attendance_record.xml" value="0.15" />
-        <entry key="app/src/main/res/layouts/recognize/layout-sw720dp/activity_recognize_option.xml" value="0.22" />
+        <entry key="app/src/main/res/layouts/recognize/layout-sw720dp/activity_recognize_option.xml" value="0.16" />
         <entry key="app/src/main/res/layouts/recognize/layout-sw720dp/activity_task_selection.xml" value="0.12" />
         <entry key="app/src/main/res/layouts/recognize/layout-sw720dp/dialog_punchout_break.xml" value="0.1" />
         <entry key="app/src/main/res/layouts/recognize/layout/activity_attendance_record.xml" value="0.25" />

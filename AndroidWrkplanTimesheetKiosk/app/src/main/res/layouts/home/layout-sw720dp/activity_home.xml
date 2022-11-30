@@ -31,6 +31,11 @@
         android:layout_height="match_parent"
         app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin = "30dp"
+        android:background="@drawable/layout_background_layer_vk1">
         <ImageView
             android:id="@+id/imgview_btn_profile"
             android:layout_width="140dp"
@@ -103,5 +108,6 @@
                 android:textColor="#3E3D3D"
                 android:textSize="24sp"/>
         </LinearLayout>
+    </RelativeLayout>
     </RelativeLayout>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
