@@ -243,25 +243,35 @@
                     android:background="@drawable/layout_custom_break_btn"
                     android:layout_marginRight="17dp"
                     android:gravity="center"
-                    android:focusableInTouchMode="true"
+                    android:clickable="true"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"
                     android:layout_weight="1">
+
                     <TextView
                         android:id="@+id/tv_breaktitle1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerHorizontal="true"
-                        android:textSize="30sp"
+                        android:clickable="true"
+                        android:focusable="false"
+                        android:focusableInTouchMode="false"
+                        android:text="Take a"
                         android:textColor="#ffffff"
-                        android:text="Take a"/>
+                        android:textSize="30sp" />
+
                     <TextView
                         android:id="@+id/tv_breaktitle2"
-                        android:layout_below="@id/tv_breaktitle1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_below="@id/tv_breaktitle1"
                         android:layout_centerHorizontal="true"
-                        android:textSize="40sp"
+                        android:clickable="true"
+                        android:focusable="false"
+                        android:focusableInTouchMode="false"
+                        android:text="BREAK"
                         android:textColor="#ffffff"
-                        android:text="BREAK"/>
+                        android:textSize="40sp" />
                 </RelativeLayout>
                 <RelativeLayout
                     android:id="@+id/rl_punch_out"
@@ -269,7 +279,9 @@
                     android:layout_height="match_parent"
                     android:background="@drawable/layout_custom_punch_out_btn"
                     android:gravity="center"
-                    android:focusableInTouchMode="true"
+                    android:clickable="true"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"
                     android:layout_marginLeft="17dp"
                     android:layout_weight="1">
 
@@ -278,6 +290,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerHorizontal="true"
+                        android:clickable="true"
+                        android:focusable="true"
                         android:focusableInTouchMode="true"
                         android:text="Punch"
                         android:textColor="#ffffff"
@@ -289,7 +303,9 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@id/tv_punch_out_title1"
                         android:layout_centerHorizontal="true"
-                        android:focusableInTouchMode="true"
+                        android:clickable="true"
+                        android:focusable="false"
+                        android:focusableInTouchMode="false"
                         android:text="OUT"
                         android:textColor="#ffffff"
                         android:textSize="40sp" />

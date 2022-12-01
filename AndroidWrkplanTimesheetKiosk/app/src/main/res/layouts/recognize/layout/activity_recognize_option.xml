@@ -247,7 +247,9 @@
                         android:layout_marginRight="17dp"
                         android:layout_weight="1"
                         android:background="@drawable/layout_custom_break_btn"
-                        android:focusableInTouchMode="true"
+                        android:clickable="true"
+                        android:focusable="false"
+                        android:focusableInTouchMode="false"
                         android:gravity="center">
 
                         <TextView
@@ -255,6 +257,9 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_centerHorizontal="true"
+                            android:clickable="true"
+                            android:focusable="false"
+                            android:focusableInTouchMode="false"
                             android:text="Take a"
                             android:textColor="#ffffff"
                             android:textSize="13sp" />
@@ -265,6 +270,9 @@
                             android:layout_height="wrap_content"
                             android:layout_below="@id/tv_breaktitle1"
                             android:layout_centerHorizontal="true"
+                            android:clickable="true"
+                            android:focusable="false"
+                            android:focusableInTouchMode="false"
                             android:text="BREAK"
                             android:textColor="#ffffff"
                             android:textSize="22sp" />
@@ -277,7 +285,9 @@
                         android:layout_marginLeft="17dp"
                         android:layout_weight="1"
                         android:background="@drawable/layout_custom_punch_out_btn"
-                        android:focusableInTouchMode="true"
+                        android:clickable="true"
+                        android:focusable="false"
+                        android:focusableInTouchMode="false"
                         android:gravity="center">
 
                         <TextView
@@ -285,7 +295,9 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_centerHorizontal="true"
-                            android:focusableInTouchMode="true"
+                            android:clickable="true"
+                            android:focusable="false"
+                            android:focusableInTouchMode="false"
                             android:text="Punch"
                             android:textColor="#ffffff"
                             android:textSize="13sp" />
@@ -296,7 +308,9 @@
                             android:layout_height="wrap_content"
                             android:layout_below="@id/tv_punch_out_title1"
                             android:layout_centerHorizontal="true"
-                            android:focusableInTouchMode="true"
+                            android:clickable="true"
+                            android:focusable="false"
+                            android:focusableInTouchMode="false"
                             android:text="OUT"
                             android:textColor="#ffffff"
                             android:textSize="22sp" />
