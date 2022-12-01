@@ -14,16 +14,17 @@
             android:background="#ffffff">
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="100dp"
                 android:padding="5dp"
-                android:background="#355175">
+                android:background="#5563E0">
 
                 <TextView
                     android:id="@+id/tv_accountcode"
                     android:layout_width="250dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
-                    android:gravity="left"
+                    android:gravity="center_vertical"
+                    android:layout_centerVertical="true"
                     android:text="Enroll Image"
                     android:textColor="#ffffff"
                     android:textSize="30sp"
@@ -80,6 +81,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
+                android:background="#75B253"
                 android:focusableInTouchMode="true"
                 android:orientation="vertical"
                 android:layout_weight="1">
@@ -88,13 +90,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:textColor="#4f4f4f"
+                    android:textColor="#ffffff"
                     android:text="Yes, Proceed"
                     android:textSize="30sp"/>
 
             </LinearLayout>
             <LinearLayout
-                android:layout_width="1dp"
+                android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:background="#c2c2c2"></LinearLayout>
             <LinearLayout
@@ -107,6 +109,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
+                    android:background="#F02B2B"
                     android:orientation="vertical"
                     android:layout_weight="1">
                     <TextView
@@ -114,7 +117,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:gravity="center"
-                        android:textColor="#4f4f4f"
+                        android:textColor="#ffffff"
                         android:text="No"
                         android:textSize="30sp"/>
 
