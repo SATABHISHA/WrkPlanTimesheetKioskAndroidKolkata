@@ -272,23 +272,27 @@
                     android:focusableInTouchMode="true"
                     android:layout_marginLeft="17dp"
                     android:layout_weight="1">
+
                     <TextView
                         android:id="@+id/tv_punch_out_title1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerHorizontal="true"
-                        android:textSize="30sp"
+                        android:focusableInTouchMode="true"
+                        android:text="Punch"
                         android:textColor="#ffffff"
-                        android:text="Punch"/>
+                        android:textSize="30sp" />
+
                     <TextView
                         android:id="@+id/tv_punch_out_title2"
-                        android:layout_below="@id/tv_punch_out_title1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_below="@id/tv_punch_out_title1"
                         android:layout_centerHorizontal="true"
-                        android:textSize="40sp"
+                        android:focusableInTouchMode="true"
+                        android:text="OUT"
                         android:textColor="#ffffff"
-                        android:text="OUT"/>
+                        android:textSize="40sp" />
                 </RelativeLayout>
             </LinearLayout>
             <RelativeLayout

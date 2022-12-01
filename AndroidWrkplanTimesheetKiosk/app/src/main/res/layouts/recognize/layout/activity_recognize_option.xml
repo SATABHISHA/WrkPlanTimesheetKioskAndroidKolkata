@@ -285,6 +285,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_centerHorizontal="true"
+                            android:focusableInTouchMode="true"
                             android:text="Punch"
                             android:textColor="#ffffff"
                             android:textSize="13sp" />
@@ -295,6 +296,7 @@
                             android:layout_height="wrap_content"
                             android:layout_below="@id/tv_punch_out_title1"
                             android:layout_centerHorizontal="true"
+                            android:focusableInTouchMode="true"
                             android:text="OUT"
                             android:textColor="#ffffff"
                             android:textSize="22sp" />

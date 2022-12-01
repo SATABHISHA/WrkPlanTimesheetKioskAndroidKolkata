@@ -42,6 +42,7 @@
         <entry key="app/src/main/res/layouts/home/layout-sw720dp/activity_home.xml" value="0.15" />
         <entry key="app/src/main/res/layouts/home/layout/activity_home.xml" value="0.14" />
         <entry key="app/src/main/res/layouts/recognize/layout-sw720dp/activity_attendance_record.xml" value="0.15" />
+        <entry key="app/src/main/res/layouts/recognize/layout-sw720dp/activity_punch_out_break.xml" value="0.10758196721311475" />
         <entry key="app/src/main/res/layouts/recognize/layout-sw720dp/activity_recognize_option.xml" value="0.16" />
         <entry key="app/src/main/res/layouts/recognize/layout-sw720dp/activity_task_selection.xml" value="0.12" />
         <entry key="app/src/main/res/layouts/recognize/layout-sw720dp/dialog_leave_balance.xml" value="0.14" />

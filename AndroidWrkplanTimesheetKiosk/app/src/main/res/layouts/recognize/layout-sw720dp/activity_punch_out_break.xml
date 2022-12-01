@@ -33,6 +33,11 @@
         android:paddingRight="0dp"
         app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin = "40dp"
+        android:background="@drawable/layout_background_layer_vk1">
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -119,6 +124,7 @@
                 android:textColor="#3E3D3D"
                 android:textSize="24sp"/>
         </LinearLayout>
+    </RelativeLayout>
 
     </RelativeLayout>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
