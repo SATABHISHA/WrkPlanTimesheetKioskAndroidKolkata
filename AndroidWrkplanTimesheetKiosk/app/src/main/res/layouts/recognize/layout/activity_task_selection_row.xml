@@ -35,7 +35,6 @@
                 android:layout_height="wrap_content"
                 android:buttonTint="#ffffff"
                 android:layout_centerVertical="true" />
-
             <TextView
                 android:id="@+id/tv_account_code"
                 android:layout_width="wrap_content"
