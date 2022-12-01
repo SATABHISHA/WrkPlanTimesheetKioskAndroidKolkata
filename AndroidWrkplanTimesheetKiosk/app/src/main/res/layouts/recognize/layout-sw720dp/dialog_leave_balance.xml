@@ -4,19 +4,21 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
         <LinearLayout
             android:id="@+id/linearlayout1"
             android:layout_width="match_parent"
-            android:layout_height="55dp"
-            android:background="#355175">
+            android:layout_height="100dp"
+            android:background="#5563E0">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Current Leave Balance"
-                android:layout_marginLeft="15dp"
                 android:layout_gravity="center"
+                android:layout_marginLeft="15dp"
+                android:text="Current Leave Balance"
                 android:textColor="#ffffff"
-                android:textSize="32sp"/>
+                android:textSize="32sp" />
         </LinearLayout>
         <!-- <TextView
              android:visibility=""
@@ -110,18 +112,19 @@
             <RelativeLayout
                 android:id="@+id/relativeLayout_ok"
                 android:layout_width="match_parent"
-                android:layout_height="100dp"
+                android:layout_height="90dp"
+                android:background="#75B253"
                 android:layout_marginTop="25dp">
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="1dp"
+                    android:layout_height="0dp"
                     android:background="#000000"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="OK"
                     android:textSize="35dp"
-                    android:textColor="#000000"
+                    android:textColor="#ffffff"
                     android:layout_centerHorizontal="true"
                     android:layout_centerVertical="true"/>
             </RelativeLayout>
