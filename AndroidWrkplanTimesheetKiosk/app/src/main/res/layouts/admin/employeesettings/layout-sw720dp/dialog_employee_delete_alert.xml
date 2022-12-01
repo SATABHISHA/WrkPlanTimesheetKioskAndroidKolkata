@@ -14,9 +14,9 @@
             android:background="#ffffff">
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="100dp"
                 android:padding="5dp"
-                android:background="#355175">
+                android:background="#5563E0">
 
                 <TextView
                     android:id="@+id/tv_accountcode"
@@ -54,6 +54,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
+                android:background="#F02B2B"
                 android:focusableInTouchMode="true"
                 android:orientation="vertical"
                 android:layout_weight="1">
@@ -62,13 +63,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:textColor="#4f4f4f"
+                    android:textColor="#ffffff"
                     android:text="Cancel"
                     android:textSize="30sp"/>
 
             </LinearLayout>
             <LinearLayout
-                android:layout_width="1dp"
+                android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:background="#B3B3B2"/>
             <LinearLayout
@@ -76,6 +77,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
+                android:background="#75B253"
                 android:focusableInTouchMode="true"
                 android:orientation="vertical"
                 android:layout_weight="1">
@@ -84,7 +86,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:textColor="#4f4f4f"
+                    android:textColor="#ffffff"
                     android:text="Ok"
                     android:textSize="30sp"/>
 
