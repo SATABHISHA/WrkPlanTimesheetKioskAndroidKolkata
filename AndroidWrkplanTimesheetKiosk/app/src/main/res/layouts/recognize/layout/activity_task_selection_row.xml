@@ -27,13 +27,14 @@
             android:paddingRight="0dp"
             android:paddingBottom="7dp"
             android:focusableInTouchMode="true"
-            android:background="#ffffff">
+            android:background="#5A63DC">
 
             <RadioButton
                 android:id="@+id/radio_btn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerVertical="true"/>
+                android:buttonTint="#ffffff"
+                android:layout_centerVertical="true" />
 
             <TextView
                 android:id="@+id/tv_account_code"
@@ -42,42 +43,43 @@
                 android:layout_marginTop="5dp"
                 android:layout_marginLeft="5dp"
                 android:textSize="13sp"
-                android:textColor="#a7a7a7"
+                android:textColor="#ffffff"
                 android:layout_toLeftOf="@id/ll1"
                 android:layout_marginRight="10dp"
                 android:layout_toRightOf="@id/radio_btn"
                 android:text="1001-239-093"/>
+
             <TextView
                 android:id="@+id/tv_contract"
-                android:layout_below="@id/tv_account_code"
-                android:layout_toLeftOf="@id/ll1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="2dp"
+                android:layout_below="@id/tv_account_code"
                 android:layout_marginLeft="5dp"
+                android:layout_marginTop="2dp"
                 android:layout_marginRight="10dp"
-                android:textSize="17sp"
-                android:textColor="#616161"
+                android:layout_toLeftOf="@id/ll1"
+                android:layout_toRightOf="@id/radio_btn"
                 android:clickable="false"
                 android:focusable="false"
                 android:focusableInTouchMode="false"
-                android:layout_toRightOf="@id/radio_btn"
                 android:text="Provide technical and engineering support
-"/>
+"
+                android:textColor="#ffffff"
+                android:textSize="17sp" />
 
             <TextView
                 android:id="@+id/tv_contract_type"
-                android:layout_below="@id/tv_contract"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_toRightOf="@id/radio_btn"
+                android:layout_below="@id/tv_contract"
                 android:layout_marginLeft="5dp"
                 android:layout_marginTop="0dp"
-                android:layout_toLeftOf="@id/ll1"
                 android:layout_marginRight="10dp"
-                android:textSize="13sp"
-                android:textColor="#a7a7a7"
-                android:text="Program Manager"/>
+                android:layout_toLeftOf="@id/ll1"
+                android:layout_toRightOf="@id/radio_btn"
+                android:text="Program Manager"
+                android:textColor="#ffffff"
+                android:textSize="13sp" />
 
             <LinearLayout
                 android:id="@+id/ll1"
@@ -93,7 +95,7 @@
                     android:layout_height="wrap_content"
                     android:textSize="22sp"
                     android:layout_gravity="center"
-                    android:textColor="#000000"
+                    android:textColor="#ffffff"
                     android:text="0.00"/>
                 <TextView
                     android:layout_width="wrap_content"
@@ -101,7 +103,7 @@
                     android:text="Hour(s)"
                     android:textSize="12sp"
                     android:layout_gravity="center"
-                    android:textColor="#000000"/>
+                    android:textColor="#ffffff"/>
             </LinearLayout>
         </RelativeLayout>
     </LinearLayout>

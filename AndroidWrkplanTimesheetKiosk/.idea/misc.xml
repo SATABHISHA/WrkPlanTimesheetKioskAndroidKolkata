@@ -44,15 +44,15 @@
         <entry key="app/src/main/res/layouts/recognize/layout-sw720dp/activity_attendance_record.xml" value="0.15" />
         <entry key="app/src/main/res/layouts/recognize/layout-sw720dp/activity_punch_out_break.xml" value="0.10758196721311475" />
         <entry key="app/src/main/res/layouts/recognize/layout-sw720dp/activity_recognize_option.xml" value="0.16" />
-        <entry key="app/src/main/res/layouts/recognize/layout-sw720dp/activity_task_selection.xml" value="0.12" />
+        <entry key="app/src/main/res/layouts/recognize/layout-sw720dp/activity_task_selection.xml" value="0.18" />
         <entry key="app/src/main/res/layouts/recognize/layout-sw720dp/dialog_leave_balance.xml" value="0.14" />
         <entry key="app/src/main/res/layouts/recognize/layout-sw720dp/dialog_punchout_break.xml" value="0.1" />
         <entry key="app/src/main/res/layouts/recognize/layout/activity_attendance_record.xml" value="0.22" />
         <entry key="app/src/main/res/layouts/recognize/layout/activity_punch_out_break.xml" value="0.17" />
         <entry key="app/src/main/res/layouts/recognize/layout/activity_recognize_home_realtime.xml" value="0.21422101449275363" />
         <entry key="app/src/main/res/layouts/recognize/layout/activity_recognize_option.xml" value="0.2" />
-        <entry key="app/src/main/res/layouts/recognize/layout/activity_task_selection.xml" value="0.1" />
-        <entry key="app/src/main/res/layouts/recognize/layout/activity_task_selection_row.xml" value="0.1094224924012158" />
+        <entry key="app/src/main/res/layouts/recognize/layout/activity_task_selection.xml" value="0.25" />
+        <entry key="app/src/main/res/layouts/recognize/layout/activity_task_selection_row.xml" value="0.21" />
         <entry key="app/src/main/res/layouts/recognize/layout/dialog_leave_balance.xml" value="0.14266304347826086" />
         <entry key="app/src/main/res/layouts/recognize/layout/dialog_punchout_break.xml" value="0.17" />
       </map>
