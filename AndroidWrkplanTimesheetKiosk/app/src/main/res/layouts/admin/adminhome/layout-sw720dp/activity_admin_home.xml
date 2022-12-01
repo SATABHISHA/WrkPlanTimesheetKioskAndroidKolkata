@@ -59,7 +59,12 @@
         android:background="#ffffff"
         android:orientation="vertical">
 
-
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin = "40dp"
+        android:gravity="center"
+        android:background="@drawable/layout_background_layer_vk1">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -125,6 +130,7 @@
 
 
         </LinearLayout>
+    </RelativeLayout>
 
     </RelativeLayout>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
