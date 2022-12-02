@@ -211,7 +211,6 @@ public void loadData(){
     RequestQueue requestQueue = Volley.newRequestQueue(TaskSelectionActivity.this);
     requestQueue.add(stringRequest);
 }
-
     @Override
     public void onClick(View v) {
         switch (v.getId()){
