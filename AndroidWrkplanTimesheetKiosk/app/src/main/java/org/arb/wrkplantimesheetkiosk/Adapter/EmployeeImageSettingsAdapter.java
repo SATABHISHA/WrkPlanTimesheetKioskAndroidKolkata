@@ -167,7 +167,7 @@ public class EmployeeImageSettingsAdapter extends RecyclerView.Adapter<EmployeeI
                         String body = "1. Individual's head must be at center of the frame \n2. Individual should look directly at the camera \n3. No hair across individual's face or eyes \n4. Individual should not tilt head up/down or left/right \n5. Avoid dark background";
                         tv_body.setText(body);
 
-                        AlertDialog.Builder alert = new AlertDialog.Builder(context);
+                        AlertDialog.Builder alert = new AlertDialog.Builder(context, R.style.Style_Dialog_Rounded_Corner);
                         alert.setView(dialog);
                         alert.setCancelable(false);
                         //Creating an alert dialog
@@ -264,7 +264,7 @@ public class EmployeeImageSettingsAdapter extends RecyclerView.Adapter<EmployeeI
                         TextView tv_cancel = dialog.findViewById(R.id.tv_cancel);
 
 
-                        AlertDialog.Builder alert = new AlertDialog.Builder(context);
+                        AlertDialog.Builder alert = new AlertDialog.Builder(context, R.style.Style_Dialog_Rounded_Corner);
                         alert.setView(dialog);
                         alert.setCancelable(false);
                         //Creating an alert dialog

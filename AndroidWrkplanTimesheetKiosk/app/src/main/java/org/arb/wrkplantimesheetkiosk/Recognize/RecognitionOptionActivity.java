@@ -728,7 +728,7 @@ public class RecognitionOptionActivity extends AppCompatActivity implements View
         LinearLayout ll_no = dialog.findViewById(R.id.ll_no);
 
 
-        androidx.appcompat.app.AlertDialog.Builder alert = new androidx.appcompat.app.AlertDialog.Builder(this);
+        androidx.appcompat.app.AlertDialog.Builder alert = new androidx.appcompat.app.AlertDialog.Builder(this, R.style.Style_Dialog_Rounded_Corner);
         alert.setView(dialog);
         //Creating an alert dialog
         final androidx.appcompat.app.AlertDialog alertDialog = alert.create();
@@ -876,7 +876,7 @@ public class RecognitionOptionActivity extends AppCompatActivity implements View
 
 
                         RelativeLayout relativeLayout_ok = (RelativeLayout) dialog.findViewById(R.id.relativeLayout_ok);
-                        androidx.appcompat.app.AlertDialog.Builder alert = new androidx.appcompat.app.AlertDialog.Builder(this);
+                        androidx.appcompat.app.AlertDialog.Builder alert = new androidx.appcompat.app.AlertDialog.Builder(this, R.style.Style_Dialog_Rounded_Corner);
                         alert.setView(dialog);
                         //Creating an alert dialog
                         final androidx.appcompat.app.AlertDialog alertDialog = alert.create();

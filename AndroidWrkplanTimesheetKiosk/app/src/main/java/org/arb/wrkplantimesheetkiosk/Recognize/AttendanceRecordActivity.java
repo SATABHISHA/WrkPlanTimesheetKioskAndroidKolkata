@@ -260,7 +260,7 @@ public class AttendanceRecordActivity extends AppCompatActivity implements View.
 
 
                         RelativeLayout relativeLayout_ok = (RelativeLayout) dialog.findViewById(R.id.relativeLayout_ok);
-                        androidx.appcompat.app.AlertDialog.Builder alert = new androidx.appcompat.app.AlertDialog.Builder(this);
+                        androidx.appcompat.app.AlertDialog.Builder alert = new androidx.appcompat.app.AlertDialog.Builder(this, R.style.Style_Dialog_Rounded_Corner);
                         alert.setView(dialog);
                         //Creating an alert dialog
                         final androidx.appcompat.app.AlertDialog alertDialog = alert.create();

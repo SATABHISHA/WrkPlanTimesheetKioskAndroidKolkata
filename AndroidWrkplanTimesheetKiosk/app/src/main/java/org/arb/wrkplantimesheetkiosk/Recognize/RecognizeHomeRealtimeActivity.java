@@ -213,7 +213,8 @@ public class RecognizeHomeRealtimeActivity extends AppCompatActivity implements 
     }
 
     private void showPermissionAlert(final String[] permissions) {
-        AlertDialog.Builder alertBuilder = new AlertDialog.Builder(this);
+//        AlertDialog.Builder alertBuilder = new AlertDialog.Builder(this); //---commented on 2nd Dec, 2022
+        AlertDialog.Builder alertBuilder = new AlertDialog.Builder(this, R.style.Style_Dialog_Rounded_Corner); //---modified on 2nd Dec, 2022
         alertBuilder.setCancelable(true);
         alertBuilder.setTitle(R.string.permission_required);
         alertBuilder.setMessage(R.string.permission_message);
@@ -517,7 +518,7 @@ public class RecognizeHomeRealtimeActivity extends AppCompatActivity implements 
         LayoutInflater li2 = LayoutInflater.from(this);
         View dialog = li2.inflate(R.layout.dialog_progressbar_image_processing, null);
         CoordinatorLayout crl = dialog.findViewById(R.id.crl);
-        androidx.appcompat.app.AlertDialog.Builder alert = new androidx.appcompat.app.AlertDialog.Builder(this);
+        androidx.appcompat.app.AlertDialog.Builder alert = new androidx.appcompat.app.AlertDialog.Builder(this, R.style.Style_Dialog_Rounded_Corner);
         alert.setView(dialog);
         //Creating an alert dialog
         final androidx.appcompat.app.AlertDialog alertDialog = alert.create();
@@ -583,7 +584,7 @@ public class RecognizeHomeRealtimeActivity extends AppCompatActivity implements 
                                             TextView tv_cancel = dialog.findViewById(R.id.tv_cancel);
 
 
-                                            AlertDialog.Builder alert = new AlertDialog.Builder(RecognizeHomeRealtimeActivity.this);
+                                            AlertDialog.Builder alert = new AlertDialog.Builder(RecognizeHomeRealtimeActivity.this, R.style.Style_Dialog_Rounded_Corner);
                                             alert.setView(dialog);
                                             alert.setCancelable(false);
                                             //Creating an alert dialog
