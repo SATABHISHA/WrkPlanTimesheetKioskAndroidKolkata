@@ -359,7 +359,7 @@
                     android:layout_gravity="center"
                     android:gravity="center"
                     android:textColor="#ffffff"
-                    android:background="#8E8E8E"
+                    android:background="#F02B2B"
                     android:textSize="32sp"
                     android:text="Cancel"/>
            <!-- </LinearLayout> -->

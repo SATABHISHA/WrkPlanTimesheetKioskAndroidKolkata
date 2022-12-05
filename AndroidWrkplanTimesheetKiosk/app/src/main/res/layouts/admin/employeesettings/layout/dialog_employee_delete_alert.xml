@@ -65,7 +65,7 @@
                     android:gravity="center"
                     android:textColor="#ffffff"
                     android:text="Cancel"
-                    android:textSize="19sp"/>
+                    android:textSize="16sp"/>
 
             </LinearLayout>
             <LinearLayout
@@ -88,7 +88,7 @@
                     android:gravity="center"
                     android:textColor="#ffffff"
                     android:text="OK"
-                    android:textSize="19sp"/>
+                    android:textSize="16sp"/>
 
             </LinearLayout>
 

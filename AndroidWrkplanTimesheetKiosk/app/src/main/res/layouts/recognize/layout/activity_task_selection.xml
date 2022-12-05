@@ -35,6 +35,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_above="@+id/ll_button"
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
@@ -137,8 +138,7 @@
         <LinearLayout
             android:id="@+id/ll_recycler"
             android:layout_below="@id/rl_header"
-            android:layout_above="@id/ll_button"
-            android:layout_marginBottom="0dp"
+            android:layout_marginBottom="20dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:paddingLeft="0dp"
@@ -156,56 +156,54 @@
                 android:scrollbars="vertical" />
 
         </LinearLayout>
+
+    </RelativeLayout>
         <LinearLayout
             android:id="@+id/ll_button"
             android:layout_width="match_parent"
             android:layout_height="38dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginBottom="20dp"
             android:layout_alignParentBottom="true"
             android:background="@drawable/top_border_button"
             android:orientation="horizontal">
 
-           <!-- <LinearLayout
+            <!-- <LinearLayout
+                 android:layout_width="match_parent"
+                 android:layout_height="match_parent"
+                 android:layout_weight="1"
+                 android:background="@drawable/btn_layout1"> -->
+            <TextView
+                android:id="@+id/tv_cancel"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:gravity="center"
                 android:layout_weight="1"
-                android:background="@drawable/btn_layout1"> -->
-                <TextView
-                    android:id="@+id/tv_cancel"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center"
-                    android:gravity="center"
-                    android:layout_weight="1"
-                    android:background="#75B253"
-                    android:textColor="#ffffff"
-                    android:textSize="19sp"
-                    android:text="Cancel"/>
-           <!-- </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:background="@drawable/btn_layout1"> -->
+                android:background="#75B253"
+                android:textColor="#ffffff"
+                android:textSize="19sp"
+                android:text="Cancel"/>
+            <!-- </LinearLayout>
+             <LinearLayout
+                 android:layout_width="match_parent"
+                 android:layout_height="match_parent"
+                 android:layout_weight="1"
+                 android:background="@drawable/btn_layout1"> -->
             <View
                 android:layout_width="0dp"
                 android:background="#B3B3B2"
                 android:layout_height="match_parent"/>
-                <TextView
-                    android:id="@+id/tv_done"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center"
-                    android:gravity="center"
-                    android:layout_weight="1"
-                    android:background="#F02B2B"
-                    android:textColor="#ffffff"
-                    android:textSize="19sp"
-                    android:text="Done"/>
-           <!-- </LinearLayout> -->
+            <TextView
+                android:id="@+id/tv_done"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_weight="1"
+                android:background="#F02B2B"
+                android:textColor="#ffffff"
+                android:textSize="19sp"
+                android:text="Done"/>
+            <!-- </LinearLayout> -->
         </LinearLayout>
-    </RelativeLayout>
     </RelativeLayout>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
