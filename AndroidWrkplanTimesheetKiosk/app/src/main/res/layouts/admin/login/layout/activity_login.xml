@@ -8,26 +8,27 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#2e5772"
+        app:elevation="0dp"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         android:fitsSystemWindows="true">
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="#0A192F"
+            android:background="#ffffff"
             app:layout_collapseMode="pin"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light" >
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <TextView
+                <!--<TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:text="Kiosk Admin Login"
                     android:textColor="#55D5BE"
-                    android:textSize="22sp" />
+                    android:textSize="22sp" />-->
 
                 <ImageButton
                     android:id="@+id/imgbtn_home"
@@ -36,7 +37,7 @@
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
                     android:layout_marginRight="15dp"
-                    android:background="@drawable/homemenu" />
+                    android:background="@drawable/homevk1" />
             </RelativeLayout>
         </androidx.appcompat.widget.Toolbar>
     </com.google.android.material.appbar.AppBarLayout>
@@ -44,17 +45,35 @@
     android:id="@+id/relativeLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     android:background="@drawable/activity_login_background_shape"
     android:orientation="vertical">
-
-
+    <LinearLayout
+        android:id="@+id/ll_caption"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:orientation="horizontal">
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/kioskapplogo"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center"
+            android:text="Kiosk Admin Login"
+            android:textColor="#FF0F1830"
+            android:textSize="22sp" />
+    </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="35dp"
         android:layout_marginRight="35dp"
+        android:layout_centerInParent="true"
         android:orientation="vertical">
 
         <LinearLayout
@@ -214,6 +233,17 @@
         </LinearLayout>
 
     </LinearLayout>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginRight="0dp"
+        android:layout_marginLeft="0dp"
+        android:fitsSystemWindows="true"
+        android:adjustViewBounds="true"
+        android:layout_marginBottom="50dp"
+        android:layout_alignParentBottom="true"
+        android:src="@drawable/kiosklogo"/>
 
 </RelativeLayout>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
