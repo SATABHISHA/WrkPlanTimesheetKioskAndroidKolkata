@@ -8,7 +8,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/app"
-        android:background="#2e5772"
+        android:background="#A5AFCE"
+        android:paddingBottom="1dp"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
         <androidx.appcompat.widget.Toolbar
@@ -18,8 +19,8 @@
             android:background="#141E31">
             <ImageView
                 android:id="@+id/imgview_btn_profile"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
                 android:layout_marginRight="30dp"
                 android:layout_alignParentRight="true"
                 android:layout_gravity="right"
@@ -36,14 +37,12 @@
         app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
 
 
-
-
         <RelativeLayout
             android:id="@+id/rl_recognize"
             android:layout_width="180dp"
             android:layout_height="180dp"
-            android:layout_centerInParent="true"
 
+            android:layout_centerInParent="true"
             android:layout_marginLeft="50dp"
             android:layout_marginRight="50dp"
             android:background="@drawable/layout_home_recognize_vk1"

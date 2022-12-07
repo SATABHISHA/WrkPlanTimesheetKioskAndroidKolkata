@@ -4,110 +4,108 @@
     android:layout_height="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-    <!--<com.google.android.material.appbar.AppBarLayout
+    <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/app"
-        android:background="#2e5772"
-        android:theme="@style/AppTheme.AppBarOverlay">
+        android:background="#A5AFCE"
+        android:paddingBottom="1dp"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="#2e5772">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="My Outdoor Duty Request"
-                android:textColor="#ffffff"
-                android:textSize="20sp"></TextView>
+            android:layout_height="wrap_content"
+            android:paddingTop="15dp"
+            android:paddingBottom="15dp"
+            android:background="#141E31">
+            <ImageView
+                android:id="@+id/imgview_btn_profile"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_marginRight="60dp"
+                android:layout_alignParentRight="true"
+                android:layout_gravity="right"
+                android:layout_marginTop="0dp"
+                android:background="@drawable/profile" />
 
         </androidx.appcompat.widget.Toolbar>
 
-    </com.google.android.material.appbar.AppBarLayout> -->
+    </com.google.android.material.appbar.AppBarLayout>
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="#141E31"
         app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_margin = "30dp"
-        android:background="@drawable/layout_background_layer_vk1">
-        <ImageView
-            android:id="@+id/imgview_btn_profile"
-            android:layout_width="140dp"
-            android:layout_height="140dp"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="160dp"
-            android:background="@drawable/profile" />
 
-        <RelativeLayout
-            android:id="@+id/rl_recognize"
-            android:layout_width="350dp"
-            android:layout_height="350dp"
-            android:layout_centerInParent="true"
-            android:layout_marginLeft="100dp"
-            android:layout_marginRight="100dp"
-            android:background="@drawable/layout_home_recognize_vk1"
-            android:textColor="#000000">
-
-            <ImageView
-                android:id="@+id/img_camera"
-                android:layout_width="80dp"
-                android:layout_height="80dp"
+            <RelativeLayout
+                android:id="@+id/rl_recognize"
+                android:layout_width="350dp"
+                android:layout_height="350dp"
                 android:layout_centerInParent="true"
-                android:background="@drawable/recognizecamera" />
+                android:layout_marginLeft="100dp"
+                android:layout_marginRight="100dp"
+                android:background="@drawable/layout_home_recognize_vk1"
+                android:textColor="#000000">
 
-            <TextView
-                android:id="@+id/tv_rcognize"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/img_camera"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="3dp"
-                android:text="Recognize Me"
-                android:textColor="#ffffff"
-                android:textSize="40sp" />
-        </RelativeLayout>
+                <ImageView
+                    android:id="@+id/img_camera"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_centerInParent="true"
+                    android:background="@drawable/recognizecamera" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="280dp"
-            android:layout_marginRight="0dp"
-            android:layout_marginLeft="0dp"
-            android:orientation="vertical"
-            android:layout_alignParentBottom="true">
-            <ImageView
+                <TextView
+                    android:id="@+id/tv_rcognize"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/img_camera"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="3dp"
+                    android:text="Recognize Me"
+                    android:textColor="#ffffff"
+                    android:textSize="40sp" />
+            </RelativeLayout>
+
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:layout_marginRight="0dp"
+                android:layout_height="280dp"
+                android:layout_alignParentBottom="true"
                 android:layout_marginLeft="0dp"
-                android:fitsSystemWindows="true"
-                android:adjustViewBounds="true"
-                android:src="@drawable/kiosklogo"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:layout_marginRight="0dp"
-                android:layout_marginLeft="0dp"
-                android:text="Version 1.2022.05.22"
-                android:layout_marginTop="20dp"
-                android:layout_gravity="center"
-                android:textSize="24sp"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:layout_marginRight="0dp"
-                android:layout_marginLeft="0dp"
-                android:text="Copyright © ARB Investments Company, LLC"
-                android:layout_gravity="center"
-                android:textColor="#3E3D3D"
-                android:textSize="24sp"/>
-        </LinearLayout>
-    </RelativeLayout>
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_marginLeft="0dp"
+                    android:layout_marginRight="0dp"
+                    android:adjustViewBounds="true"
+                    android:fitsSystemWindows="true"
+                    android:src="@drawable/kiosklogo" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="0dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginRight="0dp"
+                    android:textColor="#ffffff"
+                    android:text="Version 1.2022.05.22"
+                    android:textSize="24sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="0dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="0dp"
+                    android:text="Copyright © ARB Investments Company, LLC"
+                    android:textColor="#ffffff"
+                    android:textSize="24sp" />
+            </LinearLayout>
     </RelativeLayout>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
