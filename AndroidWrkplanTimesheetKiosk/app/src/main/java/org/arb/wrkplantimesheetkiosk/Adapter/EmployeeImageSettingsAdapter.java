@@ -86,7 +86,7 @@ public class EmployeeImageSettingsAdapter extends RecyclerView.Adapter<EmployeeI
         GradientDrawable drawable = ll_enroll.getBackground();*/
         if (employeeImageSettingsModelArrayList.get(position).getAws_action().contentEquals("enroll")){
             holder.tv_status.setText("No\nImage");
-            holder.tv_status.setTextColor(Color.parseColor("#9A9A9A"));
+            holder.tv_status.setTextColor(Color.parseColor("#ffffff"));
 
             holder.tv_enroll_remove_image.setText("Enroll\nImage");
 //            holder.tv_enroll_remove_image.setTextColor(Color.parseColor("#4f4f4f"));
@@ -98,7 +98,7 @@ public class EmployeeImageSettingsAdapter extends RecyclerView.Adapter<EmployeeI
 
         }else if (employeeImageSettingsModelArrayList.get(position).getAws_action().contentEquals("delete")){
             holder.tv_status.setText("Image\nEnrolled");
-            holder.tv_status.setTextColor(Color.parseColor("#095CB0"));
+            holder.tv_status.setTextColor(Color.parseColor("#A4C8FF"));
 
             holder.tv_enroll_remove_image.setText("Remove \n Image");
 //            holder.tv_enroll_remove_image.setTextColor(Color.parseColor("#8E0A02"));
@@ -107,7 +107,7 @@ public class EmployeeImageSettingsAdapter extends RecyclerView.Adapter<EmployeeI
             holder.ll_enroll.setBackgroundResource(R.drawable.layout_enrollimage_border_remake_remove);
         }else {
             holder.tv_status.setText("Image\nEnrolled");
-            holder.tv_status.setTextColor(Color.parseColor("#095CB0"));
+            holder.tv_status.setTextColor(Color.parseColor("#A4C8FF"));
 
             holder.tv_enroll_remove_image.setText("Remove\nImage");
 //            holder.tv_enroll_remove_image.setTextColor(Color.parseColor("#8E0A02"));

@@ -19,7 +19,7 @@
         android:paddingBottom="10dp"
         android:layout_marginBottom="0dp"
         android:layout_marginTop="0dp"
-        android:background="#DDE5FF">
+        android:background="#141E31">
         <RelativeLayout
             android:id="@+id/relative_layout"
             android:layout_width="match_parent"
@@ -27,35 +27,36 @@
             android:paddingLeft="0dp"
             android:paddingRight="0dp"
             android:focusableInTouchMode="true"
-            android:background="#DDE5FF">
+            android:background="#141E31">
 
             <TextView
                 android:id="@+id/tv_name"
                 android:layout_width="400dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="2dp"
                 android:layout_alignParentLeft="true"
-                android:textSize="27sp"
-                android:layout_marginLeft="0dp"
                 android:layout_centerVertical="true"
-                android:textColor="#4f4f4f"
+                android:layout_marginLeft="0dp"
+                android:layout_marginTop="2dp"
                 android:clickable="false"
                 android:focusable="false"
                 android:focusableInTouchMode="false"
-                android:text="Provide ndnhd bdbdb bdbd"/>
+                android:text="Provide ndnhd bdbdb bdbd"
+                android:textColor="#ffffff"
+                android:textSize="27sp" />
 
             <TextView
                 android:id="@+id/tv_status"
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
-                android:text="No\nImage"
-                android:layout_toRightOf="@id/tv_name"
-                android:layout_toLeftOf="@id/ll_enroll"
-                android:layout_marginRight="12dp"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="12dp"
-                android:textSize="20sp"
-                android:gravity="center"/>
+                android:layout_marginRight="12dp"
+                android:layout_toLeftOf="@id/ll_enroll"
+                android:layout_toRightOf="@id/tv_name"
+                android:gravity="center"
+                android:text="No\nImage"
+                android:textColor="#ffffff"
+                android:textSize="20sp" />
 
 
 
@@ -82,7 +83,7 @@
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
                     android:textSize="22sp"
-                    android:textColor="#626262"
+                    android:textColor="#ffffff"
                     android:text="Enroll\nImage"/>
             </LinearLayout>
         </RelativeLayout>

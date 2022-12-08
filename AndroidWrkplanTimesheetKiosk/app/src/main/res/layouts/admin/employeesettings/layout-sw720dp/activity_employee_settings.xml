@@ -2,32 +2,35 @@
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#141E31"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/app_bar_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#2e5772"
+        android:background="#A5AFCE"
+        android:paddingBottom="1dp"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         android:fitsSystemWindows="true">
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="100dp"
-            android:background="#5A63DC"
+            android:background="#141E31"
             app:layout_collapseMode="pin"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light" >
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="35sp"
-                    android:text="Employee Image Settings"
                     android:layout_centerVertical="true"
+                    android:text="Employee Image Settings"
+                    android:layout_marginLeft="50dp"
                     android:textColor="#ffffff"
-                    />
+                    android:textSize="35sp" />
 
                 <TextView
                     android:id="@+id/tv_back"
@@ -52,7 +55,7 @@
         android:layout_marginBottom="20dp"
         android:gravity="center"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        android:background="@drawable/layout_background_layer_vk1"
+        android:background="#141E31"
         android:orientation="vertical">
         <LinearLayout
             android:id="@+id/ll_recycler"
@@ -69,7 +72,7 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="90dp"
-                android:background="#DDE5FF"
+                android:background="@drawable/rouned_broder_kiosk_emp_image_settings_vk1"
                 >
 
                 <EditText
@@ -77,7 +80,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:layout_marginLeft="0dp"
+                    android:layout_marginLeft="15dp"
                     android:layout_marginRight="10dp"
                     android:layout_toLeftOf="@id/img_search_logo"
                     android:background="@null"
@@ -86,27 +89,28 @@
                     android:paddingTop="5dp"
                     android:paddingRight="5dp"
                     android:paddingBottom="5dp"
+                    android:textColor="#ffffff"
+                    android:textColorHint="#ffffff"
                     android:textSize="30sp"></EditText>
 
                 <ImageView
                     android:id="@+id/img_search_logo"
                     android:layout_width="60dp"
                     android:layout_height="60dp"
-                    android:padding="5dp"
-                    android:layout_centerVertical="true"
-                    android:src="@drawable/magnifier"
-                    android:layout_marginRight="15dp"
                     android:layout_alignParentRight="true"
-                    ></ImageView>
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="15dp"
+                    android:padding="5dp"
+                    android:src="@drawable/magnifier"></ImageView>
 
             </RelativeLayout>
 
-            <View
+            <!--<View
                 android:id="@+id/view1"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_marginTop="1dp"
-                android:background="#DDDDDD"/>
+                android:background="#DDDDDD"/>-->
             <!--Search section newly added on 15th April, code ends -->
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recycler_view"
