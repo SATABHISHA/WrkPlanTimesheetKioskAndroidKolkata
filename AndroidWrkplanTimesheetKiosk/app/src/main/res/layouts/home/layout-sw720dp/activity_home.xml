@@ -8,7 +8,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/app"
-        android:background="#A5AFCE"
+        android:background="#394B66"
         android:paddingBottom="1dp"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
@@ -92,7 +92,7 @@
                     android:layout_marginLeft="0dp"
                     android:layout_marginTop="20dp"
                     android:layout_marginRight="0dp"
-                    android:textColor="#ffffff"
+                    android:textColor="#697D9A"
                     android:text="Version 1.2022.05.22"
                     android:textSize="24sp" />
 
@@ -105,6 +105,7 @@
                     android:layout_marginRight="0dp"
                     android:text="Copyright © ARB Investments Company, LLC"
                     android:textColor="#ffffff"
+                    android:textStyle="normal"
                     android:textSize="24sp" />
             </LinearLayout>
     </RelativeLayout>
