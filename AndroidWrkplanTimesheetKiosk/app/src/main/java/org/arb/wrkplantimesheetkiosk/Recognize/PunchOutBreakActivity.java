@@ -19,7 +19,7 @@ import java.util.Date;
 import java.util.Locale;
 
 public class PunchOutBreakActivity extends AppCompatActivity {
-    TextView tv_punch_status, tv_date, tv_time;
+    TextView tv_punch_status, tv_date, tv_time, tv_empname;
     ImageView img_status;
     UserSingletonModel userSingletonModel = UserSingletonModel.getInstance();
     @Override
@@ -30,8 +30,10 @@ public class PunchOutBreakActivity extends AppCompatActivity {
         img_status = findViewById(R.id.img_status);
         tv_date = findViewById(R.id.tv_date);
         tv_time = findViewById(R.id.tv_time);
+        tv_empname = findViewById(R.id.tv_empname);
 
         tv_punch_status.setText(RecognitionOptionActivity.checkedInOut);
+        tv_empname.setText(RecognizeHomeRealtimeActivity.EmployeeName);
 
         if(RecognitionOptionActivity.punch_out_break.contentEquals("out")){
             img_status.setBackgroundResource(R.drawable.goodbye);

@@ -22,13 +22,14 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
+
                 <LinearLayout
                     android:id="@+id/rl_headline"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="right|center"
                     android:layout_centerInParent="true"
                     android:layout_marginRight="20dp"
+                    android:gravity="right|center"
                     android:orientation="horizontal">
 
                     <TextView
@@ -37,10 +38,11 @@
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:layout_gravity="center_horizontal|center_vertical"
+                        android:layout_marginRight="20dp"
                         android:text="Bhattacharya, hffh"
                         android:textColor="#ffffff"
-                        android:layout_marginRight="20dp"
                         android:textSize="40sp" />
+
                     <ImageView
                         android:id="@+id/img"
                         android:layout_width="90dp"
@@ -80,16 +82,13 @@
         app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
 
 
-
-
-
-            <ImageView
-                android:id="@+id/img_status"
-                android:layout_width="110dp"
-                android:layout_height="110dp"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="40dp"
-                android:background="@drawable/checkedin" />
+        <ImageView
+            android:id="@+id/img_status"
+            android:layout_width="110dp"
+            android:layout_height="110dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="40dp"
+            android:background="@drawable/checkedin" />
 
         <TextView
             android:id="@+id/tv_punch_status"
