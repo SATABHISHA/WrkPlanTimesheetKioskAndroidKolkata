@@ -53,7 +53,8 @@
         <entry key="app/src/main/res/layouts/recognize/layout-sw720dp/activity_recognize_option.xml" value="0.16" />
         <entry key="app/src/main/res/layouts/recognize/layout-sw720dp/activity_task_selection.xml" value="0.18" />
         <entry key="app/src/main/res/layouts/recognize/layout-sw720dp/activity_task_selection_row.xml" value="0.18" />
-        <entry key="app/src/main/res/layouts/recognize/layout-sw720dp/dialog_leave_balance.xml" value="0.14" />
+        <entry key="app/src/main/res/layouts/recognize/layout-sw720dp/dialog_leave_balance.xml" value="0.17" />
+        <entry key="app/src/main/res/layouts/recognize/layout-sw720dp/dialog_leave_balance_row.xml" value="0.12021857923497267" />
         <entry key="app/src/main/res/layouts/recognize/layout-sw720dp/dialog_punchout_break.xml" value="0.1" />
         <entry key="app/src/main/res/layouts/recognize/layout/activity_attendance_record.xml" value="0.22" />
         <entry key="app/src/main/res/layouts/recognize/layout/activity_punch_out_break.xml" value="0.17" />
@@ -61,7 +62,8 @@
         <entry key="app/src/main/res/layouts/recognize/layout/activity_recognize_option.xml" value="0.2" />
         <entry key="app/src/main/res/layouts/recognize/layout/activity_task_selection.xml" value="0.25" />
         <entry key="app/src/main/res/layouts/recognize/layout/activity_task_selection_row.xml" value="0.21" />
-        <entry key="app/src/main/res/layouts/recognize/layout/dialog_leave_balance.xml" value="0.14266304347826086" />
+        <entry key="app/src/main/res/layouts/recognize/layout/dialog_leave_balance.xml" value="0.17" />
+        <entry key="app/src/main/res/layouts/recognize/layout/dialog_leave_balance_row.xml" value="0.15942028985507245" />
         <entry key="app/src/main/res/layouts/recognize/layout/dialog_progressbar_image_processing.xml" value="0.1" />
         <entry key="app/src/main/res/layouts/recognize/layout/dialog_punchout_break.xml" value="0.17" />
         <entry key="app/src/main/res/layouts/recognize/layout/dialog_recognize_home_realtime.xml" value="0.22" />

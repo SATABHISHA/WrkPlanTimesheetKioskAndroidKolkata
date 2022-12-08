@@ -3,23 +3,9 @@
     android:layout_height="match_parent">
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="#596C8D">
 
-        <LinearLayout
-            android:id="@+id/linearlayout1"
-            android:layout_width="match_parent"
-            android:layout_height="49dp"
-            android:background="#5563E0">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginLeft="15dp"
-                android:text="Current Leave Balance"
-                android:textColor="#ffffff"
-                android:textSize="22sp" />
-        </LinearLayout>
         <!-- <TextView
              android:visibility=""
              android:id="@+id/tv_employee"
@@ -30,25 +16,48 @@
              android:layout_marginLeft="15dp"
              android:layout_marginTop="10dp"
              android:text="Employee: "/> -->
+        <LinearLayout
+            android:id="@+id/linearlayout1"
+            android:layout_width="match_parent"
+            android:layout_height="49dp"
+            android:background="#394A68">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="15dp"
+                android:text="Current Leave Balance"
+                android:textColor="#ffffff"
+                android:textSize="22sp" />
+        </LinearLayout>
+
         <RelativeLayout
             android:id="@+id/rl_emp_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/linearlayout1"
-            android:background="#E6E5E5">
+            android:background="#596C8D">
+
             <TextView
-                android:visibility="gone"
                 android:id="@+id/tv_employee_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
+                android:layout_marginLeft="15dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="5dp"
-                android:layout_marginLeft="15dp"
-                android:textColor="#494949"
+                android:text="01/31/2019"
+                android:textColor="#ffffff"
                 android:textSize="20sp"
-                android:text="01/31/2019"/>
+                android:visibility="visible" />
         </RelativeLayout>
+        <View
+            android:layout_below="@id/rl_emp_name"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#738BB0"
+            />
         <TextView
             android:visibility="gone"
             android:id="@+id/tv_blnc"
@@ -56,7 +65,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="18sp"
-            android:textColor="#494949"
+            android:textColor="#ffffff"
             android:layout_marginLeft="15dp"
             android:layout_marginTop="5dp"
             android:text="Up To"/>
@@ -70,6 +79,7 @@
             android:layout_marginLeft="5dp"
             android:textSize="18sp"
             android:layout_marginTop="5dp"
+            android:textColor="#ffffff"
             android:text="01/31/2019"/>
         <!-- <LinearLayout
              android:visibility=""
