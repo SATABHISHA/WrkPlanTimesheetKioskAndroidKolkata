@@ -7,14 +7,15 @@
         android:id="@+id/app_bar_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#2e5772"
+        android:background="#A5AFCE"
+        android:paddingBottom="1dp"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         android:fitsSystemWindows="true">
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="100dp"
-            android:background="#5A63DC"
+            android:background="#141E31"
             app:layout_collapseMode="pin"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light" >
             <RelativeLayout
@@ -48,15 +49,10 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        android:background="#ffffff"
+        android:background="#141E31"
         android:orientation="vertical">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_margin = "20dp"
-        android:layout_above="@id/ll_button"
-        android:background="@drawable/layout_background_layer_vk1">
+
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent">
@@ -73,7 +69,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="CORPORATE ID"
-                    android:textColor="#575757"
+                    android:textColor="#ffffff"
                     android:textSize="29sp" />
 
                 <EditText
@@ -81,7 +77,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="90dp"
                     android:layout_marginTop="10dp"
-                    android:background="@drawable/layout6"
+                    android:textColor="#ffffff"
+                    android:background="@drawable/rouned_broder_kiosk_settings_vk1"
                     android:paddingLeft="12dp"
                     android:textSize="30sp" />
 
@@ -90,7 +87,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="40dp"
                     android:text="KIOSK UNIT NAME"
-                    android:textColor="#575757"
+                    android:textColor="#ffffff"
                     android:textSize="29sp" />
 
                 <EditText
@@ -98,7 +95,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="90dp"
                     android:layout_marginTop="10dp"
-                    android:background="@drawable/layout6"
+                    android:textColor="#ffffff"
+                    android:background="@drawable/rouned_broder_kiosk_settings_vk1"
                     android:paddingLeft="12dp"
                     android:textSize="30sp" />
 
@@ -107,7 +105,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="40dp"
                     android:text="DEVICE ID"
-                    android:textColor="#575757"
+                    android:textColor="#ffffff"
                     android:textSize="29sp" />
 
                 <EditText
@@ -115,9 +113,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="90dp"
                     android:layout_marginTop="10dp"
-                    android:background="@drawable/layout6"
+                    android:background="@drawable/rouned_broder_kiosk_settings_vk1"
                     android:editable="false"
                     android:paddingLeft="12dp"
+                    android:textColor="#ffffff"
                     android:textSize="30sp" />
 
                 <!--code for face attendance,(view/se;ect task), leave balance, starts -->
@@ -142,7 +141,7 @@
                             android:layout_alignParentRight="true"
                             android:layout_marginRight="70dp"
                             android:text="Yes"
-                            android:textColor="#575757"
+                            android:textColor="#ffffff"
                             android:textSize="26sp" />
 
                         <TextView
@@ -151,7 +150,7 @@
                             android:layout_marginLeft="0dp"
                             android:layout_marginRight="20dp"
                             android:text="No"
-                            android:textColor="#575757"
+                            android:textColor="#ffffff"
                             android:textSize="26sp" />
                     </LinearLayout>
 
@@ -166,7 +165,7 @@
                             android:layout_height="wrap_content"
                             android:layout_centerVertical="true"
                             android:text="Face Attendance"
-                            android:textColor="#575757"
+                            android:textColor="#ffffff"
                             android:textSize="29sp" />
 
                         <RadioGroup
@@ -182,6 +181,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="12dp"
                                 android:layout_marginRight="50dp"
+                                android:buttonTint="#ffffff"
                                 android:scaleX="2"
                                 android:scaleY="2" />
 
@@ -190,6 +190,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
                                 android:layout_marginRight="5dp"
+                                android:buttonTint="#ffffff"
                                 android:scaleX="2"
                                 android:scaleY="2" />
                         </RadioGroup>
@@ -210,7 +211,7 @@
                             android:layout_alignParentRight="true"
                             android:layout_marginRight="70dp"
                             android:text="Yes"
-                            android:textColor="#575757"
+                            android:textColor="#ffffff"
                             android:textSize="26sp" />
 
                         <TextView
@@ -219,7 +220,7 @@
                             android:layout_marginLeft="0dp"
                             android:layout_marginRight="20dp"
                             android:text="No"
-                            android:textColor="#575757"
+                            android:textColor="#ffffff"
                             android:textSize="26sp" />
                     </LinearLayout>
 
@@ -234,7 +235,7 @@
                             android:layout_height="wrap_content"
                             android:layout_centerVertical="true"
                             android:text="View / Select / Switch Task"
-                            android:textColor="#575757"
+                            android:textColor="#ffffff"
                             android:textSize="29sp" />
 
                         <RadioGroup
@@ -250,6 +251,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="12dp"
                                 android:layout_marginRight="50dp"
+                                android:buttonTint="#ffffff"
                                 android:scaleX="2"
                                 android:scaleY="2" />
 
@@ -258,6 +260,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginRight="5dp"
+                                android:buttonTint="#ffffff"
                                 android:scaleX="2"
                                 android:scaleY="2" />
                         </RadioGroup>
@@ -279,7 +282,7 @@
                             android:layout_alignParentRight="true"
                             android:layout_marginRight="70dp"
                             android:text="Yes"
-                            android:textColor="#575757"
+                            android:textColor="#ffffff"
                             android:textSize="26sp" />
 
                         <TextView
@@ -288,7 +291,7 @@
                             android:layout_marginLeft="0dp"
                             android:layout_marginRight="20dp"
                             android:text="No"
-                            android:textColor="#575757"
+                            android:textColor="#ffffff"
                             android:textSize="26sp" />
                     </LinearLayout>
 
@@ -303,7 +306,7 @@
                             android:layout_height="wrap_content"
                             android:layout_centerVertical="true"
                             android:text="View Leave Balance"
-                            android:textColor="#575757"
+                            android:textColor="#ffffff"
                             android:textSize="29sp" />
 
                         <RadioGroup
@@ -319,6 +322,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="12dp"
                                 android:layout_marginRight="50dp"
+                                android:buttonTint="#ffffff"
                                 android:scaleX="2"
                                 android:scaleY="2" />
 
@@ -327,6 +331,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginRight="5dp"
+                                android:buttonTint="#ffffff"
                                 android:scaleX="2"
                                 android:scaleY="2" />
                         </RadioGroup>
@@ -336,7 +341,7 @@
                 <!--code for face attendance,(view/se;ect task), leave balance, ends -->
             </LinearLayout>
         </ScrollView>
-    </RelativeLayout>
+
         <!--button code starts -->
         <LinearLayout
             android:id="@+id/ll_button"
