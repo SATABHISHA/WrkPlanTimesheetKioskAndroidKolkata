@@ -11,12 +11,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:background="#ffffff">
+            android:background="#596C8D">
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
                 android:padding="5dp"
-                android:background="#5563E0">
+                android:background="#394A68">
 
                 <TextView
                     android:id="@+id/tv_accountcode"
@@ -40,7 +40,7 @@
                 android:layout_height="wrap_content"
                 android:text="Do you want to Enroll face image?"
                 android:gravity="left"
-                android:textColor="#4f4f4f"
+                android:textColor="#CBD5F5"
                 android:textSize="27sp"
                 android:background="#00000000"/>
             <TextView
@@ -52,7 +52,7 @@
                 android:layout_height="wrap_content"
                 android:text="Tips for better Recognition result:"
                 android:gravity="left"
-                android:textColor="#4f4f4f"
+                android:textColor="#CBD5F5"
                 android:textSize="27sp"
                 android:background="#00000000"/>
             <TextView
@@ -65,12 +65,12 @@
                 android:layout_height="wrap_content"
                 android:text="Do you want to Enroll face image?"
                 android:gravity="left"
-                android:textColor="#737373"
+                android:textColor="#CBD5F5"
                 android:textSize="27sp"
                 android:background="#00000000"/>
         </LinearLayout>
         <LinearLayout
-            android:layout_marginTop="1dp"
+            android:layout_marginTop="0dp"
             android:layout_width="match_parent"
             android:layout_height="100dp"
             android:background="@drawable/layout_enroll_image_popup_border_remake"
