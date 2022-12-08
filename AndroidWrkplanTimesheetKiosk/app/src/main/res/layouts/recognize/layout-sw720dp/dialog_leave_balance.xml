@@ -47,7 +47,7 @@
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="5dp"
                 android:text="01/31/2019"
-                android:textColor="#ffffff"
+                android:textColor="#CBD5F5"
                 android:textSize="30sp"
                 android:visibility="visible" />
         </RelativeLayout>
@@ -78,7 +78,7 @@
             android:layout_marginTop="5dp"
             android:layout_toRightOf="@id/tv_blnc"
             android:text="01/31/2019"
-            android:textColor="#ffffff"
+            android:textColor="#CBD5F5"
             android:textSize="28sp"
             android:visibility="visible" />
         <!-- <LinearLayout

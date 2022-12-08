@@ -13,14 +13,15 @@
             android:layout_height="wrap_content"
             android:background="#596C8D"
             >
+
             <TextView
                 android:id="@+id/tv_personal"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
-                android:textSize="28dp"
                 android:gravity="left"
-                android:textColor="#ffffff"
-                android:text="Sick Personal Leave"/>
+                android:text="Sick Personal Leave"
+                android:textColor="#CBD5F5"
+                android:textSize="28dp" />
             <TextView
                 android:id="@+id/tv_colon1"
                 android:layout_toRightOf="@id/tv_personal"
@@ -29,7 +30,7 @@
                 android:layout_marginLeft="15dp"
                 android:textSize="28dp"
                 android:textStyle="bold"
-                android:textColor="#ffffff"
+                android:textColor="#CBD5F5"
                 android:text=":"/>
             <TextView
                 android:id="@+id/tv_personal_hrs"
@@ -38,7 +39,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:textSize="28dp"
-                android:textColor="#ffffff"
+                android:textColor="#CBD5F5"
                 android:text="00:00"/>
 
         </RelativeLayout>

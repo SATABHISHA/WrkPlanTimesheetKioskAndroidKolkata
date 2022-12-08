@@ -11,12 +11,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:background="#ffffff">
+            android:background="#596C8D">
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
                 android:padding="5dp"
-                android:background="#5563E0">
+                android:background="#394A68">
 
                 <TextView
                     android:id="@+id/tv_accountcode"
@@ -25,7 +25,7 @@
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="10dp"
                     android:text="Punch OUT"
-                    android:textColor="#ffffff"
+                    android:textColor="#CBD5F5"
                     android:textSize="32sp"
                     android:textStyle="normal" />
 
@@ -39,12 +39,12 @@
                 android:layout_gravity="center"
                 android:text="Do you really want to Punch OUT?\n Because it will end your work for the day."
                 android:gravity="center"
-                android:textColor="#4f4f4f"
+                android:textColor="#CBD5F5"
                 android:textSize="27sp"
-                android:background="#00000000"/>
+                android:background="#596C8D"/>
         </LinearLayout>
         <LinearLayout
-            android:layout_marginTop="1dp"
+            android:layout_marginTop="0dp"
             android:layout_width="match_parent"
             android:layout_height="100dp"
             android:background="@drawable/layout_enroll_image_popup_border_remake"

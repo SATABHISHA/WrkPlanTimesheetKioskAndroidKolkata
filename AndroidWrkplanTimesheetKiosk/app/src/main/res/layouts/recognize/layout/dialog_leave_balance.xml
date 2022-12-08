@@ -16,6 +16,7 @@
              android:layout_marginLeft="15dp"
              android:layout_marginTop="10dp"
              android:text="Employee: "/> -->
+
         <LinearLayout
             android:id="@+id/linearlayout1"
             android:layout_width="match_parent"
@@ -48,16 +49,16 @@
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="5dp"
                 android:text="01/31/2019"
-                android:textColor="#ffffff"
+                android:textColor="#CBD5F5"
                 android:textSize="20sp"
                 android:visibility="visible" />
         </RelativeLayout>
+
         <View
-            android:layout_below="@id/rl_emp_name"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#738BB0"
-            />
+            android:layout_below="@id/rl_emp_name"
+            android:background="#738BB0" />
         <TextView
             android:visibility="gone"
             android:id="@+id/tv_blnc"
@@ -65,7 +66,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="18sp"
-            android:textColor="#ffffff"
+            android:textColor="#CBD5F5"
             android:layout_marginLeft="15dp"
             android:layout_marginTop="5dp"
             android:text="Up To"/>
@@ -79,7 +80,7 @@
             android:layout_marginLeft="5dp"
             android:textSize="18sp"
             android:layout_marginTop="5dp"
-            android:textColor="#ffffff"
+            android:textColor="#CBD5F5"
             android:text="01/31/2019"/>
         <!-- <LinearLayout
              android:visibility=""
@@ -93,45 +94,50 @@
 
         <LinearLayout
             android:id="@+id/linearlayout3"
-            android:layout_below="@id/tv_blnc_week_date"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@id/tv_blnc_week_date"
             android:layout_marginTop="25dp"
             android:orientation="vertical">
+
             <ListView
                 android:id="@+id/lv_leave_blnc"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:visibility="gone"
                 android:divider="@null"
-                android:dividerHeight="0dp"></ListView>
+                android:dividerHeight="0dp"
+                android:visibility="gone"></ListView>
+
             <TextView
-                android:visibility="gone"
                 android:id="@+id/tvNotAvailable"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
+                android:text="Leave balance for sub-contractor employee is not available"
                 android:textSize="18sp"
-                android:text="Leave balance for sub-contractor employee is not available"/>
+                android:visibility="gone" />
+
             <RelativeLayout
                 android:id="@+id/relativeLayout_ok"
                 android:layout_width="match_parent"
                 android:layout_height="38dp"
                 android:layout_marginTop="25dp"
                 android:background="#75B253">
+
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:background="#000000"/>
+                    android:background="#000000" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="OK"
-                    android:textSize="20dp"
-                    android:textColor="#ffffff"
                     android:layout_centerHorizontal="true"
-                    android:layout_centerVertical="true"/>
+                    android:layout_centerVertical="true"
+                    android:text="OK"
+                    android:textColor="#ffffff"
+                    android:textSize="20dp" />
             </RelativeLayout>
         </LinearLayout>
 
