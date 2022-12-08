@@ -20,9 +20,9 @@ import org.arb.wrkplantimesheetkiosk.R;
 
 public class AdminHomeActivity extends AppCompatActivity implements View.OnClickListener {
     TextView tv_logout;
-    LinearLayout ll_settings, ll_emp_img_settings;
+//    LinearLayout ll_settings, ll_emp_img_settings; //---commenetd on 8th Dec as it is converted to relative layout
     ImageView img_unit_settings, img_emp_settings;
-    RelativeLayout rl_logout;
+    RelativeLayout rl_logout, ll_settings, ll_emp_img_settings;
     UserSingletonModel userSingletonModel = UserSingletonModel.getInstance();
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
