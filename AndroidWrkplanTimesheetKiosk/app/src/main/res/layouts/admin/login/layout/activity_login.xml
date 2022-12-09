@@ -263,13 +263,13 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_marginRight="0dp"
-        android:layout_marginLeft="0dp"
-        android:fitsSystemWindows="true"
-        android:adjustViewBounds="true"
-        android:layout_marginBottom="50dp"
         android:layout_alignParentBottom="true"
-        android:src="@drawable/kiosklogo"/>
+        android:layout_marginLeft="0dp"
+        android:layout_marginRight="0dp"
+        android:layout_marginBottom="50dp"
+        android:adjustViewBounds="true"
+        android:fitsSystemWindows="true"
+        android:src="@drawable/kiosklogo" />
 
 </RelativeLayout>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
