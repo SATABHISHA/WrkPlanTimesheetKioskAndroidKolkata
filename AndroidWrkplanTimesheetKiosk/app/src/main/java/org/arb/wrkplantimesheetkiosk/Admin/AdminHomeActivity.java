@@ -30,7 +30,6 @@ public class AdminHomeActivity extends AppCompatActivity implements View.OnClick
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_home);
-
 //        tv_logout = findViewById(R.id.tv_logout);
         imgbtn_logout = findViewById(R.id.imgbtn_logout);
         ll_settings = findViewById(R.id.ll_settings);
