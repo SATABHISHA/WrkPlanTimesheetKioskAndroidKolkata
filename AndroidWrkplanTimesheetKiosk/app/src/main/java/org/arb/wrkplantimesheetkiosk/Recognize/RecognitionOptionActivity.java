@@ -154,7 +154,6 @@ public class RecognitionOptionActivity extends AppCompatActivity implements View
         }
         //--to make visibilty on/of using shared pref, code ends
 
-
     }
 
     public void checkAttendanceStatus(){
