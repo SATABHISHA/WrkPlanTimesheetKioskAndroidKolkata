@@ -65,7 +65,7 @@
         <entry key="app/src/main/res/layouts/recognize/layout/dialog_leave_balance.xml" value="0.17" />
         <entry key="app/src/main/res/layouts/recognize/layout/dialog_leave_balance_row.xml" value="0.15942028985507245" />
         <entry key="app/src/main/res/layouts/recognize/layout/dialog_progressbar_image_processing.xml" value="0.1" />
-        <entry key="app/src/main/res/layouts/recognize/layout/dialog_punchout_break.xml" value="0.17" />
+        <entry key="app/src/main/res/layouts/recognize/layout/dialog_punchout_break.xml" value="0.21" />
         <entry key="app/src/main/res/layouts/recognize/layout/dialog_recognize_home_realtime.xml" value="0.22" />
       </map>
     </option>
