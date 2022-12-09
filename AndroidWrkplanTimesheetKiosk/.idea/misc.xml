@@ -44,7 +44,7 @@
         <entry key="app/src/main/res/layouts/admin/employeesettings/layout/dialog_employee_image_alert.xml" value="0.21" />
         <entry key="app/src/main/res/layouts/admin/kioskunitsettings/layout-sw720dp/activity_kiosk_unit_settings.xml" value="0.15" />
         <entry key="app/src/main/res/layouts/admin/kioskunitsettings/layout/activity_kiosk_unit_settings.xml" value="0.1967654986522911" />
-        <entry key="app/src/main/res/layouts/admin/login/layout-sw720dp/activity_login.xml" value="0.15" />
+        <entry key="app/src/main/res/layouts/admin/login/layout-sw720dp/activity_login.xml" value="0.16" />
         <entry key="app/src/main/res/layouts/admin/login/layout/activity_login.xml" value="0.2" />
         <entry key="app/src/main/res/layouts/home/layout-sw720dp/activity_home.xml" value="0.15" />
         <entry key="app/src/main/res/layouts/home/layout/activity_home.xml" value="0.21" />

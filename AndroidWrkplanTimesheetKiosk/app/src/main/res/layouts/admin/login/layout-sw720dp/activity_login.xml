@@ -161,9 +161,10 @@
                     android:background="@drawable/passwordnewvk1" />
             </LinearLayout>
 
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:background="@drawable/rouned_broder_vk1"
                 android:layout_weight="15">
 
                 <EditText
@@ -171,13 +172,36 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@drawable/rouned_broder_vk1"
-                    android:paddingLeft="20dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginRight="20dp"
+                    android:layout_toLeftOf="@id/img_btn_pswd_visible"
+                    android:paddingLeft="30dp"
                     android:inputType="textPassword"
                     android:hint="Password"
                     android:singleLine="true"
                     android:imeOptions="actionDone"
                     android:textSize="30sp" />
-            </LinearLayout>
+                <ImageButton
+                    android:id="@+id/img_btn_pswd_visible"
+                    android:layout_width="65dp"
+                    android:layout_height="40dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginRight="20dp"
+                    android:visibility="visible"
+                    android:background="@drawable/passwordvisible" />
+                <ImageButton
+                    android:id="@+id/img_btn_pswd_invisible"
+                    android:layout_width="65dp"
+                    android:layout_height="40dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginRight="20dp"
+                    android:visibility="invisible"
+                    android:background="@drawable/passwordinvisible" />
+            </RelativeLayout>
 
         </LinearLayout>
 

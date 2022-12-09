@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.text.InputType;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
@@ -47,7 +48,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     LinearLayout btnLogin;
     TextView tv_login;
     SharedPreferences sharedPreferences;
-    ImageButton imgbtn_home;
+    ImageButton imgbtn_home, img_btn_pswd_invisible, img_btn_pswd_visible;
 
 
     @Override
@@ -59,6 +60,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         edtUsername = findViewById(R.id.activity_login_edt_username);
         edtPassword = findViewById(R.id.activity_login_edt_password);
         imgbtn_home = findViewById(R.id.imgbtn_home);
+        img_btn_pswd_visible = findViewById(R.id.img_btn_pswd_visible);
+        img_btn_pswd_invisible = findViewById(R.id.img_btn_pswd_invisible);
 
         btnLogin = findViewById(R.id.activity_login_btn_login);
         tv_login = findViewById(R.id.tv_login);
@@ -74,6 +77,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         btnLogin.setOnClickListener(this);
         imgbtn_home.setOnClickListener(this);
         tv_login.setOnClickListener(this);
+        img_btn_pswd_invisible.setOnClickListener(this);
+        img_btn_pswd_visible.setOnClickListener(this);
     }
 
 
@@ -275,6 +280,17 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     @Override
     public void onClick(View v) {
         switch (v.getId()){
+            case R.id.img_btn_pswd_visible:
+                edtPassword.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_NORMAL);
+                img_btn_pswd_visible.setVisibility(View.INVISIBLE);
+                img_btn_pswd_invisible.setVisibility(View.VISIBLE);
+                break;
+            case R.id.img_btn_pswd_invisible:
+                edtPassword.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                img_btn_pswd_visible.setVisibility(View.VISIBLE);
+                img_btn_pswd_invisible.setVisibility(View.INVISIBLE);
+                break;
+
             case R.id.activity_login_btn_login:
                 if(edtCorpId.getText().toString().isEmpty() || edtUsername.getText().toString().isEmpty() || edtPassword.getText().toString().isEmpty()) {
                     if (edtCorpId.getText().toString().isEmpty()) {

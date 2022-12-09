@@ -41,7 +41,7 @@
             </RelativeLayout>
         </androidx.appcompat.widget.Toolbar>
     </com.google.android.material.appbar.AppBarLayout>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
     android:id="@+id/relativeLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -93,8 +93,8 @@
 
                 <ImageView
                     android:layout_width="21dp"
-                    android:layout_height="15dp"
-                    android:background="@drawable/orgvk1"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/orgvk2"
                     android:scaleType="center" />
             </LinearLayout>
 
@@ -136,9 +136,9 @@
                 android:gravity="center">
 
                 <ImageView
-                    android:layout_width="35dp"
-                    android:layout_height="35dp"
-                    android:background="@drawable/usernamenew"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/usernamenewvk1"
                     android:scaleType="center" />
             </LinearLayout>
 
@@ -180,21 +180,25 @@
 
                 <ImageView
                     android:id="@+id/imageView"
-                    android:layout_width="14dp"
-                    android:layout_height="16dp"
-                    android:background="@drawable/passwordnewvk1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/passwordnewvk2"
                     android:scaleType="center" />
             </LinearLayout>
 
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:background="@drawable/rouned_broder_vk1"
                 android:layout_weight="15">
 
                 <EditText
                     android:id="@+id/activity_login_edt_password"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="match_parent"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginRight="20dp"
+                    android:layout_toLeftOf="@id/img_btn_pswd_visible"
                     android:background="@drawable/rouned_broder_vk1"
                     android:hint="Password"
                     android:imeOptions="actionDone"
@@ -204,7 +208,29 @@
                     android:textColor="#ffffff"
                     android:textColorHint="#ffffff"
                     android:textSize="16dp" />
-            </LinearLayout>
+
+                <ImageButton
+                    android:id="@+id/img_btn_pswd_visible"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginRight="10dp"
+                    android:visibility="visible"
+                    android:background="@drawable/passwordvisible" />
+
+                <ImageButton
+                    android:id="@+id/img_btn_pswd_invisible"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginRight="10dp"
+                    android:background="@drawable/passwordinvisible"
+                    android:visibility="invisible" />
+            </RelativeLayout>
 
         </LinearLayout>
 
