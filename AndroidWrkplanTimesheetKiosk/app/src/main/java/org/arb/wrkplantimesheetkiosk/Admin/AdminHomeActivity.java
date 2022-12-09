@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -19,9 +20,10 @@ import org.arb.wrkplantimesheetkiosk.Model.UserSingletonModel;
 import org.arb.wrkplantimesheetkiosk.R;
 
 public class AdminHomeActivity extends AppCompatActivity implements View.OnClickListener {
-    TextView tv_logout;
+//    TextView tv_logout;
 //    LinearLayout ll_settings, ll_emp_img_settings; //---commenetd on 8th Dec as it is converted to relative layout
     ImageView img_unit_settings, img_emp_settings;
+    ImageButton imgbtn_logout;
     RelativeLayout rl_logout, ll_settings, ll_emp_img_settings;
     UserSingletonModel userSingletonModel = UserSingletonModel.getInstance();
     @Override
@@ -29,7 +31,8 @@ public class AdminHomeActivity extends AppCompatActivity implements View.OnClick
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_home);
 
-        tv_logout = findViewById(R.id.tv_logout);
+//        tv_logout = findViewById(R.id.tv_logout);
+        imgbtn_logout = findViewById(R.id.imgbtn_logout);
         ll_settings = findViewById(R.id.ll_settings);
         img_unit_settings = findViewById(R.id.img_unit_settings);
         rl_logout = findViewById(R.id.rl_logout);
@@ -37,7 +40,8 @@ public class AdminHomeActivity extends AppCompatActivity implements View.OnClick
         ll_emp_img_settings = findViewById(R.id.ll_emp_img_settings);
         img_emp_settings = findViewById(R.id.img_emp_settings);
 
-        tv_logout.setOnClickListener(this);
+//        tv_logout.setOnClickListener(this);
+        imgbtn_logout.setOnClickListener(this);
 
         ll_settings.setOnClickListener(this);
         img_unit_settings.setOnClickListener(this);
@@ -53,7 +57,7 @@ public class AdminHomeActivity extends AppCompatActivity implements View.OnClick
     @Override
     public void onClick(View v) {
         switch (v.getId()){
-            case R.id.tv_logout:
+            case R.id.imgbtn_logout:
                 Intent intent = new Intent(this, LoginActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
