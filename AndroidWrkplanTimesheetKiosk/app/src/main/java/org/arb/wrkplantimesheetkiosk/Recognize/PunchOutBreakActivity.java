@@ -36,9 +36,10 @@ public class PunchOutBreakActivity extends AppCompatActivity {
         tv_empname.setText(RecognizeHomeRealtimeActivity.EmployeeName);
 
         if(RecognitionOptionActivity.punch_out_break.contentEquals("out")){
-            img_status.setBackgroundResource(R.drawable.goodbye);
+            img_status.setBackgroundResource(R.drawable.goodbyevk1);
         }else{
-            img_status.setBackgroundResource(R.drawable.checkedin);
+//            img_status.setBackgroundResource(R.drawable.checkedin);
+            img_status.setBackgroundResource(R.drawable.breakvk1);
         }
 
         //=========get current date and set curretnt date, code starts========

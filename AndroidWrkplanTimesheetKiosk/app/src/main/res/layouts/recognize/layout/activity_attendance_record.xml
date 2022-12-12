@@ -83,7 +83,7 @@
             android:layout_height="60dp"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="30dp"
-            android:background="@drawable/checkedin" />
+            android:background="@drawable/checkedinvk1" />
 
         <TextView
             android:id="@+id/tv_punch_status"
