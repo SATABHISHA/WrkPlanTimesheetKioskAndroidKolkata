@@ -55,6 +55,7 @@ public class PunchOutBreakActivity extends AppCompatActivity {
         tv_time.setText(formattedTime);
         //=========get current date and set curretnt date, code ends========
 
+
         //---automatically redirect to another activity. code starts
         Handler handler=new Handler();
         handler.postDelayed(new Runnable() {
