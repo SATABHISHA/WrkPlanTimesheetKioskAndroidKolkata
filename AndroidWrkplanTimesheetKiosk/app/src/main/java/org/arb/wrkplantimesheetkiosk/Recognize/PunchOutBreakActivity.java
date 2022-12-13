@@ -41,7 +41,6 @@ public class PunchOutBreakActivity extends AppCompatActivity {
 //            img_status.setBackgroundResource(R.drawable.checkedin);
             img_status.setBackgroundResource(R.drawable.breakvk1);
         }
-
         //=========get current date and set curretnt date, code starts========
         Date c = Calendar.getInstance().getTime();
         System.out.println("Current time => " + c);
