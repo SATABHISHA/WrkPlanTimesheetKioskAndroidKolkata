@@ -31,6 +31,7 @@ import com.google.android.material.snackbar.Snackbar;
 import org.arb.wrkplantimesheetkiosk.Adapter.CustomLeaveBalanceAdapter;
 import org.arb.wrkplantimesheetkiosk.Config.Config;
 import org.arb.wrkplantimesheetkiosk.Home.HomeActivity;
+import org.arb.wrkplantimesheetkiosk.Home.HomeLoginActivity;
 import org.arb.wrkplantimesheetkiosk.Model.LeaveBalanceItemsModel;
 import org.arb.wrkplantimesheetkiosk.Model.UserSingletonModel;
 import org.arb.wrkplantimesheetkiosk.R;
@@ -97,11 +98,11 @@ public class RecognitionOptionActivity extends AppCompatActivity implements View
         rl_cancel = findViewById(R.id.rl_cancel);
         tv_cancel = findViewById(R.id.tv_cancel);
 
-        tv_empname.setText("Hello\n"+RecognizeHomeRealtimeActivity.EmployeeName);
-//        tv_emp_id.setText(String.valueOf(RecognizeHomeRealtimeActivity.PersonId)); //---commented as said by manish da and told to set employeecode instead
-        tv_emp_id.setText(RecognizeHomeRealtimeActivity.EmployeeCode);
-        tv_supervisor1.setText(RecognizeHomeRealtimeActivity.Supervisor1);
-        tv_supervisor2.setText(RecognizeHomeRealtimeActivity.Supervisor2);
+        tv_empname.setText("Hello\n"+ HomeLoginActivity.EmployeeName);
+//        tv_emp_id.setText(String.valueOf(HomeLoginActivity.PersonId)); //---commented as said by manish da and told to set employeecode instead
+        tv_emp_id.setText(HomeLoginActivity.EmployeeCode);
+        tv_supervisor1.setText(HomeLoginActivity.Supervisor1);
+        tv_supervisor2.setText(HomeLoginActivity.Supervisor2);
 
         rl_punch_in.setVisibility(View.GONE);
         ll_break_punchout.setVisibility(View.GONE);
@@ -144,16 +145,22 @@ public class RecognitionOptionActivity extends AppCompatActivity implements View
 
         sharedPreferences = getApplication().getSharedPreferences("KioskDetails", Context.MODE_PRIVATE);
         //--to make visibilty on/of using shared pref, code starts
-        if(sharedPreferences.getString("AttendanceYN","").contentEquals("0")){
+        /*if(sharedPreferences.getString("AttendanceYN","").contentEquals("0")){
             rl_punch_in.setVisibility(View.GONE);
             ll_break_punchout.setVisibility(View.GONE);
         }if(sharedPreferences.getString("TasklistYN","").contentEquals("0")){
             rl_view_select_task.setVisibility(View.GONE);
         }if(sharedPreferences.getString("LeaveBalanceYN","").contentEquals("0")){
             rl_view_leave_balance.setVisibility(View.GONE);
-        }
+        }*/ //---commented as per requirement
         //--to make visibilty on/of using shared pref, code ends
 
+        //---added 27/11/2024, code starts
+       /* rl_punch_in.setVisibility(View.VISIBLE);
+        ll_break_punchout.setVisibility(View.VISIBLE);
+        rl_view_select_task.setVisibility(View.VISIBLE);
+        rl_view_leave_balance.setVisibility(View.VISIBLE);*/
+        //---added 27/11/2024, code ends
     }
 
     public void checkAttendanceStatus(){
@@ -237,7 +244,7 @@ public class RecognitionOptionActivity extends AppCompatActivity implements View
                 Map<String, String> params = new HashMap<>();
 //                params.put("CorpId", "arb-kol-dev");
                 params.put("CorpId", userSingletonModel.getCorpID());
-                params.put("UserId", String.valueOf(RecognizeHomeRealtimeActivity.PersonId));
+                params.put("UserId", String.valueOf(HomeLoginActivity.PersonId));
                 params.put("UserType", "MAIN");
 
                 return params;
@@ -345,7 +352,7 @@ public class RecognitionOptionActivity extends AppCompatActivity implements View
                 Map<String, String> params = new HashMap<>();
 //                params.put("CorpId", "arb-kol-dev");
                 params.put("CorpId", userSingletonModel.getCorpID());
-                params.put("UserId", String.valueOf(RecognizeHomeRealtimeActivity.PersonId));
+                params.put("UserId", String.valueOf(HomeLoginActivity.PersonId));
                 params.put("UserType", "MAIN");
                 params.put("InOut", SaveInOut);
                 params.put("InOutText", InOutText);
@@ -437,7 +444,7 @@ public class RecognitionOptionActivity extends AppCompatActivity implements View
                 Map<String, String> params = new HashMap<>();
 //                params.put("CorpId", "arb-kol-dev");
                 params.put("CorpId", userSingletonModel.getCorpID());
-                params.put("UserId", String.valueOf(RecognizeHomeRealtimeActivity.PersonId));
+                params.put("UserId", String.valueOf(HomeLoginActivity.PersonId));
                 params.put("UserType", "MAIN");
 
                 return params;
@@ -527,7 +534,7 @@ public class RecognitionOptionActivity extends AppCompatActivity implements View
                 Map<String, String> params = new HashMap<>();
 //                params.put("CorpId", "arb-kol-dev");
                 params.put("CorpId", userSingletonModel.getCorpID());
-                params.put("UserId", String.valueOf(RecognizeHomeRealtimeActivity.PersonId));
+                params.put("UserId", String.valueOf(HomeLoginActivity.PersonId));
                 params.put("UserType", "MAIN");
 
                 return params;
@@ -569,7 +576,7 @@ public class RecognitionOptionActivity extends AppCompatActivity implements View
                                     if (jsonObject.getString("status").contentEquals("true")) {
 //                                        Toast.makeText(getApplicationContext(),jsonObject.getString("message"), Toast.LENGTH_LONG).show(); //--commenting on 18th feb
 
-                                        Intent intent = new Intent(RecognitionOptionActivity.this, HomeActivity.class);
+                                        Intent intent = new Intent(RecognitionOptionActivity.this, HomeLoginActivity.class);
                                         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
                                         startActivity(intent);
 
@@ -620,7 +627,7 @@ public class RecognitionOptionActivity extends AppCompatActivity implements View
                 Map<String, String> params = new HashMap<>();
 //                params.put("CorpId", "arb-kol-dev");
                 params.put("CorpId", userSingletonModel.getCorpID());
-                params.put("UserId", String.valueOf(RecognizeHomeRealtimeActivity.PersonId));
+                params.put("UserId", String.valueOf(HomeLoginActivity.PersonId));
                 params.put("UserType", "MAIN");
                 params.put("EmployeeAssignmentId", RecognitionOptionActivity.EmployeeAssignmentID); //--newly added on 07-Aug-2021
                 params.put("KioskAttendanceId", RecognitionOptionActivity.attendance_id); //--newly added on 07-Aug-2021
@@ -804,7 +811,7 @@ public class RecognitionOptionActivity extends AppCompatActivity implements View
 
 //                params.put("CorpId","arb-kol-dev");
                 params.put("CorpId",userSingletonModel.getCorpID());
-                params.put("EmployeeId",String.valueOf(RecognizeHomeRealtimeActivity.PersonId));
+                params.put("EmployeeId",String.valueOf(HomeLoginActivity.PersonId));
                 params.put("DateToday",WeekDate);
                 return params;
             }
@@ -855,7 +862,7 @@ public class RecognitionOptionActivity extends AppCompatActivity implements View
                         tv_blnc.setVisibility(View.VISIBLE);
 //                        linearlayout2.setVisibility(View.VISIBLE);
 
-                        tv_employee_name.setText(RecognizeHomeRealtimeActivity.EmployeeName);
+                        tv_employee_name.setText(HomeLoginActivity.EmployeeName);
 
 
                         tv_blnc_week_date.setText(dateLeaveUpto);

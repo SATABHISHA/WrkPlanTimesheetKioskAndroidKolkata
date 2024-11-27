@@ -54,6 +54,7 @@ import com.android.volley.toolbox.Volley;
 import org.arb.wrkplantimesheetkiosk.Config.Config;
 import org.arb.wrkplantimesheetkiosk.Config.Temporary;
 import org.arb.wrkplantimesheetkiosk.Home.HomeActivity;
+import org.arb.wrkplantimesheetkiosk.Home.HomeLoginActivity;
 import org.arb.wrkplantimesheetkiosk.Model.UserSingletonModel;
 import org.arb.wrkplantimesheetkiosk.R;
 import org.json.JSONObject;
@@ -606,7 +607,7 @@ public class RecognizeHomeRealtimeActivity extends AppCompatActivity implements 
                                                 @Override
                                                 public void onClick(View v) {
                                                     alertDialog.dismiss();
-                                                    Intent intent = new Intent(RecognizeHomeRealtimeActivity.this, HomeActivity.class);
+                                                    Intent intent = new Intent(RecognizeHomeRealtimeActivity.this, HomeLoginActivity.class);
                                                     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
                                                     startActivity(intent);
                                                 }

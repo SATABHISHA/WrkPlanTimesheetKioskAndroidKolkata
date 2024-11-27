@@ -27,6 +27,7 @@ import com.android.volley.toolbox.Volley;
 import org.arb.wrkplantimesheetkiosk.Adapter.TaskSelectionAdapter;
 import org.arb.wrkplantimesheetkiosk.Config.Config;
 import org.arb.wrkplantimesheetkiosk.Home.HomeActivity;
+import org.arb.wrkplantimesheetkiosk.Home.HomeLoginActivity;
 import org.arb.wrkplantimesheetkiosk.Model.EmployeeTimesheetModel;
 import org.arb.wrkplantimesheetkiosk.Model.UserSingletonModel;
 import org.arb.wrkplantimesheetkiosk.R;
@@ -64,7 +65,7 @@ public class TaskSelectionActivity extends AppCompatActivity implements View.OnC
         tv_totalhrs = findViewById(R.id.tv_totalhrs);
         tv_date = findViewById(R.id.tv_date);
 
-        tv_empname.setText(RecognizeHomeRealtimeActivity.EmployeeName);
+        tv_empname.setText(HomeLoginActivity.EmployeeName);
         taskSelectionAdapter = new TaskSelectionAdapter(this,employeeTimesheetModelArrayList);
 
         //=========get current date and set curretnt date, code starts========
@@ -199,7 +200,7 @@ public void loadData(){
             Map<String, String> params = new HashMap<>();
 //            params.put("CorpId", "arb-kol-dev");
             params.put("CorpId", userSingletonModel.getCorpID());
-            params.put("UserId", String.valueOf(RecognizeHomeRealtimeActivity.PersonId));
+            params.put("UserId", String.valueOf(HomeLoginActivity.PersonId));
             params.put("deviceType", "1");
             params.put("EmpType", "MAIN");
 
@@ -268,7 +269,7 @@ public void loadData(){
                                     loading.dismiss();
 //                                    Toast.makeText(getApplicationContext(),jsonObject.getString("message"),Toast.LENGTH_LONG).show(); //--commented on 25th feb as per discussion
 
-                                    Intent intent = new Intent(TaskSelectionActivity.this, HomeActivity.class);
+                                    Intent intent = new Intent(TaskSelectionActivity.this, HomeLoginActivity.class);
                                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
                                     startActivity(intent);
                                 }
@@ -311,7 +312,7 @@ public void loadData(){
                 Map<String, String> params = new HashMap<>();
 //                params.put("CorpId", "arb-kol-dev");
                 params.put("CorpId", userSingletonModel.getCorpID());
-                params.put("UserId", String.valueOf(RecognizeHomeRealtimeActivity.PersonId));
+                params.put("UserId", String.valueOf(HomeLoginActivity.PersonId));
                 params.put("UserType", "MAIN");
                 params.put("EmployeeAssignmentId", RecognitionOptionActivity.EmployeeAssignmentID); //--newly added on 07-Aug-2021
                 params.put("KioskAttendanceId", RecognitionOptionActivity.attendance_id); //--newly added on 07-Aug-2021
@@ -409,7 +410,7 @@ public void loadData(){
                 Map<String, String> params = new HashMap<>();
 //                params.put("CorpId", "arb-kol-dev");
                 params.put("CorpId", userSingletonModel.getCorpID());
-                params.put("UserId", String.valueOf(RecognizeHomeRealtimeActivity.PersonId));
+                params.put("UserId", String.valueOf(HomeLoginActivity.PersonId));
                 params.put("UserType", "MAIN");
                 params.put("InOut", SaveInOut);
                 params.put("InOutText", InOutText);

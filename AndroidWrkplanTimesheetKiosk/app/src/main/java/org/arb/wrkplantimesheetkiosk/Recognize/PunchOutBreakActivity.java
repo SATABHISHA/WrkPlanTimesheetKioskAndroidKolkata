@@ -10,6 +10,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import org.arb.wrkplantimesheetkiosk.Home.HomeActivity;
+import org.arb.wrkplantimesheetkiosk.Home.HomeLoginActivity;
 import org.arb.wrkplantimesheetkiosk.Model.UserSingletonModel;
 import org.arb.wrkplantimesheetkiosk.R;
 
@@ -60,7 +61,7 @@ public class PunchOutBreakActivity extends AppCompatActivity {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent intent = new Intent(PunchOutBreakActivity.this, HomeActivity.class);
+                Intent intent = new Intent(PunchOutBreakActivity.this, HomeLoginActivity.class);
                 startActivity(intent);
             }
         },4000);

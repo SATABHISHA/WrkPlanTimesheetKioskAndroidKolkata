@@ -14,7 +14,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.WrkplanTimesheetKiosk"
         android:largeHeap="true">
-        <activity android:name=".Home.HomeActivity"
+       <!-- <activity android:name=".Home.HomeActivity"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>-->
+        <activity android:name=".Home.HomeLoginActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
