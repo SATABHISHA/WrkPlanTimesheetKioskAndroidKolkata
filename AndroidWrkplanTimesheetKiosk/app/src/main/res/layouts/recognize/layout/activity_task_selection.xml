@@ -85,7 +85,7 @@
             android:layout_marginLeft="20dp"
             android:layout_marginTop="20dp"
             android:layout_marginRight="20dp"
-            android:background="#2A39BC">
+            android:background="@drawable/activity_task_selection_rounded_header_background">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -146,13 +146,14 @@
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:visibility="visible"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:background="@drawable/activity_task_selection_list_rounded_bottom"
+            >
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recycler_view"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="0dp"
-                android:background="#5A63DC"
                 android:scrollbars="vertical" />
 
         </LinearLayout>
@@ -161,49 +162,49 @@
         <LinearLayout
             android:id="@+id/ll_button"
             android:layout_width="match_parent"
-            android:layout_height="38dp"
+            android:layout_height="50dp"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:paddingBottom="5dp"
             android:layout_alignParentBottom="true"
-            android:background="@drawable/top_border_button"
+
             android:orientation="horizontal">
 
-            <!-- <LinearLayout
-                 android:layout_width="match_parent"
-                 android:layout_height="match_parent"
-                 android:layout_weight="1"
-                 android:background="@drawable/btn_layout1"> -->
-            <TextView
-                android:id="@+id/tv_cancel"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_gravity="center"
-                android:gravity="center"
-                android:layout_weight="1"
-                android:background="#75B253"
-                android:textColor="#ffffff"
-                android:textSize="19sp"
-                android:text="Cancel"/>
-            <!-- </LinearLayout>
-             <LinearLayout
-                 android:layout_width="match_parent"
-                 android:layout_height="match_parent"
-                 android:layout_weight="1"
-                 android:background="@drawable/btn_layout1"> -->
-            <View
+            <LinearLayout
                 android:layout_width="0dp"
-                android:background="#B3B3B2"
-                android:layout_height="match_parent"/>
-            <TextView
-                android:id="@+id/tv_done"
-                android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_gravity="center"
-                android:gravity="center"
                 android:layout_weight="1"
-                android:background="#F02B2B"
-                android:textColor="#ffffff"
-                android:textSize="19sp"
-                android:text="Done"/>
-            <!-- </LinearLayout> -->
+                android:layout_marginEnd="1dp">
+
+                <TextView
+                    android:id="@+id/tv_cancel"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:background="@drawable/activity_task_selection_list_rounded_cancel_button"
+                    android:textColor="#ffffff"
+                    android:textSize="20sp"
+                    android:text="Cancel" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_marginStart="1dp">
+
+                <TextView
+                    android:id="@+id/tv_done"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:background="@drawable/activity_task_selection_list_rounded_done_button"
+                    android:textColor="#ffffff"
+                    android:textSize="20sp"
+                    android:text="Done" />
+            </LinearLayout>
         </LinearLayout>
     </RelativeLayout>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

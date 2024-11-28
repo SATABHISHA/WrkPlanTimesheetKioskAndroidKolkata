@@ -48,7 +48,7 @@ import java.util.Map;
 
 public class AttendanceRecordActivity extends AppCompatActivity implements View.OnClickListener {
     TextView tv_empname, tv_date, tv_time;
-    RelativeLayout rl_view_select_task, rl_view_leave_balance, rl_cancel;
+    RelativeLayout rl_view_select_task, rl_view_leave_balance, rl_logout;
     ArrayList<LeaveBalanceItemsModel> leaveBalanceItemsModelArrayList = new ArrayList<>();
 
     TextView tv_view_select_task, tv_view_leave_balance, tv_cancel;
@@ -64,10 +64,10 @@ public class AttendanceRecordActivity extends AppCompatActivity implements View.
         tv_time = findViewById(R.id.tv_time);
         rl_view_select_task = findViewById(R.id.rl_view_select_task);
         rl_view_leave_balance = findViewById(R.id.rl_view_leave_balance);
-        rl_cancel = findViewById(R.id.rl_cancel);
+        rl_logout = findViewById(R.id.rl_logout);
         tv_view_select_task = findViewById(R.id.tv_view_select_task);
         tv_view_leave_balance = findViewById(R.id.tv_view_leave_balance);
-        tv_cancel = findViewById(R.id.tv_cancel);
+        tv_cancel = findViewById(R.id.tv_logout);
 
         tv_empname.setText(RecognizeHomeRealtimeActivity.EmployeeName);
 
@@ -90,7 +90,7 @@ public class AttendanceRecordActivity extends AppCompatActivity implements View.
         rl_view_leave_balance.setOnClickListener(this);
         tv_view_leave_balance.setOnClickListener(this);
 
-        rl_cancel.setOnClickListener(this);
+        rl_logout.setOnClickListener(this);
         tv_cancel.setOnClickListener(this);
 
         sharedPreferences = getApplication().getSharedPreferences("KioskDetails", Context.MODE_PRIVATE);
@@ -122,7 +122,7 @@ public class AttendanceRecordActivity extends AppCompatActivity implements View.
             case R.id.tv_view_leave_balance:
                 loadLeaveBalanceData();
                 break;
-            case R.id.rl_cancel:
+            case R.id.rl_logout:
                 /*Intent intent_cancel = new Intent(this, HomeActivity.class);
                 intent_cancel.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent_cancel);*/

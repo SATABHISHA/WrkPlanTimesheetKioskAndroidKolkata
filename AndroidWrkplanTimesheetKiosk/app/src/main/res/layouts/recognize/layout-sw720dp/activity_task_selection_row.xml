@@ -23,9 +23,10 @@
             android:id="@+id/relative_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingLeft="0dp"
-            android:paddingRight="0dp"
-            android:paddingBottom="7dp"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:paddingBottom="10dp"
+            android:paddingTop="10dp"
             android:focusableInTouchMode="true"
             android:background="#5A63DC">
 

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- res/drawable/rounded_header_background.xml -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <solid android:color="#2A39BC" />
+    <corners android:topLeftRadius="15dp" android:topRightRadius="15dp" android:bottomLeftRadius="0dp" android:bottomRightRadius="0dp" />
+</shape>

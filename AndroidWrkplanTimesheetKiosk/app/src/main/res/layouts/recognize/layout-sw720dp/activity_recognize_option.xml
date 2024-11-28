@@ -368,7 +368,7 @@
                     android:text="View Leave Balance"/>
             </RelativeLayout>
             <RelativeLayout
-                android:id="@+id/rl_cancel"
+                android:id="@+id/rl_logout"
                 android:layout_width="match_parent"
                 android:layout_height="120dp"
                 android:layout_marginTop="20dp"
@@ -376,13 +376,13 @@
                 android:visibility="visible"
                 android:background="@drawable/layout_custom_btn_reusable_vk1">
                 <TextView
-                    android:id="@+id/tv_cancel"
+                    android:id="@+id/tv_logout"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
                     android:textSize="40sp"
                     android:textColor="#ffffff"
-                    android:text="Cancel"/>
+                    android:text="Logout"/>
             </RelativeLayout>
 
         </LinearLayout>
