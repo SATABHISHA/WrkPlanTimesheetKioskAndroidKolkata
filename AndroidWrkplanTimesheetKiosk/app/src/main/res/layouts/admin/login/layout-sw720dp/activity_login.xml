@@ -67,7 +67,7 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_gravity="center"
-            android:text="KIOSK Admin"
+            android:text="User Login"
             android:textColor="#364673"
             android:textSize="45sp" />
     </LinearLayout>

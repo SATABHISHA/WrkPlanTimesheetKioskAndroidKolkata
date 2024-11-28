@@ -1,5 +1,6 @@
 package org.arb.wrkplantimesheetkiosk.Recognize;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -51,7 +52,7 @@ public class AttendanceRecordActivity extends AppCompatActivity implements View.
     RelativeLayout rl_view_select_task, rl_view_leave_balance, rl_logout;
     ArrayList<LeaveBalanceItemsModel> leaveBalanceItemsModelArrayList = new ArrayList<>();
 
-    TextView tv_view_select_task, tv_view_leave_balance, tv_cancel;
+    TextView tv_view_select_task, tv_view_leave_balance, tv_logout;
     SharedPreferences sharedPreferences;
     UserSingletonModel userSingletonModel = UserSingletonModel.getInstance();
     @Override
@@ -67,7 +68,7 @@ public class AttendanceRecordActivity extends AppCompatActivity implements View.
         rl_logout = findViewById(R.id.rl_logout);
         tv_view_select_task = findViewById(R.id.tv_view_select_task);
         tv_view_leave_balance = findViewById(R.id.tv_view_leave_balance);
-        tv_cancel = findViewById(R.id.tv_logout);
+        tv_logout = findViewById(R.id.tv_logout);
 
         tv_empname.setText(RecognizeHomeRealtimeActivity.EmployeeName);
 
@@ -91,7 +92,7 @@ public class AttendanceRecordActivity extends AppCompatActivity implements View.
         tv_view_leave_balance.setOnClickListener(this);
 
         rl_logout.setOnClickListener(this);
-        tv_cancel.setOnClickListener(this);
+        tv_logout.setOnClickListener(this);
 
         sharedPreferences = getApplication().getSharedPreferences("KioskDetails", Context.MODE_PRIVATE);
         if(sharedPreferences.getString("TasklistYN","").contentEquals("0")){
@@ -126,13 +127,77 @@ public class AttendanceRecordActivity extends AppCompatActivity implements View.
                 /*Intent intent_cancel = new Intent(this, HomeActivity.class);
                 intent_cancel.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent_cancel);*/
-                saveOn_Cancel();
+
+                //---custom dialog for logout, starts
+                LayoutInflater li = LayoutInflater.from(AttendanceRecordActivity.this);
+                final View dialog = li.inflate(R.layout.dialog_logout, null);
+
+                TextView tv_ok = dialog.findViewById(R.id.tv_ok);
+                TextView tv_cancel = dialog.findViewById(R.id.tv_cancel);
+
+
+                AlertDialog.Builder alert = new AlertDialog.Builder(AttendanceRecordActivity.this, R.style.Style_Dialog_Rounded_Corner);
+                alert.setView(dialog);
+                alert.setCancelable(false);
+                //Creating an alert dialog
+                final AlertDialog alertDialog = alert.create();
+                alertDialog.show();
+
+                tv_ok.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        saveOn_Cancel();
+                    }
+                });
+
+                tv_cancel.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        alertDialog.dismiss();
+                    }
+                });
+
+
+                //---custom dialog for logout, ends
+//                saveOn_Cancel();
                 break;
-            case R.id.tv_cancel:
+            case R.id.tv_logout:
                /* Intent intent_cancel1 = new Intent(this, HomeActivity.class);
                 intent_cancel1.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent_cancel1);*/ //commented on 25th feb
-                saveOn_Cancel(); //--added on 25th feb
+
+                //---custom dialog for logout, starts
+                LayoutInflater litv = LayoutInflater.from(AttendanceRecordActivity.this);
+                final View dialog_tv = litv.inflate(R.layout.dialog_logout, null);
+
+                TextView tv_ok_text_view = dialog_tv.findViewById(R.id.tv_ok);
+                TextView tv_cancel_text_view = dialog_tv.findViewById(R.id.tv_cancel);
+
+
+                AlertDialog.Builder alertTv = new AlertDialog.Builder(AttendanceRecordActivity.this, R.style.Style_Dialog_Rounded_Corner);
+                alertTv.setView(dialog_tv);
+                alertTv.setCancelable(false);
+                //Creating an alert dialog
+                final AlertDialog alertDialogTv = alertTv.create();
+                alertDialogTv.show();
+
+                tv_ok_text_view.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        saveOn_Cancel();
+                    }
+                });
+
+                tv_cancel_text_view.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        alertDialogTv.dismiss();
+                    }
+                });
+
+
+                //---custom dialog for logout, ends
+//                saveOn_Cancel(); //--added on 25th feb
                 break;
             default:
                 break;

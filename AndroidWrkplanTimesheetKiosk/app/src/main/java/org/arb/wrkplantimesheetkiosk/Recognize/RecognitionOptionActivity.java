@@ -1,5 +1,6 @@
 package org.arb.wrkplantimesheetkiosk.Recognize;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -712,13 +713,74 @@ public class RecognitionOptionActivity extends AppCompatActivity implements View
                 /*Intent intent_cancel = new Intent(this, HomeActivity.class);
                 intent_cancel.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent_cancel);*/
-                saveOn_Cancel();
+                //---custom dialog for logout, starts
+                LayoutInflater li = LayoutInflater.from(RecognitionOptionActivity.this);
+                final View dialog = li.inflate(R.layout.dialog_logout, null);
+
+                TextView tv_ok = dialog.findViewById(R.id.tv_ok);
+                TextView tv_cancel = dialog.findViewById(R.id.tv_cancel);
+
+
+                AlertDialog.Builder alert = new AlertDialog.Builder(RecognitionOptionActivity.this, R.style.Style_Dialog_Rounded_Corner);
+                alert.setView(dialog);
+                alert.setCancelable(false);
+                //Creating an alert dialog
+                final AlertDialog alertDialog = alert.create();
+                alertDialog.show();
+
+                tv_ok.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        saveOn_Cancel();;
+                    }
+                });
+
+                tv_cancel.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        alertDialog.dismiss();
+                    }
+                });
+
+
+                //---custom dialog for logout, ends
+//                saveOn_Cancel();
                 break;
             case R.id.tv_logout:
                 /*Intent intent_cancel1 = new Intent(this, HomeActivity.class);
                 intent_cancel1.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent_cancel1);*/
-                saveOn_Cancel();
+                //---custom dialog for logout, starts
+                LayoutInflater litv = LayoutInflater.from(RecognitionOptionActivity.this);
+                final View dialog_tv = litv.inflate(R.layout.dialog_logout, null);
+
+                TextView tv_ok_text_view = dialog_tv.findViewById(R.id.tv_ok);
+                TextView tv_cancel_text_view = dialog_tv.findViewById(R.id.tv_cancel);
+
+
+                AlertDialog.Builder alertTv = new AlertDialog.Builder(RecognitionOptionActivity.this, R.style.Style_Dialog_Rounded_Corner);
+                alertTv.setView(dialog_tv);
+                alertTv.setCancelable(false);
+                //Creating an alert dialog
+                final AlertDialog alertDialogTv = alertTv.create();
+                alertDialogTv.show();
+
+                tv_ok_text_view.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        saveOn_Cancel();;
+                    }
+                });
+
+                tv_cancel_text_view.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        alertDialogTv.dismiss();
+                    }
+                });
+
+
+                //---custom dialog for logout, ends
                 break;
             default:
                 break;

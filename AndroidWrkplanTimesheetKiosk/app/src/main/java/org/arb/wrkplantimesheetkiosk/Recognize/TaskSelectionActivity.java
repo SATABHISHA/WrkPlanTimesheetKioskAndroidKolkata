@@ -2,10 +2,12 @@ package org.arb.wrkplantimesheetkiosk.Recognize;
 
 import static org.arb.wrkplantimesheetkiosk.Adapter.TaskSelectionAdapter.round;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -53,6 +55,7 @@ public class TaskSelectionActivity extends AppCompatActivity implements View.OnC
     public static TextView tv_done, tv_cancel;
 //    public static String EmployeeAssignmentID; //--added on 07-Aug-2021
     public static Integer ContractID = 0, TaskId = 0, LaborCatId = 0, CostTypeId = 0, ACSuffix = 0;
+    public static String TaskName = "";
     UserSingletonModel userSingletonModel = UserSingletonModel.getInstance();
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -142,6 +145,7 @@ public void loadData(){
 
                                     if(jsonObject1.getInt("DefaultTaskYn") == 1){
                                         employeeTimesheetModel.setTempDefault(1);
+                                        TaskName = jsonObject1.getString("Task");
                                     }else{
                                         employeeTimesheetModel.setTempDefault(0);
                                     }
@@ -232,7 +236,11 @@ public void loadData(){
                 /*Intent intent = new Intent(TaskSelectionActivity.this, HomeActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);*/
-                save();
+
+                Intent intent = new Intent(TaskSelectionActivity.this, RecognitionOptionActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+//                save();  //as per req on 28th Nov 24
                 break;
             default:
                 break;
@@ -269,9 +277,36 @@ public void loadData(){
                                     loading.dismiss();
 //                                    Toast.makeText(getApplicationContext(),jsonObject.getString("message"),Toast.LENGTH_LONG).show(); //--commented on 25th feb as per discussion
 
-                                    Intent intent = new Intent(TaskSelectionActivity.this, RecognitionOptionActivity.class);
-                                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
-                                    startActivity(intent);
+                                    //---custom dialog for task selection successful alert, starts
+                                    LayoutInflater li = LayoutInflater.from(TaskSelectionActivity.this);
+                                    final View dialog = li.inflate(R.layout.dialog_switch_task_alert, null);
+
+                                    TextView tv_ok = dialog.findViewById(R.id.tv_ok);
+                                    TextView tv_body = dialog.findViewById(R.id.tv_body);
+
+
+                                    tv_body.setText("Now your current task is set to \n'"+TaskName+"'");
+                                    AlertDialog.Builder alert = new AlertDialog.Builder(TaskSelectionActivity.this, R.style.Style_Dialog_Rounded_Corner);
+                                    alert.setView(dialog);
+                                    alert.setCancelable(false);
+                                    //Creating an alert dialog
+                                    final AlertDialog alertDialog = alert.create();
+                                    alertDialog.show();
+
+                                    tv_ok.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View v) {
+                                            Intent intent = new Intent(TaskSelectionActivity.this, RecognitionOptionActivity.class);
+                                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
+                                            startActivity(intent);
+                                        }
+                                    });
+
+
+
+
+                                    //---custom dialog for task selection successful alert, ends
+
                                 }
                             }
 

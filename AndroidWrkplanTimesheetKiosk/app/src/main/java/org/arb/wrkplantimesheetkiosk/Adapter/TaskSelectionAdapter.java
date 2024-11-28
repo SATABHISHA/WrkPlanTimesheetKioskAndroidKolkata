@@ -164,6 +164,7 @@ public class TaskSelectionAdapter extends RecyclerView.Adapter<TaskSelectionAdap
 
                     TaskSelectionActivity.ContractID = employeeTimesheetModelArrayList.get(position).getContractID();
                     TaskSelectionActivity.TaskId = employeeTimesheetModelArrayList.get(position).getTaskID();
+                    TaskSelectionActivity.TaskName = employeeTimesheetModelArrayList.get(position).getTask();
                     TaskSelectionActivity.LaborCatId = employeeTimesheetModelArrayList.get(position).getLaborCategoryID();
                     TaskSelectionActivity.CostTypeId = employeeTimesheetModelArrayList.get(position).getCostTypeID();
                     TaskSelectionActivity.ACSuffix = employeeTimesheetModelArrayList.get(position).getACSuffix();
@@ -189,6 +190,7 @@ public class TaskSelectionAdapter extends RecyclerView.Adapter<TaskSelectionAdap
                     notifyItemRangeChanged(0, employeeTimesheetModelArrayList.size());
                     TaskSelectionActivity.ContractID = employeeTimesheetModelArrayList.get(lastCheckedPosition).getContractID();
                     TaskSelectionActivity.TaskId = employeeTimesheetModelArrayList.get(lastCheckedPosition).getTaskID();
+                    TaskSelectionActivity.TaskName = employeeTimesheetModelArrayList.get(position).getTask();
                     TaskSelectionActivity.LaborCatId = employeeTimesheetModelArrayList.get(lastCheckedPosition).getLaborCategoryID();
                     TaskSelectionActivity.CostTypeId = employeeTimesheetModelArrayList.get(lastCheckedPosition).getCostTypeID();
                     TaskSelectionActivity.ACSuffix = employeeTimesheetModelArrayList.get(lastCheckedPosition).getACSuffix();
