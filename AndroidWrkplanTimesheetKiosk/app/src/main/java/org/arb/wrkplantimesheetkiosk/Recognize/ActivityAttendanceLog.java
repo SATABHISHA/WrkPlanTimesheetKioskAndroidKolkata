@@ -28,8 +28,8 @@ import java.util.Locale;
 public class ActivityAttendanceLog extends AppCompatActivity {
     TextView tv_empname, tv_emp_name_body;
     UserSingletonModel userSingletonModel = UserSingletonModel.getInstance();
-    LinearLayout ll_log_header;
-    LinearLayout logContainer;
+    LinearLayout ll_log_header, ll_log_break;
+    LinearLayout logContainer, ll_log_break_entries;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,7 +37,9 @@ public class ActivityAttendanceLog extends AppCompatActivity {
         tv_empname = findViewById(R.id.tv_empname);
         tv_emp_name_body = findViewById(R.id.tv_emp_name_body);
         ll_log_header = findViewById(R.id.ll_log_header);
+        ll_log_break = findViewById(R.id.ll_log_break);
         logContainer = findViewById(R.id.ll_log_entries);
+        ll_log_break_entries = findViewById(R.id.ll_log_break_entries);
         tv_empname.setText("Hello\n"+ HomeLoginActivity.EmployeeName);
         // Initialize Spinner
         Spinner spinner = findViewById(R.id.spinner_choices);
@@ -74,10 +76,9 @@ public class ActivityAttendanceLog extends AppCompatActivity {
         //---code to show static data, starts
         // Sample JSON data
         String jsonData = "{ \"attendance_log\": [" +
-                "{\"time_in\": \"09:00 AM\", \"time_out\": \"11:00 AM\"}," +
-                "{\"time_in\": \"11:15 AM\", \"time_out\": \"12:00 PM\"}," +
-                "{\"time_in\": \"12:30 PM\", \"time_out\": \"02:30 PM\"}," +
-                "{\"time_in\": \"02:40 PM\", \"time_out\": \"05:00 PM\"}" +
+                "{\"time_in\": \"11:37 AM\", \"time_out\": \"11:45 AM\"}," +
+                "{\"time_in\": \"11:47 AM\", \"time_out\": \"04:54 PM\"}," +
+                "{\"time_in\": \"04:56 PM\", \"time_out\": \"04:58 PM\"}," +
                 "]}";
 
         try {
@@ -90,6 +91,52 @@ public class ActivityAttendanceLog extends AppCompatActivity {
         }
         //---code to show static data, ends
 
+        //---json break
+        String jsonDataBreak = "{ \"attendance_log_break\": [" +
+                "{\"start\": \"11:45 AM\", \"end\": \"11:47 AM\", \"duration\": \"2 mins\" }," +
+                "{\"start\": \"04:54 PM\", \"end\": \"04:56 PM\", \"duration\": \"2 mins\" }," +
+                "]}";
+
+        try {
+            JSONObject jsonObject = new JSONObject(jsonDataBreak);
+            JSONArray attendanceLogBreak = jsonObject.getJSONArray("attendance_log_break");
+
+            displayAttendanceLogBreak(attendanceLogBreak);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+
+    }
+
+
+    //---function to display static attendance log
+    public void displayAttendanceLogBreak(JSONArray attendanceLog) {
+//        LinearLayout logContainer = findViewById(R.id.ll_log_entries);
+
+        for (int i = 0; i < attendanceLog.length(); i++) {
+            try {
+                JSONObject logEntry = attendanceLog.getJSONObject(i);
+                String timeStart = logEntry.getString("start");
+                String timeEnd = logEntry.getString("end");
+                String duration = logEntry.getString("duration");
+
+                // Inflate a new row
+                View rowView = LayoutInflater.from(this).inflate(R.layout.custom_attendance_break, ll_log_break_entries, false);
+                TextView tv_start = rowView.findViewById(R.id.tv_start);
+                TextView tv_end = rowView.findViewById(R.id.tv_end);
+                TextView tv_duration = rowView.findViewById(R.id.tv_duration);
+
+                tv_start.setText(timeStart);
+                tv_end.setText(timeEnd);
+                tv_duration.setText(duration);
+
+
+                ll_log_break_entries.addView(rowView);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     //---function to display static attendance log
@@ -137,6 +184,7 @@ public class ActivityAttendanceLog extends AppCompatActivity {
                         selectedDateTextView.setText(formattedDate);
 
                         ll_log_header.setVisibility(View.VISIBLE);
+                        ll_log_break.setVisibility(View.VISIBLE);
                         logContainer.setVisibility(View.VISIBLE);
                     }
                 },

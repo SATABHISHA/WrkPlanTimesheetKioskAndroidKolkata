@@ -81,10 +81,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
+            android:layout_marginLeft="9dp"
+            android:layout_marginRight="9dp"
             android:padding="16dp">
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:text="Employee Name"
                 android:layout_gravity="center"
@@ -104,9 +106,9 @@
             <Spinner
                 android:id="@+id/spinner_choices"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="30dp"
                 android:layout_gravity="center"
-                android:background="#FFFFFF"/>
+                android:background="@drawable/activity_attendance_log_rounded_border"/>
         </LinearLayout>
         <LinearLayout
             android:id="@+id/ll_date"
@@ -114,10 +116,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
+            android:layout_marginLeft="9dp"
+            android:layout_marginRight="9dp"
             android:padding="16dp">
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:text="Select Date"
                 android:layout_gravity="center"
@@ -149,8 +153,20 @@
             android:layout_below="@id/ll_date"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
+            android:orientation="vertical"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="25dp"
+            android:layout_marginBottom="25dp"
             android:visibility="gone"
+            android:gravity="center"
+            android:background="@drawable/layout_custom_btn_reusable_vk1"
+            android:padding="8dp">
+        <LinearLayout
+            android:id="@+id/ll_log_header1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:visibility="visible"
             android:gravity="center">
 
             <TextView
@@ -173,7 +189,7 @@
         </LinearLayout>
         <!-- Divider Line -->
         <View
-            android:layout_below="@+id/ll_log_header"
+            android:layout_below="@+id/ll_log_header1"
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:background="#CCCCCC"
@@ -181,12 +197,89 @@
             android:layout_marginBottom="8dp" />
         <LinearLayout
             android:id="@+id/ll_log_entries"
-            android:layout_below="@id/ll_log_header"
+            android:layout_below="@id/ll_log_header1"
             android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:visibility="gone"
+            android:visibility="visible"
             android:paddingTop="8dp" />
+        </LinearLayout>
+
+        <!--Break Taken-->
+        <LinearLayout
+            android:id="@+id/ll_log_break"
+            android:layout_below="@id/ll_log_header"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="25dp"
+            android:layout_marginBottom="25dp"
+            android:visibility="gone"
+            android:gravity="center"
+            android:background="@drawable/layout_custom_btn_reusable_vk1"
+            android:padding="8dp">
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:text="BREAK TAKEN"
+                android:layout_gravity="left"
+                android:layout_marginLeft="10dp"
+                android:textColor="#ffffff"
+                android:textSize="18sp" />
+            <LinearLayout
+                android:id="@+id/ll_log_header2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="20dp"
+                android:visibility="visible"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="START"
+                    android:textColor="#FFFFFF"
+                    android:textSize="18sp"
+                    android:layout_weight="1"
+                    android:gravity="center" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="END"
+                    android:textColor="#FFFFFF"
+                    android:textSize="18sp"
+                    android:layout_weight="1"
+                    android:gravity="center" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="DURATION"
+                    android:textColor="#FFFFFF"
+                    android:textSize="18sp"
+                    android:layout_weight="1"
+                    android:gravity="center" />
+            </LinearLayout>
+            <!-- Divider Line -->
+            <View
+                android:layout_below="@+id/ll_log_header"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#CCCCCC"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp" />
+            <LinearLayout
+                android:id="@+id/ll_log_break_entries"
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="visible"
+                android:paddingTop="8dp" />
+        </LinearLayout>
     </RelativeLayout>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
