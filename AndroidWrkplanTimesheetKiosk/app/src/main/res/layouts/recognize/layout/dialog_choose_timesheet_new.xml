@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#00000000">
+    <!--android:background="#EBEBEB"-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <RelativeLayout
+            android:id="@+id/rl_view_own_attendance"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:background="@drawable/layout_custom_btn_reusable_view_attendance">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="View Own Attendance"
+                android:textColor="#ffffff"
+                android:layout_centerVertical="true"
+
+                android:layout_centerInParent="true"
+                android:layout_marginLeft="30dp"
+                android:textSize="20sp"/>
+            <!--<ImageView
+                android:id="@+id/img_emp"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="20dp"
+                android:background="@drawable/attendance"/>-->
+        </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/rl_view_sub_attendance"
+            android:layout_width="match_parent"
+            android:layout_marginTop="0dp"
+            android:layout_height="60dp"
+            android:visibility="visible"
+            android:background="@drawable/layout_custom_btn_reusable_view_attendance">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="View Subordinate Attendance"
+                android:textColor="#ffffff"
+                android:layout_centerVertical="true"
+                android:layout_centerInParent="true"
+                android:layout_marginLeft="30dp"
+                android:textSize="20sp"/>
+            <!--<ImageView
+                android:id="@+id/img_sup"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="20dp"
+                android:background="@drawable/attendance"/>-->
+        </RelativeLayout>
+    </LinearLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -51,7 +51,7 @@ import java.util.Map;
 
 public class RecognitionOptionActivity extends AppCompatActivity implements View.OnClickListener {
     TextView tv_empname, tv_emp_id, tv_supervisor1, tv_supervisor2, tv_date, tv_time;
-    RelativeLayout rl_punch_in, rl_break, rl_punch_out, rl_view_select_task, rl_view_leave_balance, rl_logout;
+    RelativeLayout rl_punch_in, rl_break, rl_punch_out, rl_view_select_task, rl_view_leave_balance, rl_logout, rl_view_attendance;
     LinearLayout ll_break_punchout;
     TextView tv_view_leave_balance, tv_punchtitle1, tv_punchtitle2, tv_breaktitle1, tv_breaktitle2, tv_punch_out_title1, tv_punch_out_title2, tv_view_select_task, tv_logout;
     public static String checkedInOut, punch_out_break;
@@ -96,6 +96,8 @@ public class RecognitionOptionActivity extends AppCompatActivity implements View
         tv_view_select_task = findViewById(R.id.tv_view_select_task);
 
         rl_view_leave_balance = findViewById(R.id.rl_view_leave_balance);
+        rl_view_attendance = findViewById(R.id.rl_view_attendance);
+
         rl_logout = findViewById(R.id.rl_logout);
         tv_logout = findViewById(R.id.tv_logout);
 
@@ -139,6 +141,8 @@ public class RecognitionOptionActivity extends AppCompatActivity implements View
 
         rl_view_leave_balance.setOnClickListener(this);
         tv_view_leave_balance.setOnClickListener(this);
+
+        rl_view_attendance.setOnClickListener(this);
 
         rl_logout.setOnClickListener(this);
         tv_logout.setOnClickListener(this);
@@ -708,6 +712,38 @@ public class RecognitionOptionActivity extends AppCompatActivity implements View
                 break;
             case R.id.tv_view_leave_balance:
                 loadLeaveBalanceData();
+                break;
+            case R.id.rl_view_attendance:
+                //--------adding custom dialog on 14th may starts------
+                LayoutInflater li2 = LayoutInflater.from(this);
+                View dialog_attendance = li2.inflate(R.layout.dialog_choose_timesheet_new, null);
+                RelativeLayout rl_view_own_attendance = (RelativeLayout) dialog_attendance.findViewById(R.id.rl_view_own_attendance);
+                RelativeLayout rl_view_sub_attendance = (RelativeLayout) dialog_attendance.findViewById(R.id.rl_view_sub_attendance);
+                androidx.appcompat.app.AlertDialog.Builder alert_attendance = new androidx.appcompat.app.AlertDialog.Builder(this);
+                alert_attendance.setView(dialog_attendance);
+//                        alert.setCancelable(false);
+                //Creating an alert dialog
+                final androidx.appcompat.app.AlertDialog alertDialogAttendance = alert_attendance.create();
+                alertDialogAttendance.show();
+
+
+                rl_view_own_attendance.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        alertDialogAttendance.dismiss();
+//                        startActivity(new Intent(HomeActivity.this, TimesheetHome.class));
+                    }
+                });
+                rl_view_sub_attendance.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+//                            startActivity(new Intent(HomeActivity.this, Subordinate.class));
+//                        startActivity(new Intent(HomeActivity.this, TimesheetHome.class));
+                        alertDialogAttendance.dismiss();
+                    }
+                });
+
+                //--------adding custom dialog on 14th may ends------
                 break;
             case R.id.rl_logout:
                 /*Intent intent_cancel = new Intent(this, HomeActivity.class);
