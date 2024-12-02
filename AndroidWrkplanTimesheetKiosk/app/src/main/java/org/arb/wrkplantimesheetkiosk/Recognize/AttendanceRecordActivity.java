@@ -70,7 +70,8 @@ public class AttendanceRecordActivity extends AppCompatActivity implements View.
         tv_view_leave_balance = findViewById(R.id.tv_view_leave_balance);
         tv_logout = findViewById(R.id.tv_logout);
 
-        tv_empname.setText(RecognizeHomeRealtimeActivity.EmployeeName);
+//        tv_empname.setText(RecognizeHomeRealtimeActivity.EmployeeName);
+        tv_empname.setText(userSingletonModel.getEmpName());
 
         //=========get current date and set curretnt date, code starts========
         Date c = Calendar.getInstance().getTime();

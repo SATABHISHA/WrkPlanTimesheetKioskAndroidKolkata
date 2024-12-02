@@ -2,7 +2,7 @@ package org.arb.wrkplantimesheetkiosk.Model;
 
 public class UserSingletonModel {
     String  UserID, UserName, CompID, CorpID, CompanyName, SupervisorId, UserRole, AdminYN, PayableClerkYN, SupervisorYN, PurchaseYN,
-    PayrollClerkYN, EmpName, UserType, EmailId, PwdSetterId, FinYearID, Msg, emailHostAddress, emailServer, emailServerPort, emailSendingUsername, emailPassword;
+    PayrollClerkYN, EmpName, UserType, EmailId, PwdSetterId, FinYearID, Msg, emailHostAddress, emailServer, emailServerPort, emailSendingUsername, emailPassword, SupervisorYNTemp;
 
 
     /*
@@ -25,6 +25,10 @@ public class UserSingletonModel {
 
     }
     //------Getter method starts--------
+
+    public String getSupervisorYNTemp() {
+        return SupervisorYNTemp;
+    }
 
     public String getUserID() {
         return UserID;
@@ -120,6 +124,10 @@ public class UserSingletonModel {
 //------Getter method ends--------
 
     //------Setter method starts--------
+
+    public void setSupervisorYNTemp(String supervisorYNTemp) {
+        SupervisorYNTemp = supervisorYNTemp;
+    }
 
     public void setUserID(String userID) {
         UserID = userID;

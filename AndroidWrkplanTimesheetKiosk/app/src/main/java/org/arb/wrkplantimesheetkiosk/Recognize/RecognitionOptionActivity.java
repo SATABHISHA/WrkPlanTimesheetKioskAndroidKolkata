@@ -66,6 +66,7 @@ public class RecognitionOptionActivity extends AppCompatActivity implements View
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recognize_option);
+        userSingletonModel.setSupervisorYNTemp(userSingletonModel.getSupervisorYN());
 
         attendance_id = "0"; //--added on 09-Aug-2021
         EmployeeAssignmentID = "0"; //--added on 09-Aug-2021
@@ -715,34 +716,41 @@ public class RecognitionOptionActivity extends AppCompatActivity implements View
                 break;
             case R.id.rl_view_attendance:
                 //--------adding custom dialog on 14th may starts------
-                LayoutInflater li2 = LayoutInflater.from(this);
-                View dialog_attendance = li2.inflate(R.layout.dialog_choose_timesheet_new, null);
-                RelativeLayout rl_view_own_attendance = (RelativeLayout) dialog_attendance.findViewById(R.id.rl_view_own_attendance);
-                RelativeLayout rl_view_sub_attendance = (RelativeLayout) dialog_attendance.findViewById(R.id.rl_view_sub_attendance);
-                androidx.appcompat.app.AlertDialog.Builder alert_attendance = new androidx.appcompat.app.AlertDialog.Builder(this);
-                alert_attendance.setView(dialog_attendance);
+                if(userSingletonModel.getSupervisorYN().contentEquals("0") ){
+                    startActivity(new Intent(RecognitionOptionActivity.this, ActivityAttendanceLog.class));
+                }else {
+
+                    LayoutInflater li2 = LayoutInflater.from(this);
+                    View dialog_attendance = li2.inflate(R.layout.dialog_choose_timesheet_new, null);
+                    RelativeLayout rl_view_own_attendance = (RelativeLayout) dialog_attendance.findViewById(R.id.rl_view_own_attendance);
+                    RelativeLayout rl_view_sub_attendance = (RelativeLayout) dialog_attendance.findViewById(R.id.rl_view_sub_attendance);
+                    androidx.appcompat.app.AlertDialog.Builder alert_attendance = new androidx.appcompat.app.AlertDialog.Builder(this);
+                    alert_attendance.setView(dialog_attendance);
 //                        alert.setCancelable(false);
-                //Creating an alert dialog
-                final androidx.appcompat.app.AlertDialog alertDialogAttendance = alert_attendance.create();
-                alertDialogAttendance.show();
+                    //Creating an alert dialog
+                    final androidx.appcompat.app.AlertDialog alertDialogAttendance = alert_attendance.create();
+                    alertDialogAttendance.show();
 
 
-                rl_view_own_attendance.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        alertDialogAttendance.dismiss();
-//                        startActivity(new Intent(HomeActivity.this, TimesheetHome.class));
-                    }
-                });
-                rl_view_sub_attendance.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
+                    rl_view_own_attendance.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            alertDialogAttendance.dismiss();
+                            userSingletonModel.setSupervisorYNTemp("0");
+                            startActivity(new Intent(RecognitionOptionActivity.this, ActivityAttendanceLog.class));
+                        }
+                    });
+                    rl_view_sub_attendance.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            userSingletonModel.setSupervisorYNTemp("1");
 //                            startActivity(new Intent(HomeActivity.this, Subordinate.class));
-//                        startActivity(new Intent(HomeActivity.this, TimesheetHome.class));
-                        alertDialogAttendance.dismiss();
-                    }
-                });
+                            startActivity(new Intent(RecognitionOptionActivity.this, ActivityAttendanceLog.class));
 
+                            alertDialogAttendance.dismiss();
+                        }
+                    });
+                }
                 //--------adding custom dialog on 14th may ends------
                 break;
             case R.id.rl_logout:

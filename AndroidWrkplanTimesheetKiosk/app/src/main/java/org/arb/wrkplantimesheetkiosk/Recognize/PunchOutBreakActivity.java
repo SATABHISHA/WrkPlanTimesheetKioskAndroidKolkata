@@ -34,7 +34,8 @@ public class PunchOutBreakActivity extends AppCompatActivity {
         tv_empname = findViewById(R.id.tv_empname);
 
         tv_punch_status.setText(RecognitionOptionActivity.checkedInOut);
-        tv_empname.setText(RecognizeHomeRealtimeActivity.EmployeeName);
+//        tv_empname.setText(RecognizeHomeRealtimeActivity.EmployeeName);
+        tv_empname.setText(userSingletonModel.getEmpName());
 
         if(RecognitionOptionActivity.punch_out_break.contentEquals("out")){
             img_status.setBackgroundResource(R.drawable.goodbyevk1);

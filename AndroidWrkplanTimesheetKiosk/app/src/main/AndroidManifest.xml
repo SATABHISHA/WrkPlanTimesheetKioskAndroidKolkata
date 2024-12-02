@@ -50,6 +50,8 @@
             android:screenOrientation="portrait"/>
         <activity android:name=".Recognize.RecognizeHomeRealtimeActivity"
             android:screenOrientation="portrait"/>
+        <activity android:name=".Recognize.ActivityAttendanceLog"
+            android:screenOrientation="portrait"/>
 
         <uses-library android:name="org.apache.http.legacy" android:required="false"/>
     </application>

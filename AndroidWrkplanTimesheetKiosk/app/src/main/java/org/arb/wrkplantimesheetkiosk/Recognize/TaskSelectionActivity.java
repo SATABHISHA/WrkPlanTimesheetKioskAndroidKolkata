@@ -68,7 +68,8 @@ public class TaskSelectionActivity extends AppCompatActivity implements View.OnC
         tv_totalhrs = findViewById(R.id.tv_totalhrs);
         tv_date = findViewById(R.id.tv_date);
 
-        tv_empname.setText(HomeLoginActivity.EmployeeName);
+//        tv_empname.setText(HomeLoginActivity.EmployeeName);
+        tv_empname.setText(userSingletonModel.getEmpName());
         taskSelectionAdapter = new TaskSelectionAdapter(this,employeeTimesheetModelArrayList);
 
         //=========get current date and set curretnt date, code starts========
