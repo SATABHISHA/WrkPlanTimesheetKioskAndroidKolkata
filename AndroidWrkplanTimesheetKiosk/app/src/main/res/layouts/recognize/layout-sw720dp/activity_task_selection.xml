@@ -38,7 +38,7 @@
         android:layout_height="match_parent"
         android:layout_margin="40dp"
         android:layout_above="@+id/ll_button"
-        android:background="#141E31">
+        android:background="@drawable/layout_custom_btn_reusable_vk1">
         <!--android:background="@drawable/layout_background_layer_vk1"-->
         <RelativeLayout
             android:id="@+id/rl_headline"
