@@ -31,13 +31,15 @@
         android:layout_height="match_parent"
         android:paddingLeft="0dp"
         android:paddingRight="0dp"
+        android:background="#141E31"
         app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="40dp"
         android:layout_above="@+id/ll_button"
-        android:background="@drawable/layout_background_layer_vk1">
+        android:background="#141E31">
+        <!--android:background="@drawable/layout_background_layer_vk1"-->
         <RelativeLayout
             android:id="@+id/rl_headline"
             android:layout_width="match_parent"
@@ -60,7 +62,7 @@
                 android:textSize="38sp"
                 android:layout_marginRight="40dp"
                 android:layout_centerVertical="true"
-                android:textColor="#000000"
+                android:textColor="#ffffff"
                 android:text="Bhattacharya, hffh"/>
         </RelativeLayout>
         <TextView
@@ -69,6 +71,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="40dp"
+            android:textColor="#ffffff"
             android:layout_marginTop="27dp"
             android:textSize="29sp"
             android:text="07-Jan-2021"/>

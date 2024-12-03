@@ -53,7 +53,7 @@ public class ActivityAttendanceLog extends AppCompatActivity {
             spinner.setVisibility(View.VISIBLE);
 
             // Create array for dropdown
-            String[] items = {"Valatka Nicole","Henry"};
+            String[] items = {"Valatka Nicole","Henry McBride"};
 
             // Create an ArrayAdapter using the string array and a default spinner layout
             ArrayAdapter<String> adapter = new ArrayAdapter<>(
