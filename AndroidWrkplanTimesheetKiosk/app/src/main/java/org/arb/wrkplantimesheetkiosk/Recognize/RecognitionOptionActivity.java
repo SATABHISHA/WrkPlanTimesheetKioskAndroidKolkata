@@ -5,7 +5,10 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
+import android.location.Location;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -16,8 +19,11 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.DefaultRetryPolicy;
@@ -58,6 +64,13 @@ public class RecognitionOptionActivity extends AppCompatActivity implements View
     public static String attendance_id = "0", EmployeeAssignmentID = "0"; //--added on 07-Aug-2021
     public static Boolean IsInOutButtonHit; //--added on 09-Aug-2021
     ArrayList<LeaveBalanceItemsModel> leaveBalanceItemsModelArrayList = new ArrayList<>();
+
+    // Location-related variables
+    private static final int LOCATION_PERMISSION_REQUEST_CODE = 1001;
+    private static final double OFFICE_LATITUDE = 22.574147; // Example: Kolkata coordinates - Replace with actual office coordinates
+    private static final double OFFICE_LONGITUDE = 88.4351112; // Example: Kolkata coordinates - Replace with actual office coordinates
+    private static final double ALLOWED_DISTANCE_METERS = 100.0; // 100 meters radius
+    private LocationManager locationManager;
 
     SharedPreferences sharedPreferences;
     UserSingletonModel userSingletonModel = UserSingletonModel.getInstance();
@@ -150,6 +163,10 @@ public class RecognitionOptionActivity extends AppCompatActivity implements View
 
 
         sharedPreferences = getApplication().getSharedPreferences("KioskDetails", Context.MODE_PRIVATE);
+        
+        // Initialize location manager
+        locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        
         //--to make visibilty on/of using shared pref, code starts
         /*if(sharedPreferences.getString("AttendanceYN","").contentEquals("0")){
             rl_punch_in.setVisibility(View.GONE);
@@ -167,6 +184,158 @@ public class RecognitionOptionActivity extends AppCompatActivity implements View
         rl_view_select_task.setVisibility(View.VISIBLE);
         rl_view_leave_balance.setVisibility(View.VISIBLE);*/
         //---added 27/11/2024, code ends
+    }
+
+    // Location validation methods
+    private void checkLocationPermissionAndValidate(String action, String inOutText) {
+        if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) 
+            != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, 
+                new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION, 
+                           android.Manifest.permission.ACCESS_COARSE_LOCATION}, 
+                LOCATION_PERMISSION_REQUEST_CODE);
+        } else {
+            validateLocationAndProceed(action, inOutText);
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == LOCATION_PERMISSION_REQUEST_CODE) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                // Permission granted, but we need to know which action was requested
+                Toast.makeText(this, "Location permission granted. Please try punch in/out again.", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(this, "Location permission is required for punch in/out.", Toast.LENGTH_LONG).show();
+            }
+        }
+    }
+
+    private void validateLocationAndProceed(String action, String inOutText) {
+        try {
+            if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) 
+                != PackageManager.PERMISSION_GRANTED && 
+                ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) 
+                != PackageManager.PERMISSION_GRANTED) {
+                return;
+            }
+
+            Location lastKnownLocation = null;
+            
+            // Try to get location from GPS first
+            if (locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+                lastKnownLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+            }
+            
+            // If GPS location is not available, try network provider
+            if (lastKnownLocation == null && locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)) {
+                lastKnownLocation = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+            }
+
+            if (lastKnownLocation != null) {
+                double distance = calculateDistance(lastKnownLocation.getLatitude(), 
+                                                  lastKnownLocation.getLongitude(), 
+                                                  OFFICE_LATITUDE, 
+                                                  OFFICE_LONGITUDE);
+                
+                Log.d("LocationCheck", "Current distance from office: " + distance + " meters");
+                
+                // Show current location and distance in snackbar
+                showLocationInfo(lastKnownLocation.getLatitude(), lastKnownLocation.getLongitude(), distance);
+                
+                // Also show a toast as backup
+                String toastMessage = String.format("Distance: %.0fm from office", distance);
+                Toast.makeText(this, toastMessage, Toast.LENGTH_SHORT).show();
+                
+                if (distance <= ALLOWED_DISTANCE_METERS) {
+                    // Within allowed range, proceed with punch in/out
+                    proceedWithPunchAction(action, inOutText);
+                } else {
+                    // Too far from office
+                    showLocationErrorDialog(distance);
+                }
+            } else {
+                // Location not available
+                showLocationUnavailableDialog();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            Toast.makeText(this, "Error getting location. Please try again.", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private double calculateDistance(double lat1, double lon1, double lat2, double lon2) {
+        final int R = 6371; // Radius of the earth in km
+        double latDistance = Math.toRadians(lat2 - lat1);
+        double lonDistance = Math.toRadians(lon2 - lon1);
+        double a = Math.sin(latDistance / 2) * Math.sin(latDistance / 2)
+                + Math.cos(Math.toRadians(lat1)) * Math.cos(Math.toRadians(lat2))
+                * Math.sin(lonDistance / 2) * Math.sin(lonDistance / 2);
+        double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+        double distance = R * c * 1000; // convert to meters
+        return distance;
+    }
+
+    private void showLocationErrorDialog(double distance) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Location Error")
+               .setMessage("You are too far from the office location. Distance: " + 
+                          String.format("%.0f", distance) + " meters. You must be within " + 
+                          ALLOWED_DISTANCE_METERS + " meters to punch in/out.")
+               .setPositiveButton("OK", (dialog, which) -> dialog.dismiss())
+               .setCancelable(false)
+               .show();
+    }
+
+    private void showLocationUnavailableDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Location Unavailable")
+               .setMessage("Unable to get your current location. Please ensure GPS is enabled and try again.")
+               .setPositiveButton("OK", (dialog, which) -> dialog.dismiss())
+               .show();
+    }
+
+    private void showLocationInfo(double currentLat, double currentLon, double distance) {
+        String message = String.format("Current: %.6f, %.6f\nOffice: %.6f, %.6f\nDistance: %.0f meters", 
+                                     currentLat, currentLon, OFFICE_LATITUDE, OFFICE_LONGITUDE, distance);
+        
+        // Try using the root view first, then fallback to a specific view
+        View rootView = findViewById(android.R.id.content);
+        if (rootView == null) {
+            rootView = rl_punch_in.getParent() != null ? (View) rl_punch_in.getParent() : rl_punch_in;
+        }
+        
+        Snackbar snackbar = Snackbar.make(rootView, message, Snackbar.LENGTH_LONG);
+        View sbView = snackbar.getView();
+        TextView textView = sbView.findViewById(com.google.android.material.R.id.snackbar_text);
+        if (textView != null) {
+            textView.setTextColor(Color.WHITE);
+            textView.setMaxLines(4);
+        }
+        
+        // Set background color for better visibility
+        sbView.setBackgroundColor(Color.parseColor("#323232"));
+        
+        snackbar.show();
+    }
+
+    private void proceedWithPunchAction(String action, String inOutText) {
+        // This method contains the original punch in/out logic
+        if (action.equals("IN")) {
+            IsInOutButtonHit = true;
+            saveInOut("IN", inOutText);
+            checkedInOut = "You are Punched IN";
+        } else if (action.equals("OUT")) {
+            if (inOutText.equals("BREAK_STARTS")) {
+                checkedInOut = "You are on Break!";
+                punch_out_break = "break";
+            } else {
+                checkedInOut = "Good Bye!";
+                punch_out_break = "out";
+            }
+            saveInOut("OUT", inOutText);
+        }
     }
 
     public void checkAttendanceStatus(){
@@ -655,36 +824,23 @@ public class RecognitionOptionActivity extends AppCompatActivity implements View
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.rl_punch_in:
-                IsInOutButtonHit = true;
-                saveInOut("IN","PUNCHED_IN");
-                checkedInOut = "You are Punched IN";
+                checkLocationPermissionAndValidate("IN", "PUNCHED_IN");
                 break;
             case R.id.tv_punchtitle1:
-                IsInOutButtonHit = true;
-                saveInOut("IN","PUNCHED_IN");
-                checkedInOut = "You are Punched IN";
+                checkLocationPermissionAndValidate("IN", "PUNCHED_IN");
                 break;
             case R.id.tv_punchtitle2:
-                IsInOutButtonHit = true;
-                saveInOut("IN","PUNCHED_IN");
-                checkedInOut = "You are Punched IN";
+                checkLocationPermissionAndValidate("IN", "PUNCHED_IN");
                 break;
 
             case R.id.rl_break:
-//                break_punchout();
-                checkedInOut = "You are on Break!";
-                punch_out_break = "break";
-                saveInOut("OUT","BREAK_STARTS");
+                checkLocationPermissionAndValidate("OUT", "BREAK_STARTS");
                 break;
             case R.id.tv_breaktitle1:
-                checkedInOut = "You are on Break!";
-                punch_out_break = "break";
-                saveInOut("OUT","BREAK_STARTS");
+                checkLocationPermissionAndValidate("OUT", "BREAK_STARTS");
                 break;
             case R.id.tv_breaktitle2:
-                checkedInOut = "You are on Break!";
-                punch_out_break = "break";
-                saveInOut("OUT","BREAK_STARTS");
+                checkLocationPermissionAndValidate("OUT", "BREAK_STARTS");
                 break;
 
             case R.id.rl_punch_out:
@@ -769,8 +925,8 @@ public class RecognitionOptionActivity extends AppCompatActivity implements View
                 alert.setView(dialog);
                 alert.setCancelable(false);
                 //Creating an alert dialog
-                final AlertDialog alertDialog = alert.create();
-                alertDialog.show();
+                final AlertDialog alertDialogLogout = alert.create();
+                alertDialogLogout.show();
 
                 tv_ok.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -782,7 +938,7 @@ public class RecognitionOptionActivity extends AppCompatActivity implements View
                 tv_cancel.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        alertDialog.dismiss();
+                        alertDialogLogout.dismiss();
                     }
                 });
 
@@ -849,18 +1005,14 @@ public class RecognitionOptionActivity extends AppCompatActivity implements View
             @Override
             public void onClick(View view) {
                 alertDialog.dismiss();
-                saveInOut("OUT","PUNCHED_OUT");
-                checkedInOut = "Good Bye!";
-                punch_out_break = "out";
+                checkLocationPermissionAndValidate("OUT", "PUNCHED_OUT");
             }
         });
         ll_no.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 alertDialog.dismiss();
-                saveInOut("OUT","BREAK_STARTS");
-                checkedInOut = "You are on Break!";
-                punch_out_break = "break";
+                checkLocationPermissionAndValidate("OUT", "BREAK_STARTS");
             }
         });
         //-------custom dialog code ends=========
