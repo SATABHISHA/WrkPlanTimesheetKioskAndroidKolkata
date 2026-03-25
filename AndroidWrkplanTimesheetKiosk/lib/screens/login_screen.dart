@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../services/auth_provider.dart';
+import '../constants/app_colors.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -83,10 +84,14 @@ class _LoginScreenState extends State<LoginScreen> {
                 Container(
                   height: 100,
                   decoration: BoxDecoration(
-                    color: Colors.grey[300],
+                    color: AppColors.vkBackground,
                     borderRadius: BorderRadius.circular(8),
                   ),
-                  child: const Icon(Icons.business, size: 50),
+                  child: const Icon(
+                    Icons.business,
+                    size: 50,
+                    color: AppColors.primaryVariant,
+                  ),
                 ),
                 const SizedBox(height: 32),
                 const Text(

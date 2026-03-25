@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../services/auth_provider.dart';
+import '../constants/app_colors.dart';
 
 class AdminLoginScreen extends StatefulWidget {
   const AdminLoginScreen({Key? key}) : super(key: key);
@@ -77,10 +78,14 @@ class _AdminLoginScreenState extends State<AdminLoginScreen> {
                 Container(
                   height: 100,
                   decoration: BoxDecoration(
-                    color: Colors.blueGrey[300],
+                    color: AppColors.vkBackground,
                     borderRadius: BorderRadius.circular(8),
                   ),
-                  child: const Icon(Icons.admin_panel_settings, size: 50),
+                  child: const Icon(
+                    Icons.admin_panel_settings,
+                    size: 50,
+                    color: AppColors.primaryVariant,
+                  ),
                 ),
                 const SizedBox(height: 32),
                 const Text(

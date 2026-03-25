@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../constants/app_colors.dart';
 
 class EmployeeImageSettingsScreen extends StatefulWidget {
   const EmployeeImageSettingsScreen({Key? key}) : super(key: key);
@@ -43,13 +44,16 @@ class _EmployeeImageSettingsScreenState
                 width: 50,
                 height: 50,
                 decoration: BoxDecoration(
-                  color: isUploaded ? Colors.green[100] : Colors.grey[300],
+                  color: isUploaded
+                      ? AppColors.secondary.withValues(alpha: 0.30)
+                      : AppColors.vkBackground,
                   borderRadius: BorderRadius.circular(4),
                 ),
                 child: Icon(
                   isUploaded ? Icons.check_circle : Icons.image,
-                  color:
-                      isUploaded ? Colors.green : Colors.grey,
+                  color: isUploaded
+                      ? AppColors.secondaryVariant
+                      : AppColors.primaryVariant,
                 ),
               ),
               title: Text(employee['name']!),

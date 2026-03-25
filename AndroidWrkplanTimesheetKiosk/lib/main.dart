@@ -13,6 +13,7 @@ import 'screens/employee_settings_screen.dart';
 import 'screens/employee_image_settings_screen.dart';
 import 'screens/attendance_reports_screen.dart';
 import 'screens/system_config_screen.dart';
+import 'constants/app_theme.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -34,10 +35,7 @@ class MyApp extends StatelessWidget {
       ],
       child: MaterialApp(
         title: 'WrkPlan Timesheet Kiosk',
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-          useMaterial3: true,
-        ),
+        theme: AppTheme.lightTheme,
         home: const AuthWrapper(),
         routes: {
           '/login': (context) => const LoginScreen(),

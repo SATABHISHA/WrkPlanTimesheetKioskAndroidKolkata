@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../constants/app_colors.dart';
 
 class EmployeeSettingsScreen extends StatefulWidget {
   const EmployeeSettingsScreen({Key? key}) : super(key: key);
@@ -42,8 +43,8 @@ class _EmployeeSettingsScreenState extends State<EmployeeSettingsScreen> {
               trailing: Chip(
                 label: Text(employee['status']!),
                 backgroundColor: employee['status'] == 'Active'
-                    ? Colors.green[100]
-                    : Colors.grey[300],
+                  ? AppColors.secondary.withValues(alpha: 0.30)
+                  : AppColors.vkBackground,
               ),
               onTap: () {
                 // TODO: Edit employee

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../constants/app_colors.dart';
 
 class AttendanceLogScreen extends StatefulWidget {
   const AttendanceLogScreen({Key? key}) : super(key: key);
@@ -67,13 +68,13 @@ class _AttendanceLogScreenState extends State<AttendanceLogScreen> {
                           vertical: 4,
                         ),
                         decoration: BoxDecoration(
-                          color: Colors.green[100],
+                          color: AppColors.secondary.withValues(alpha: 0.30),
                           borderRadius: BorderRadius.circular(4),
                         ),
                         child: Text(
                           record['status']!,
-                          style: TextStyle(
-                            color: Colors.green[800],
+                          style: const TextStyle(
+                            color: AppColors.secondaryVariant,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
@@ -87,11 +88,14 @@ class _AttendanceLogScreenState extends State<AttendanceLogScreen> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            const Text(
+                            Text(
                               'Check-In',
                               style: TextStyle(
                                 fontSize: 12,
-                                color: Colors.grey,
+                                color: Theme.of(context)
+                                    .colorScheme
+                                    .onSurface
+                                    .withValues(alpha: 0.6),
                               ),
                             ),
                             Text(
@@ -108,11 +112,14 @@ class _AttendanceLogScreenState extends State<AttendanceLogScreen> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            const Text(
+                            Text(
                               'Check-Out',
                               style: TextStyle(
                                 fontSize: 12,
-                                color: Colors.grey,
+                                color: Theme.of(context)
+                                    .colorScheme
+                                    .onSurface
+                                    .withValues(alpha: 0.6),
                               ),
                             ),
                             Text(
@@ -129,11 +136,14 @@ class _AttendanceLogScreenState extends State<AttendanceLogScreen> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            const Text(
+                            Text(
                               'Task',
                               style: TextStyle(
                                 fontSize: 12,
-                                color: Colors.grey,
+                                color: Theme.of(context)
+                                    .colorScheme
+                                    .onSurface
+                                    .withValues(alpha: 0.6),
                               ),
                             ),
                             Text(

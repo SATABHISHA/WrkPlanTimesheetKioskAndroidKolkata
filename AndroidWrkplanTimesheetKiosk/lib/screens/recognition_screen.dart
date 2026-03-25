@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:camera/camera.dart';
 import 'dart:io';
+import '../constants/app_colors.dart';
 
 class RecognitionScreen extends StatefulWidget {
   const RecognitionScreen({Key? key}) : super(key: key);
@@ -89,20 +90,20 @@ class _RecognitionScreenState extends State<RecognitionScreen> {
               if (_isCameraInitialized && _capturedImage == null)
                 Container(
                   height: 400,
-                  color: Colors.black,
+                  color: AppColors.black,
                   child: CameraPreview(_cameraController!),
                 )
               else if (_capturedImage != null)
                 Container(
                   height: 400,
                   width: double.infinity,
-                  color: Colors.grey[300],
+                  color: AppColors.vkBackground,
                   child: Image.file(File(_capturedImage!.path)),
                 )
               else
                 Container(
                   height: 400,
-                  color: Colors.grey[300],
+                  color: AppColors.vkBackground,
                   child: const Center(
                     child: Text('Camera not available'),
                   ),
