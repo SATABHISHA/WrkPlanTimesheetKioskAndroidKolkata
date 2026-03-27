@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 
 // Colour palette applied in the satabhisha branch (VK1 design)
 class AppColors {
-  // Primary — deep blue-purple used for buttons, app bar
-  static const Color primary        = Color(0xFF1A237E); // indigo 900
-  static const Color primaryVariant = Color(0xFF283593); // indigo 800
+  // Primary — VK1 blue tones from satabhisha layouts
+  static const Color primary        = Color(0xFF364673);
+  static const Color primaryVariant = Color(0xFF2E5772);
 
   // Accent / secondary
-  static const Color secondary        = Color(0xFF42A5F5); // blue 400
-  static const Color secondaryVariant = Color(0xFF1E88E5); // blue 600
+  static const Color secondary        = Color(0xFF55D5BE);
+  static const Color secondaryVariant = Color(0xFF42BFA9);
 
   // Surface
   static const Color white = Color(0xFFFFFFFF);

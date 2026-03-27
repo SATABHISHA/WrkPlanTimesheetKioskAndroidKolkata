@@ -186,18 +186,38 @@ class _RecognitionOptionScreenState extends State<RecognitionOptionScreen> {
     try {
       final json = await _api.getLeaveBalance(
         corpId: auth.user!.corpID!,
-        userId: auth.user!.personId!,
+        employeeId: auth.user!.personId!,
       );
       if (!mounted) return;
       Navigator.of(context).pop();
 
-      final status = json['status']?.toString() ?? '';
+      final status = (json['status'] ?? json['Status'] ?? '').toString().toLowerCase();
       if (status == 'true') {
-        final raw  = json['leavebalancedata'];
-        final list = (raw is List ? raw : [raw])
-            .map((e) => LeaveBalanceItem.fromJson(Map<String, dynamic>.from(e as Map)))
-            .toList();
-        _showLeaveDialog(list);
+        final raw = json['LeaveBalanceItems'] ?? json['leavebalancedata'];
+        final items = <LeaveBalanceItem>[];
+
+        if (raw is Map) {
+          for (final entry in raw.entries) {
+            items.add(LeaveBalanceItem.fromEntry(entry.key.toString(), entry.value));
+          }
+        } else if (raw is List) {
+          for (final e in raw) {
+            if (e is Map) {
+              items.add(LeaveBalanceItem.fromJson(Map<String, dynamic>.from(e)));
+            }
+          }
+        }
+
+        if (items.isEmpty) {
+          _showSnack('No leave balance data found');
+          return;
+        }
+
+        _showLeaveDialog(
+          items,
+          dateUpto: json['LeaveDateUpto']?.toString() ?? '',
+          employeeName: auth.user?.empName ?? auth.user?.userName ?? '',
+        );
       } else {
         _showSnack(json['message']?.toString() ?? 'No data');
       }
@@ -207,21 +227,44 @@ class _RecognitionOptionScreenState extends State<RecognitionOptionScreen> {
     }
   }
 
-  void _showLeaveDialog(List<LeaveBalanceItem> items) {
+  void _showLeaveDialog(
+    List<LeaveBalanceItem> items, {
+    required String dateUpto,
+    required String employeeName,
+  }) {
     showDialog(
       context: context,
       builder: (_) => AlertDialog(
         title: const Text('Leave Balance'),
         content: SizedBox(
           width: double.maxFinite,
-          child: ListView.builder(
-            shrinkWrap: true,
-            itemCount: items.length,
-            itemBuilder: (_, i) => ListTile(
-              title: Text(items[i].leaveTypeName ?? ''),
-              trailing: Text(items[i].balanceHrs ?? '',
-                  style: const TextStyle(fontWeight: FontWeight.bold)),
-            ),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              if (employeeName.isNotEmpty)
+                Text(employeeName,
+                    style: const TextStyle(fontWeight: FontWeight.w700)),
+              if (dateUpto.isNotEmpty) ...[
+                const SizedBox(height: 4),
+                Text(dateUpto, style: const TextStyle(color: Colors.grey)),
+              ],
+              const SizedBox(height: 8),
+              Flexible(
+                child: ListView.builder(
+                  shrinkWrap: true,
+                  itemCount: items.length,
+                  itemBuilder: (_, i) => ListTile(
+                    dense: true,
+                    title: Text(items[i].leaveTypeName ?? ''),
+                    trailing: Text(
+                      items[i].balanceHrs ?? '',
+                      style: const TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                ),
+              ),
+            ],
           ),
         ),
         actions: [

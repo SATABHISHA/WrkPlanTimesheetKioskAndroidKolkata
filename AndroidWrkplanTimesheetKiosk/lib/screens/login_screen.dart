@@ -74,124 +74,131 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            colors: [Color(0xFFDDE5FF), Color(0xFFEFF3FF)],
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-          ),
-        ),
+        color: AppColors.vkBackground,
         child: SafeArea(
-          child: Stack(
+          child: Column(
             children: [
-              SingleChildScrollView(
-                padding: const EdgeInsets.fromLTRB(22, 28, 22, 120),
-                child: Column(
+              Container(height: 56, color: Colors.white),
+              Expanded(
+                child: Stack(
                   children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Image.asset(
-                          'assets/images/kioskapplogo.png',
-                          width: 54,
-                          height: 54,
-                        ),
-                        const SizedBox(width: 10),
-                        const Text(
-                          'KIOSK Admin',
-                          style: TextStyle(
-                            color: Color(0xFF364673),
-                            fontSize: 30,
-                            fontWeight: FontWeight.w700,
-                          ),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 28),
-                    _field(
-                      controller: _corpIdController,
-                      hint: 'Corporate ID',
-                      icon: Icons.apartment,
-                      textInputAction: TextInputAction.next,
-                    ),
-                    const SizedBox(height: 12),
-                    _field(
-                      controller: _usernameController,
-                      hint: 'Username',
-                      icon: Icons.person,
-                      textInputAction: TextInputAction.next,
-                    ),
-                    const SizedBox(height: 12),
-                    _field(
-                      controller: _passwordController,
-                      hint: 'Password',
-                      icon: Icons.lock,
-                      obscureText: _obscurePassword,
-                      textInputAction: TextInputAction.done,
-                      suffix: IconButton(
-                        icon: Icon(
-                          _obscurePassword ? Icons.visibility : Icons.visibility_off,
-                        ),
-                        onPressed: () {
-                          setState(() => _obscurePassword = !_obscurePassword);
-                        },
-                      ),
-                    ),
-                    const SizedBox(height: 20),
-                    Consumer<AuthProvider>(
-                      builder: (context, authProvider, _) {
-                        return SizedBox(
-                          width: double.infinity,
-                          child: ElevatedButton(
-                            onPressed: authProvider.isLoading ? null : _handleLogin,
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: AppColors.primary,
-                              foregroundColor: const Color(0xFF55D5BE),
-                              padding: const EdgeInsets.symmetric(vertical: 14),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10),
+                    SingleChildScrollView(
+                      padding: const EdgeInsets.fromLTRB(22, 28, 22, 120),
+                      child: Column(
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Image.asset(
+                                'assets/images/kioskapplogo.png',
+                                width: 56,
+                                height: 56,
                               ),
+                              const SizedBox(width: 10),
+                              const Text(
+                                'KIOSK Admin',
+                                style: TextStyle(
+                                  color: Color(0xFF364673),
+                                  fontSize: 30,
+                                  fontWeight: FontWeight.w700,
+                                ),
+                              ),
+                            ],
+                          ),
+                          const SizedBox(height: 26),
+                          _field(
+                            controller: _corpIdController,
+                            hint: 'Corporate ID',
+                            iconAsset: 'assets/images/orgvk1.png',
+                            textInputAction: TextInputAction.next,
+                          ),
+                          const SizedBox(height: 12),
+                          _field(
+                            controller: _usernameController,
+                            hint: 'Username',
+                            iconAsset: 'assets/images/usernamenewvk1.png',
+                            textInputAction: TextInputAction.next,
+                          ),
+                          const SizedBox(height: 12),
+                          _field(
+                            controller: _passwordController,
+                            hint: 'Password',
+                            iconAsset: 'assets/images/passwordnewvk1.png',
+                            obscureText: _obscurePassword,
+                            textInputAction: TextInputAction.done,
+                            suffix: IconButton(
+                              icon: Icon(
+                                _obscurePassword
+                                    ? Icons.visibility
+                                    : Icons.visibility_off,
+                                color: Colors.white,
+                              ),
+                              onPressed: () {
+                                setState(() => _obscurePassword = !_obscurePassword);
+                              },
                             ),
-                            child: authProvider.isLoading
-                                ? const SizedBox(
-                                    height: 20,
-                                    width: 20,
-                                    child: CircularProgressIndicator(strokeWidth: 2),
-                                  )
-                                : const Text(
-                                    'Login  >',
-                                    style: TextStyle(
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.w700,
+                          ),
+                          const SizedBox(height: 20),
+                          Consumer<AuthProvider>(
+                            builder: (context, authProvider, _) {
+                              return SizedBox(
+                                width: double.infinity,
+                                child: ElevatedButton(
+                                  onPressed:
+                                      authProvider.isLoading ? null : _handleLogin,
+                                  style: ElevatedButton.styleFrom(
+                                    backgroundColor: AppColors.primary,
+                                    foregroundColor: const Color(0xFF55D5BE),
+                                    padding: const EdgeInsets.symmetric(vertical: 14),
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(10),
                                     ),
                                   ),
+                                  child: authProvider.isLoading
+                                      ? const SizedBox(
+                                          height: 20,
+                                          width: 20,
+                                          child:
+                                              CircularProgressIndicator(strokeWidth: 2),
+                                        )
+                                      : const Text(
+                                          'Login  >',
+                                          style: TextStyle(
+                                            fontSize: 18,
+                                            fontWeight: FontWeight.w700,
+                                          ),
+                                        ),
+                                ),
+                              );
+                            },
                           ),
-                        );
-                      },
+                          const SizedBox(height: 12),
+                          TextButton(
+                            onPressed: () =>
+                                Navigator.of(context).pushNamed('/admin-login'),
+                            child: const Text(
+                              'Admin Login',
+                              style: TextStyle(
+                                color: Color(0xFF364673),
+                                fontWeight: FontWeight.w700,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
-                    const SizedBox(height: 14),
-                    TextButton(
-                      onPressed: () => Navigator.of(context).pushNamed('/admin-login'),
-                      child: const Text(
-                        'Admin Login',
-                        style: TextStyle(
-                          color: Color(0xFF364673),
-                          fontWeight: FontWeight.w700,
+                    Align(
+                      alignment: Alignment.bottomCenter,
+                      child: Padding(
+                        padding: const EdgeInsets.only(bottom: 22),
+                        child: Image.asset(
+                          'assets/images/kiosklogo.png',
+                          width: 160,
+                          fit: BoxFit.contain,
                         ),
                       ),
                     ),
                   ],
-                ),
-              ),
-              Align(
-                alignment: Alignment.bottomCenter,
-                child: Padding(
-                  padding: const EdgeInsets.only(bottom: 22),
-                  child: Image.asset(
-                    'assets/images/kiosklogo.png',
-                    width: 160,
-                    fit: BoxFit.contain,
-                  ),
                 ),
               ),
             ],
@@ -204,34 +211,53 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget _field({
     required TextEditingController controller,
     required String hint,
-    required IconData icon,
+    required String iconAsset,
     bool obscureText = false,
     TextInputAction? textInputAction,
     Widget? suffix,
   }) {
     return Container(
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: Colors.transparent,
         borderRadius: BorderRadius.circular(10),
-        boxShadow: const [
-          BoxShadow(
-            color: Color(0x1A364673),
-            blurRadius: 8,
-            offset: Offset(0, 3),
+      ),
+      child: Row(
+        children: [
+          Container(
+            width: 52,
+            height: 52,
+            decoration: BoxDecoration(
+              color: AppColors.primaryVariant,
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child: Center(
+              child: Image.asset(iconAsset, width: 22, height: 22),
+            ),
+          ),
+          const SizedBox(width: 8),
+          Expanded(
+            child: Container(
+              decoration: BoxDecoration(
+                color: AppColors.primary,
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: TextField(
+                controller: controller,
+                obscureText: obscureText,
+                textInputAction: textInputAction,
+                style: const TextStyle(color: Colors.white),
+                decoration: InputDecoration(
+                  hintText: hint,
+                  hintStyle: const TextStyle(color: Colors.white),
+                  suffixIcon: suffix,
+                  border: InputBorder.none,
+                  contentPadding:
+                      const EdgeInsets.symmetric(horizontal: 12, vertical: 14),
+                ),
+              ),
+            ),
           ),
         ],
-      ),
-      child: TextField(
-        controller: controller,
-        obscureText: obscureText,
-        textInputAction: textInputAction,
-        decoration: InputDecoration(
-          hintText: hint,
-          prefixIcon: Icon(icon, color: const Color(0xFF364673)),
-          suffixIcon: suffix,
-          border: InputBorder.none,
-          contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 14),
-        ),
       ),
     );
   }

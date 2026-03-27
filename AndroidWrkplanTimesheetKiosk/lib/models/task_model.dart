@@ -67,8 +67,16 @@ class LeaveBalanceItem {
 
   factory LeaveBalanceItem.fromJson(Map<String, dynamic> j) {
     return LeaveBalanceItem(
-      leaveTypeName: j['leave_type_name']?.toString(),
-      balanceHrs:    j['balance_hrs']?.toString(),
+      leaveTypeName:
+          j['leave_type_name']?.toString() ?? j['LeaveTypeName']?.toString(),
+      balanceHrs: j['balance_hrs']?.toString() ?? j['BalanceHrs']?.toString(),
+    );
+  }
+
+  factory LeaveBalanceItem.fromEntry(String key, dynamic value) {
+    return LeaveBalanceItem(
+      leaveTypeName: key.replaceAll(':', ''),
+      balanceHrs: value?.toString() ?? '0',
     );
   }
 }

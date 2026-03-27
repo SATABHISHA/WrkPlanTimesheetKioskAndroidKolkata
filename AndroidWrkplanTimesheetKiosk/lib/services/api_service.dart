@@ -1,5 +1,6 @@
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import 'package:intl/intl.dart';
 import 'package:xml/xml.dart';
 import '../constants/app_constants.dart';
 
@@ -162,11 +163,12 @@ class ApiService {
   /// Mirrors AttendanceRecordActivity.loadLeaveBalanceData()
   Future<Map<String, dynamic>> getLeaveBalance({
     required String corpId,
-    required int    userId,
+    required int    employeeId,
   }) =>
       _soapPost(AppConstants.leaveBalanceEndpoint, {
         'CorpId': corpId,
-        'UserId': userId.toString(),
+        'EmployeeId': employeeId.toString(),
+        'DateToday': DateFormat('MM-dd-yyyy').format(DateTime.now()),
       });
 
   // ─── Employee Image Settings ──────────────────────────────────────────────
