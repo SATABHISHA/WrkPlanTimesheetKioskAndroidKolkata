@@ -112,7 +112,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             width: 50, height: 50),
                         const SizedBox(width: 8),
                         const Text(
-                          'KIOSK Admin',
+                          'User Login',
                           style: TextStyle(
                             color: _kTitleColor,
                             fontSize: 22,
@@ -207,22 +207,6 @@ class _LoginScreenState extends State<LoginScreen> {
                             },
                           ),
 
-                          const SizedBox(height: 14),
-
-                          // ── Admin Login link ─────────────────────────────
-                          GestureDetector(
-                            onTap: () =>
-                                Navigator.of(context).pushNamed('/admin-login'),
-                            child: const Text(
-                              'Admin Login',
-                              style: TextStyle(
-                                color: _kTitleColor,
-                                fontSize: 15,
-                                fontWeight: FontWeight.w700,
-                                decoration: TextDecoration.underline,
-                              ),
-                            ),
-                          ),
                         ],
                       ),
                     ),

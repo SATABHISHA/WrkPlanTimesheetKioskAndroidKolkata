@@ -422,6 +422,16 @@ class _RecognitionOptionScreenState extends State<RecognitionOptionScreen> {
   @override
   Widget build(BuildContext context) {
     final auth = context.watch<AuthProvider>();
+    if (auth.user == null) {
+      // Session expired — redirect to login
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (mounted) Navigator.of(context).pushReplacementNamed('/login');
+      });
+      return const Scaffold(
+        backgroundColor: AppColors.darkNavy,
+        body: Center(child: CircularProgressIndicator(color: AppColors.teal)),
+      );
+    }
     final user = auth.user!;
     final now  = DateTime.now();
 

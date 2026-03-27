@@ -36,63 +36,84 @@ class _PunchStatusScreenState extends State<PunchStatusScreen> {
     final dateStr    = DateFormat('dd-MMM-yyyy').format(now);
     final timeStr    = DateFormat('hh:mm a').format(now);
 
-    final statusColor = isBreak ? AppColors.breakColor : AppColors.punchOut;
-
     return Scaffold(
       backgroundColor: AppColors.darkNavy,
+      appBar: AppBar(
+        backgroundColor: AppColors.darkNavy,
+        automaticallyImplyLeading: false,
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            Text(auth.user?.empName ?? '',
+                style: const TextStyle(color: Colors.white, fontSize: 18)),
+            const SizedBox(width: 10),
+            const CircleAvatar(
+              radius: 20,
+              backgroundColor: Colors.white24,
+              child: Icon(Icons.person, color: Colors.white, size: 24),
+            ),
+          ],
+        ),
+      ),
       body: Column(
         children: [
-          // Spacer to centre the content
-          const Spacer(),
+          // ── Centered status area (gravity="center") ──────────────────
+          Expanded(
+            child: Center(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  // Status icon (60dp)
+                  Icon(
+                    isBreak ? Icons.free_breakfast : Icons.check_circle_outline,
+                    size: 60,
+                    color: Colors.white,
+                  ),
+                  const SizedBox(height: 25),
 
-          // Status icon (check or break)
-          Icon(
-            isBreak ? Icons.free_breakfast : Icons.check_circle_outline,
-            size: 100,
-            color: statusColor,
+                  // Status text (32sp, white, centerHorizontal)
+                  Text(statusText,
+                      textAlign: TextAlign.center,
+                      style: const TextStyle(
+                          fontSize: 32,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white)),
+                  const SizedBox(height: 15),
+
+                  // Date (17sp, white, centerHorizontal)
+                  Text(dateStr,
+                      style: const TextStyle(
+                          fontSize: 17, color: Colors.white)),
+                  const SizedBox(height: 5),
+
+                  // Time (17sp, white, centerHorizontal)
+                  Text(timeStr,
+                      style: const TextStyle(
+                          fontSize: 17, color: Colors.white)),
+                ],
+              ),
+            ),
           ),
-          const SizedBox(height: 20),
 
-          // Status text
-          Text(statusText,
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                  fontSize: 28,
-                  fontWeight: FontWeight.bold,
-                  color: statusColor)),
-          const SizedBox(height: 12),
-
-          // Employee name
-          Text(auth.user?.empName ?? '',
-              style: const TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.w600,
-                  color: Colors.white)),
-          const SizedBox(height: 8),
-
-          // Date + time
-          Text(dateStr,
-              style: const TextStyle(fontSize: 16, color: Colors.white70)),
-          Text(timeStr,
-              style: const TextStyle(
-                  fontSize: 22,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white)),
-
-          const Spacer(),
-
-          // Footer: kiosklogo + version + copyright (mirrors native layout)
+          // ── Footer (180dp, alignParentBottom) ────────────────────────
           SizedBox(
-            height: 50,
-            child: Image.asset('assets/images/kiosklogo.png',
-                fit: BoxFit.contain),
+            height: 180,
+            child: Column(
+              children: [
+                SizedBox(
+                  height: 50,
+                  child: Image.asset('assets/images/kiosklogo.png',
+                      fit: BoxFit.contain),
+                ),
+                const SizedBox(height: 20),
+                const Text('Version 1.0',
+                    style: TextStyle(color: Colors.white, fontSize: 14)),
+                const SizedBox(height: 5),
+                const Text('\u00a9 WrkPlan Technologies Pvt. Ltd.',
+                    style: TextStyle(color: Colors.white, fontSize: 14)),
+              ],
+            ),
           ),
-          const SizedBox(height: 6),
-          const Text('Version 1.0',
-              style: TextStyle(color: Colors.white54, fontSize: 11)),
-          const Text('\u00a9 Jeebr Technologies Pvt. Ltd.',
-              style: TextStyle(color: Colors.white54, fontSize: 11)),
-          const SizedBox(height: 16),
         ],
       ),
     );
