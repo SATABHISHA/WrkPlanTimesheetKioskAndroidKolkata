@@ -9,51 +9,49 @@ class AppTheme {
       primary: AppColors.primary,
       onPrimary: AppColors.white,
       secondary: AppColors.secondary,
-      onSecondary: AppColors.black,
-      error: Color(0xFFB3261E),
+      onSecondary: AppColors.white,
+      error: Color(0xFFB00020),
       onError: AppColors.white,
       surface: AppColors.white,
-      onSurface: AppColors.black,
+      onSurface: AppColors.textDark,
     ),
     scaffoldBackgroundColor: AppColors.vkBackground,
     appBarTheme: const AppBarTheme(
       backgroundColor: AppColors.primary,
       foregroundColor: AppColors.white,
       centerTitle: true,
-      elevation: 0,
+      elevation: 2,
     ),
     cardTheme: const CardThemeData(
       color: AppColors.white,
-      elevation: 1,
+      elevation: 2,
+      surfaceTintColor: AppColors.white,
     ),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
         backgroundColor: AppColors.primary,
         foregroundColor: AppColors.white,
+        padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 24),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
       ),
     ),
     inputDecorationTheme: InputDecorationTheme(
       filled: true,
       fillColor: AppColors.white,
-      border: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(8),
-      ),
+      border: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
       enabledBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(8),
-        borderSide: const BorderSide(color: AppColors.primary),
+        borderSide: const BorderSide(color: AppColors.primaryVariant),
       ),
       focusedBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(8),
-        borderSide: const BorderSide(color: AppColors.primaryVariant, width: 2),
+        borderSide: const BorderSide(color: AppColors.primary, width: 2),
       ),
       labelStyle: const TextStyle(color: AppColors.primaryVariant),
       prefixIconColor: AppColors.primaryVariant,
-      suffixIconColor: AppColors.primaryVariant,
     ),
     textButtonTheme: TextButtonThemeData(
-      style: TextButton.styleFrom(
-        foregroundColor: AppColors.primaryVariant,
-      ),
+      style: TextButton.styleFrom(foregroundColor: AppColors.primaryVariant),
     ),
   );
 }

@@ -1,80 +1,35 @@
-import 'package:json_annotation/json_annotation.dart';
-
-part 'user_model.g.dart';
-
-@JsonSerializable()
+// Mirrors UserSingletonModel.java + HomeLoginActivity static fields from satabhisha
 class User {
-  @JsonKey(name: 'UserID')
   String? userID;
-  
-  @JsonKey(name: 'UserName')
   String? userName;
-  
-  @JsonKey(name: 'CompID')
   String? compID;
-  
-  @JsonKey(name: 'CorpID')
   String? corpID;
-  
-  @JsonKey(name: 'CompanyName')
   String? companyName;
-  
-  @JsonKey(name: 'SupervisorId')
   String? supervisorId;
-  
-  @JsonKey(name: 'UserRole')
   String? userRole;
-  
-  @JsonKey(name: 'AdminYN')
   String? adminYN;
-  
-  @JsonKey(name: 'PayableClerkYN')
   String? payableClerkYN;
-  
-  @JsonKey(name: 'SupervisorYN')
   String? supervisorYN;
-  
-  @JsonKey(name: 'PurchaseYN')
+  String? supervisorYNTemp; // runtime overrideable copy
   String? purchaseYN;
-  
-  @JsonKey(name: 'PayrollClerkYN')
   String? payrollClerkYN;
-  
-  @JsonKey(name: 'EmpName')
   String? empName;
-  
-  @JsonKey(name: 'UserType')
   String? userType;
-  
-  @JsonKey(name: 'EmailId')
   String? emailId;
-  
-  @JsonKey(name: 'PwdSetterId')
   String? pwdSetterId;
-  
-  @JsonKey(name: 'FinYearID')
   String? finYearID;
-  
-  @JsonKey(name: 'Msg')
   String? msg;
-  
-  @JsonKey(name: 'EmailHostAddress')
   String? emailHostAddress;
-  
-  @JsonKey(name: 'EmailServer')
   String? emailServer;
-  
-  @JsonKey(name: 'EmailServerPort')
   String? emailServerPort;
-  
-  @JsonKey(name: 'EmailSendingUsername')
   String? emailSendingUsername;
-  
-  @JsonKey(name: 'EmailPassword')
   String? emailPassword;
-  
-  @JsonKey(name: 'SupervisorYNTemp')
-  String? supervisorYNTemp;
+
+  // From HomeLoginActivity static fields
+  int?    personId;
+  String? employeeCode;
+  String? supervisor1;
+  String? supervisor2;
 
   User({
     this.userID,
@@ -87,6 +42,7 @@ class User {
     this.adminYN,
     this.payableClerkYN,
     this.supervisorYN,
+    this.supervisorYNTemp,
     this.purchaseYN,
     this.payrollClerkYN,
     this.empName,
@@ -100,12 +56,79 @@ class User {
     this.emailServerPort,
     this.emailSendingUsername,
     this.emailPassword,
-    this.supervisorYNTemp,
+    this.personId,
+    this.employeeCode,
+    this.supervisor1,
+    this.supervisor2,
   });
 
-  factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
-  Map<String, dynamic> toJson() => _$UserToJson(this);
+  // Mirrors the JSON fields returned by ValidateTSheetKioskAdminLogin
+  factory User.fromLoginJson(Map<String, dynamic> j) {
+    return User(
+      userID:              j['UserID']?.toString(),
+      userName:            j['UserName']?.toString(),
+      compID:              j['CompID']?.toString(),
+      corpID:              j['CorpID']?.toString(),
+      companyName:         j['CompanyName']?.toString(),
+      supervisorId:        j['SupervisorId']?.toString(),
+      userRole:            j['UserRole']?.toString(),
+      adminYN:             j['AdminYN']?.toString(),
+      payableClerkYN:      j['PayableClerkYN']?.toString(),
+      supervisorYN:        j['SupervisorYN']?.toString(),
+      supervisorYNTemp:    j['SupervisorYN']?.toString(), // same initial value
+      purchaseYN:          j['PurchaseYN']?.toString(),
+      payrollClerkYN:      j['PayrollClerkYN']?.toString(),
+      empName:             j['EmpName']?.toString(),
+      userType:            j['UserType']?.toString(),
+      emailId:             j['EmailId']?.toString(),
+      pwdSetterId:         j['PwdSetterId']?.toString(),
+      finYearID:           j['FinYearID']?.toString(),
+      msg:                 j['Msg']?.toString(),
+      emailHostAddress:    j['EmailHostAddress']?.toString(),
+      emailServer:         j['EmailServer']?.toString(),
+      emailServerPort:     j['EmailServerPort']?.toString(),
+      emailSendingUsername:j['EmailUsername']?.toString(),
+      emailPassword:       j['EmailPassword']?.toString(),
+      personId:            j['PersonId'] is int
+                              ? j['PersonId'] as int
+                              : int.tryParse(j['PersonId']?.toString() ?? ''),
+      employeeCode:        j['EmployeeCode']?.toString(),
+      supervisor1:         j['Supervisor1']?.toString(),
+      supervisor2:         j['Supervisor2']?.toString(),
+    );
+  }
 
-  bool get isAdmin => adminYN == 'Y' || adminYN == 'Yes';
-  bool get isSupervisor => supervisorYN == 'Y' || supervisorYN == 'Yes';
+  Map<String, dynamic> toJson() => {
+    'UserID':           userID,
+    'UserName':         userName,
+    'CompID':           compID,
+    'CorpID':           corpID,
+    'CompanyName':      companyName,
+    'SupervisorId':     supervisorId,
+    'UserRole':         userRole,
+    'AdminYN':          adminYN,
+    'PayableClerkYN':   payableClerkYN,
+    'SupervisorYN':     supervisorYN,
+    'PurchaseYN':       purchaseYN,
+    'PayrollClerkYN':   payrollClerkYN,
+    'EmpName':          empName,
+    'UserType':         userType,
+    'EmailId':          emailId,
+    'PwdSetterId':      pwdSetterId,
+    'FinYearID':        finYearID,
+    'Msg':              msg,
+    'EmailHostAddress': emailHostAddress,
+    'EmailServer':      emailServer,
+    'EmailServerPort':  emailServerPort,
+    'EmailUsername':    emailSendingUsername,
+    'EmailPassword':    emailPassword,
+    'PersonId':         personId,
+    'EmployeeCode':     employeeCode,
+    'Supervisor1':      supervisor1,
+    'Supervisor2':      supervisor2,
+  };
+
+  bool get isAdmin      => adminYN == 'Y' || adminYN == 'Yes' || adminYN == '1';
+  bool get isSupervisor => supervisorYNTemp == '1' || supervisorYNTemp == 'Y';
 }
+

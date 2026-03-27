@@ -1,40 +1,36 @@
-import 'package:json_annotation/json_annotation.dart';
-
-part 'employee_model.g.dart';
-
-@JsonSerializable()
-class Employee {
-  @JsonKey(name: 'EmployeeCode')
+// Mirrors EmployeeImageSettingsModel.java from satabhisha
+class EmployeeImageSettings {
   String? employeeCode;
-  
-  @JsonKey(name: 'EmployeeName')
+  String? idPerson;
+  String? nameFirst;
+  String? nameLast;
   String? employeeName;
-  
-  @JsonKey(name: 'PersonId')
-  int? personId;
-  
-  @JsonKey(name: 'Supervisor1')
-  String? supervisor1;
-  
-  @JsonKey(name: 'Supervisor2')
-  String? supervisor2;
-  
-  @JsonKey(name: 'ImagePath')
-  String? imagePath;
-  
-  @JsonKey(name: 'Department')
-  String? department;
+  String? awsFaceId;
+  String? awsAction; // 'enroll' or 'delete'
 
-  Employee({
+  EmployeeImageSettings({
     this.employeeCode,
+    this.idPerson,
+    this.nameFirst,
+    this.nameLast,
     this.employeeName,
-    this.personId,
-    this.supervisor1,
-    this.supervisor2,
-    this.imagePath,
-    this.department,
+    this.awsFaceId,
+    this.awsAction,
   });
 
-  factory Employee.fromJson(Map<String, dynamic> json) => _$EmployeeFromJson(json);
-  Map<String, dynamic> toJson() => _$EmployeeToJson(this);
+  factory EmployeeImageSettings.fromJson(Map<String, dynamic> j) {
+    return EmployeeImageSettings(
+      employeeCode: j['employee_code']?.toString(),
+      idPerson:     j['id_person']?.toString(),
+      nameFirst:    j['name_first']?.toString(),
+      nameLast:     j['name_last']?.toString(),
+      employeeName: j['employee_name']?.toString(),
+      awsFaceId:    j['aws_face_id']?.toString(),
+      awsAction:    j['aws_action']?.toString(),
+    );
+  }
+
+  String get fullName => '${nameFirst ?? ''} ${nameLast ?? ''}'.trim();
+  bool   get hasImage => awsAction != 'enroll';
 }
+

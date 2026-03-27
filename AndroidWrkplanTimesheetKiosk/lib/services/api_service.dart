@@ -1,114 +1,204 @@
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import 'package:xml/xml.dart';
 import '../constants/app_constants.dart';
 
+/// Mirrors the Volley-based HTTP POST calls in satabhisha.
+///
+/// All KioskService.asmx endpoints accept application/x-www-form-urlencoded
+/// POST bodies and return simple XML whose root-element text is a JSON string:
+///
+///   <string xmlns="http://tempuri.org/">{"status":"true",...}</string>
+///
+/// This is the same pattern that org.json.XML.toJSONObject() + content field
+/// produced in the Android code.
 class ApiService {
   static final ApiService _instance = ApiService._internal();
-
-  factory ApiService() {
-    return _instance;
-  }
-
+  factory ApiService() => _instance;
   ApiService._internal();
 
-  final http.Client _httpClient = http.Client();
+  static const Duration _timeout = Duration(seconds: 35);
 
-  // Generic GET request
-  Future<Map<String, dynamic>> get(String endpoint) async {
-    try {
-      final response = await _httpClient.get(
-        Uri.parse('${AppConstants.baseUrl}$endpoint'),
-        headers: _getHeaders(),
-      ).timeout(const Duration(seconds: 30));
+  // ─── Low-level XML/SOAP POST call ─────────────────────────────────────────
 
-      return _handleResponse(response);
-    } catch (e) {
-      throw Exception('Failed to load data: $e');
-    }
+  /// Posts form params to [url] and returns the inner JSON object.
+  Future<Map<String, dynamic>> _soapPost(
+      String url, Map<String, String> params) async {
+    final response = await http.post(
+      Uri.parse(url),
+      headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+      body: params,
+    ).timeout(_timeout);
+
+    // Extract JSON string from XML: <RootElement>JSON_HERE</RootElement>
+    final doc = XmlDocument.parse(response.body);
+    final jsonString = doc.rootElement.innerText.trim();
+    return jsonDecode(jsonString) as Map<String, dynamic>;
   }
 
-  // Generic POST request
-  Future<Map<String, dynamic>> post(
-    String endpoint,
-    Map<String, dynamic> body,
-  ) async {
-    try {
-      final response = await _httpClient.post(
-        Uri.parse('${AppConstants.baseUrl}$endpoint'),
-        headers: _getHeaders(),
-        body: jsonEncode(body),
-      ).timeout(const Duration(seconds: 30));
+  // ─── Authentication ────────────────────────────────────────────────────────
 
-      return _handleResponse(response);
-    } catch (e) {
-      throw Exception('Failed to post data: $e');
-    }
-  }
-
-  // Login request
+  /// Mirrors HomeLoginActivity.login() / Admin LoginActivity.login()
   Future<Map<String, dynamic>> login({
     required String corpId,
     required String username,
     required String password,
-  }) async {
-    return post('${AppConstants.loginEndpoint}', {
-      'CorpID': corpId,
-      'UserName': username,
-      'Password': password,
-    });
-  }
+    required String deviceId,
+  }) =>
+      _soapPost(AppConstants.loginEndpoint, {
+        'CorpID':   corpId,
+        'UserName': username,
+        'Password': password,
+        'DeviceID': deviceId,
+      });
 
-  // Recognition/Attendance check-in
-  Future<Map<String, dynamic>> recordAttendance({
-    required int personId,
+  // ─── Attendance ────────────────────────────────────────────────────────────
+
+  /// Mirrors RecognitionOptionActivity.checkAttendanceStatus()
+  Future<Map<String, dynamic>> getAttendanceNextAction({
+    required String corpId,
+    required int    userId,
+  }) =>
+      _soapPost(AppConstants.getNextActionEndpoint, {
+        'CorpId':   corpId,
+        'UserId':   userId.toString(),
+        'UserType': 'MAIN',
+      });
+
+  /// Mirrors RecognitionOptionActivity.saveInOut()
+  Future<Map<String, dynamic>> saveAttendance({
+    required String corpId,
+    required int    userId,
+    required String inOut,     // 'IN' or 'OUT'
+    required String inOutText, // 'PUNCHED_IN', 'BREAK_STARTS', 'PUNCH_OUT'
+  }) =>
+      _soapPost(AppConstants.saveAttendanceEndpoint, {
+        'CorpId':   corpId,
+        'UserId':   userId.toString(),
+        'UserType': 'MAIN',
+        'InOut':    inOut,
+        'InOutText':inOutText,
+      });
+
+  // ─── Task / Timesheet ─────────────────────────────────────────────────────
+
+  /// Mirrors TaskSelectionActivity.loadData()
+  Future<Map<String, dynamic>> getTaskList({
+    required String corpId,
+    required int    userId,
+  }) =>
+      _soapPost(AppConstants.taskListEndpoint, {
+        'CorpId':     corpId,
+        'UserId':     userId.toString(),
+        'deviceType': '1',
+        'EmpType':    'MAIN',
+      });
+
+  /// Mirrors TaskSelectionActivity.save() — called after task selection
+  Future<Map<String, dynamic>> taskHourSave({
+    required String corpId,
+    required int    userId,
+    required String employeeAssignmentId,
+    required String kioskAttendanceId,
+    required int    contractId,
+    required int    taskId,
+    required int    laborCatId,
+    required int    costTypeId,
+    required int    suffixCode,
+  }) =>
+      _soapPost(AppConstants.taskHourSaveEndpoint, {
+        'CorpId':               corpId,
+        'UserId':               userId.toString(),
+        'deviceType':           '1',
+        'EmpType':              'MAIN',
+        'EmployeeAssignmentId': employeeAssignmentId,
+        'KioskAttendanceId':    kioskAttendanceId,
+        'ContractId':           contractId.toString(),
+        'TaskId':               taskId.toString(),
+        'LaborCatId':           laborCatId.toString(),
+        'CostTypeId':           costTypeId.toString(),
+        'SuffixCode':           suffixCode.toString(),
+      });
+
+  /// Mirrors RecognitionOptionActivity.saveOnBreak() — on break start
+  Future<Map<String, dynamic>> taskHourUpdate({
+    required String corpId,
+    required int    userId,
+  }) =>
+      _soapPost(AppConstants.taskHourUpdateEndpoint, {
+        'CorpId':   corpId,
+        'UserId':   userId.toString(),
+        'UserType': 'MAIN',
+      });
+
+  /// Mirrors RecognitionOptionActivity.saveOn_PunchOut()
+  Future<Map<String, dynamic>> taskHourSubmit({
+    required String corpId,
+    required int    userId,
+  }) =>
+      _soapPost(AppConstants.taskHourSubmitEndpoint, {
+        'CorpId':   corpId,
+        'UserId':   userId.toString(),
+        'UserType': 'MAIN',
+      });
+
+  /// Mirrors AttendanceRecordActivity.saveOn_Cancel() / RecognitionOptionActivity.saveOn_Cancel()
+  Future<Map<String, dynamic>> taskHourSaveOnCancel({
+    required String corpId,
+    required int    userId,
+    required String employeeAssignmentId,
+    required String kioskAttendanceId,
+  }) =>
+      _soapPost(AppConstants.taskHourSaveEndpoint, {
+        'CorpId':               corpId,
+        'UserId':               userId.toString(),
+        'UserType':             'MAIN',
+        'EmployeeAssignmentId': employeeAssignmentId,
+        'KioskAttendanceId':    kioskAttendanceId,
+      });
+
+  // ─── Leave Balance ────────────────────────────────────────────────────────
+
+  /// Mirrors AttendanceRecordActivity.loadLeaveBalanceData()
+  Future<Map<String, dynamic>> getLeaveBalance({
+    required String corpId,
+    required int    userId,
+  }) =>
+      _soapPost(AppConstants.leaveBalanceEndpoint, {
+        'CorpId': corpId,
+        'UserId': userId.toString(),
+      });
+
+  // ─── Employee Image Settings ──────────────────────────────────────────────
+
+  /// Mirrors EmployeeImageSettingsActivity.loadData()
+  Future<Map<String, dynamic>> listFaces({required String corpId}) =>
+      _soapPost(AppConstants.listFacesEndpoint, {'CorpId': corpId});
+
+  /// Mirrors EmployeeImageSettingsAdapter EnrollImage()
+  Future<Map<String, dynamic>> indexFaces({
+    required String corpId,
+    required String employeeId,
     required String imageBase64,
-    required String task,
-    required String attendanceType, // 'checkin' or 'checkout'
-  }) async {
-    return post('${AppConstants.recognitionEndpoint}', {
-      'PersonId': personId,
-      'Image': imageBase64,
-      'Task': task,
-      'AttendanceType': attendanceType,
-      'Timestamp': DateTime.now().toIso8601String(),
-    });
-  }
+  }) =>
+      _soapPost(AppConstants.indexFacesEndpoint, {
+        'CorpId':      corpId,
+        'EmployeeId':  employeeId,
+        'ImageBase64': imageBase64,
+      });
 
-  // Get employee list
-  Future<Map<String, dynamic>> getEmployeeList({
+  /// Mirrors EmployeeImageSettingsAdapter delete image
+  Future<Map<String, dynamic>> deleteFace({
     required String corpId,
-  }) async {
-    return get('${AppConstants.employeeEndpoint}?CorpID=$corpId');
-  }
+    required String employeeId,
+  }) =>
+      _soapPost(AppConstants.deleteFaceEndpoint, {
+        'CorpId':     corpId,
+        'EmployeeId': employeeId,
+      });
 
-  // Get attendance records
-  Future<Map<String, dynamic>> getAttendanceRecords({
-    required String corpId,
-    required String startDate,
-    required String endDate,
-  }) async {
-    return get(
-      '${AppConstants.attendanceEndpoint}?CorpID=$corpId&StartDate=$startDate&EndDate=$endDate',
-    );
-  }
-
-  // Helper method to handle responses
-  Map<String, dynamic> _handleResponse(http.Response response) {
-    if (response.statusCode == 200 || response.statusCode == 201) {
-      return jsonDecode(response.body);
-    } else if (response.statusCode == 401) {
-      throw Exception('Unauthorized');
-    } else if (response.statusCode == 404) {
-      throw Exception('Not found');
-    } else {
-      throw Exception('Server error: ${response.statusCode}');
-    }
-  }
-
-  Map<String, String> _getHeaders() {
-    return {
-      'Content-Type': 'application/json',
-      'Accept': 'application/json',
-    };
-  }
+  /// Mirrors EmployeeImageSettingsActivity.createGallery()
+  Future<Map<String, dynamic>> createGallery({required String corpId}) =>
+      _soapPost(AppConstants.createGalleryEndpoint, {'CorpId': corpId});
 }
+
