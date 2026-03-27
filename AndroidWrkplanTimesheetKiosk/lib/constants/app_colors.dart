@@ -1,28 +1,46 @@
 import 'package:flutter/material.dart';
 
-// Colour palette applied in the satabhisha branch (VK1 design)
+/// Exact colour palette from satabhisha drawable XMLs and layout files.
 class AppColors {
-  // Primary — VK1 blue tones from satabhisha layouts
-  static const Color primary        = Color(0xFF364673);
-  static const Color primaryVariant = Color(0xFF2E5772);
+  // ── Main backgrounds ───────────────────────────────────────────────────────
+  static const Color darkNavy      = Color(0xFF141E31); // toolbar + body bg
+  static const Color cardBg        = Color(0xFF172A46); // layout_custom_btn_reusable_vk1
+  static const Color cardStroke    = Color(0xFF232E47); // stroke/secondary card
+  static const Color dashCardBg    = Color(0xFF232E47); // layout_home_recognize_vk1 solid
+  static const Color dashCardStroke= Color(0xFF394B66); // layout_home_recognize_vk1 stroke
+  static const Color appBarLight   = Color(0xFFA5AFCE); // AppBarLayout bg
 
-  // Accent / secondary
-  static const Color secondary        = Color(0xFF55D5BE);
-  static const Color secondaryVariant = Color(0xFF42BFA9);
+  // ── Login-specific ─────────────────────────────────────────────────────────
+  static const Color loginBgStart  = Color(0xFFD2DFF1); // gradient start
+  static const Color loginBgEnd    = Color(0xFFFFFFFF); // gradient end
+  static const Color iconBox       = Color(0xFF0A192F); // left icon panel
+  static const Color fieldBg       = Color(0xFF3B567E); // rouned_broder_vk1
+  static const Color loginBtn      = Color(0xFF0A192F); // login button
+  static const Color loginCaption  = Color(0xFF364673); // "KIOSK Admin" title
 
-  // Surface
-  static const Color white = Color(0xFFFFFFFF);
-  static const Color black = Color(0xFF000000);
+  // ── Accent / teal ─────────────────────────────────────────────────────────
+  static const Color teal          = Color(0xFF55D5BE); // headline area + btn text
 
-  // App background (VK1 light blue-lavender)
-  static const Color vkBackground = Color(0xFFDDE5FF);
+  // ── Punch buttons ─────────────────────────────────────────────────────────
+  static const Color punchIn       = Color(0xFF172A46); // same as reusable btn
+  static const Color breakColor    = Color(0xFFE5B445); // layout_custom_break_btn
+  static const Color punchOut      = Color(0xFFCF2F2F); // layout_custom_punch_out_btn
 
-  // Status colours used on punch buttons / badges
-  static const Color punchIn    = Color(0xFF388E3C); // green 700
-  static const Color punchOut   = Color(0xFFD32F2F); // red 700
-  static const Color breakColor = Color(0xFFF57C00); // orange 700
+  // ── Dialog ────────────────────────────────────────────────────────────────
+  static const Color dialogHeader  = Color(0xFF394A68);
+  static const Color dialogBody    = Color(0xFF596C8D);
+  static const Color dialogText    = Color(0xFFCBD5F5);
+  static const Color dialogOk      = Color(0xFF75B253);
+  static const Color dialogNo      = Color(0xFFF02B2B);
 
-  // Text helper
-  static const Color textLight = Color(0xFFB0BEC5); // blue-grey 200
-  static const Color textDark  = Color(0xFF37474F); // blue-grey 800
+  // ── Generic ───────────────────────────────────────────────────────────────
+  static const Color white         = Color(0xFFFFFFFF);
+  static const Color lightCard     = Color(0xFFDDE5FF); // layout_background_layer_vk1
+
+  // ── Backward compat aliases ───────────────────────────────────────────────
+  static const Color primary        = darkNavy;
+  static const Color primaryVariant = cardBg;
+  static const Color secondary      = teal;
+  static const Color vkBackground   = lightCard;
+  static const Color textDark       = Color(0xFF37474F);
 }

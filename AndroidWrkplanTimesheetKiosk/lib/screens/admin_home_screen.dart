@@ -3,7 +3,8 @@ import 'package:provider/provider.dart';
 import '../services/auth_provider.dart';
 import '../constants/app_colors.dart';
 
-/// Mirrors AdminHomeActivity from satabhisha.
+/// Mirrors AdminHomeActivity from satabhisha – dark navy bg, "Dashboard" title,
+/// two cards (Kiosk Unit Settings, Employee Image Settings).
 class AdminHomeScreen extends StatefulWidget {
   const AdminHomeScreen({super.key});
   @override
@@ -15,14 +16,15 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
   Widget build(BuildContext context) {
     final auth = context.watch<AuthProvider>();
     return Scaffold(
-      backgroundColor: AppColors.vkBackground,
+      backgroundColor: AppColors.darkNavy,
       appBar: AppBar(
-        title: const Text('Admin Home'),
+        backgroundColor: AppColors.darkNavy,
+        title: const Text('Dashboard',
+            style: TextStyle(color: Colors.white, fontSize: 22)),
         automaticallyImplyLeading: false,
         actions: [
           IconButton(
-            icon: const Icon(Icons.logout),
-            tooltip: 'Logout',
+            icon: const Icon(Icons.logout, color: Colors.white),
             onPressed: () {
               auth.endSession();
               Navigator.of(context).pushReplacementNamed('/login');
@@ -30,94 +32,44 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
           ),
         ],
       ),
-      body: SingleChildScrollView(
+      body: Padding(
         padding: const EdgeInsets.all(20),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            const SizedBox(height: 8),
-            Text('Welcome, ${auth.user?.empName ?? ""}',
-                style: const TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                    color: AppColors.primary)),
-            Text(auth.user?.companyName ?? '',
-                style: const TextStyle(color: Colors.grey, fontSize: 14)),
-            const SizedBox(height: 24),
-            _AdminCard(
-              icon: Icons.face,
-              title: 'Employee Image Settings',
-              subtitle: 'Manage face enrolment for employees',
-              color: AppColors.primary,
-              onTap: () =>
-                  Navigator.of(context).pushNamed('/employee-image-settings'),
+            const SizedBox(height: 16),
+            _dashCard(
+              title: 'Kiosk Unit Settings',
+              onTap: () => Navigator.of(context).pushNamed('/kiosk-settings'),
             ),
             const SizedBox(height: 16),
-            _AdminCard(
-              icon: Icons.settings,
-              title: 'Kiosk Unit Settings',
-              subtitle: 'Configure server URL and office coordinates',
-              color: AppColors.primaryVariant,
-              onTap: () => Navigator.of(context).pushNamed('/kiosk-settings'),
+            _dashCard(
+              title: 'Employee Image Settings',
+              onTap: () =>
+                  Navigator.of(context).pushNamed('/employee-image-settings'),
             ),
           ],
         ),
       ),
     );
   }
-}
 
-class _AdminCard extends StatelessWidget {
-  final IconData icon;
-  final String title;
-  final String subtitle;
-  final Color color;
-  final VoidCallback onTap;
-
-  const _AdminCard({
-    required this.icon,
-    required this.title,
-    required this.subtitle,
-    required this.color,
-    required this.onTap,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Card(
-      elevation: 3,
-      child: InkWell(
-        borderRadius: BorderRadius.circular(12),
-        onTap: onTap,
-        child: Padding(
-          padding: const EdgeInsets.all(20),
-          child: Row(children: [
-            Container(
-              padding: const EdgeInsets.all(12),
-              decoration: BoxDecoration(
-                  color: color.withAlpha(25), shape: BoxShape.circle),
-              child: Icon(icon, color: color, size: 32),
-            ),
-            const SizedBox(width: 16),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(title,
-                      style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                          color: color)),
-                  const SizedBox(height: 4),
-                  Text(subtitle,
-                      style:
-                          const TextStyle(color: Colors.grey, fontSize: 13)),
-                ],
-              ),
-            ),
-            Icon(Icons.arrow_forward_ios, size: 16, color: color),
-          ]),
+  Widget _dashCard({required String title, required VoidCallback onTap}) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        height: 80,
+        decoration: BoxDecoration(
+          color: AppColors.dashCardBg,
+          borderRadius: BorderRadius.circular(10),
+          border: Border.all(color: AppColors.dashCardStroke, width: 2),
         ),
+        alignment: Alignment.center,
+        child: Text(title,
+            style: const TextStyle(
+                color: Colors.white,
+                fontSize: 20,
+                fontWeight: FontWeight.w600)),
       ),
     );
   }

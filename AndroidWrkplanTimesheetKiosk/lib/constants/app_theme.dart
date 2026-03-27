@@ -4,54 +4,46 @@ import 'app_colors.dart';
 class AppTheme {
   static final ThemeData lightTheme = ThemeData(
     useMaterial3: true,
+    scaffoldBackgroundColor: AppColors.darkNavy,
     colorScheme: const ColorScheme(
-      brightness: Brightness.light,
-      primary: AppColors.primary,
+      brightness: Brightness.dark,
+      primary: AppColors.teal,
       onPrimary: AppColors.white,
-      secondary: AppColors.secondary,
+      secondary: AppColors.teal,
       onSecondary: AppColors.white,
-      error: Color(0xFFB00020),
+      error: Color(0xFFCF6679),
       onError: AppColors.white,
-      surface: AppColors.white,
-      onSurface: AppColors.textDark,
+      surface: AppColors.darkNavy,
+      onSurface: AppColors.white,
     ),
-    scaffoldBackgroundColor: AppColors.vkBackground,
     appBarTheme: const AppBarTheme(
-      backgroundColor: AppColors.primary,
+      backgroundColor: AppColors.darkNavy,
       foregroundColor: AppColors.white,
-      centerTitle: true,
-      elevation: 2,
+      centerTitle: false,
+      elevation: 0,
     ),
-    cardTheme: const CardThemeData(
-      color: AppColors.white,
-      elevation: 2,
-      surfaceTintColor: AppColors.white,
+    cardTheme: CardThemeData(
+      color: AppColors.cardBg,
+      elevation: 0,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(5),
+        side: const BorderSide(color: AppColors.cardStroke, width: 2),
+      ),
     ),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
-        backgroundColor: AppColors.primary,
+        backgroundColor: AppColors.cardBg,
         foregroundColor: AppColors.white,
         padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 24),
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
       ),
-    ),
-    inputDecorationTheme: InputDecorationTheme(
-      filled: true,
-      fillColor: AppColors.white,
-      border: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
-      enabledBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(8),
-        borderSide: const BorderSide(color: AppColors.primaryVariant),
-      ),
-      focusedBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(8),
-        borderSide: const BorderSide(color: AppColors.primary, width: 2),
-      ),
-      labelStyle: const TextStyle(color: AppColors.primaryVariant),
-      prefixIconColor: AppColors.primaryVariant,
     ),
     textButtonTheme: TextButtonThemeData(
-      style: TextButton.styleFrom(foregroundColor: AppColors.primaryVariant),
+      style: TextButton.styleFrom(foregroundColor: AppColors.teal),
+    ),
+    snackBarTheme: const SnackBarThemeData(
+      backgroundColor: AppColors.dialogHeader,
+      contentTextStyle: TextStyle(color: AppColors.white),
     ),
   );
 }

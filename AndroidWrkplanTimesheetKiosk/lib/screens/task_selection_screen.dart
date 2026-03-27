@@ -166,8 +166,11 @@ class _TaskSelectionScreenState extends State<TaskSelectionScreen> {
     final totalHrs = _round(_totalHours(), 2);
 
     return Scaffold(
+      backgroundColor: AppColors.darkNavy,
       appBar: AppBar(
-        title: const Text('Select Task'),
+        backgroundColor: AppColors.darkNavy,
+        title: const Text('Select Task',
+            style: TextStyle(color: Colors.white, fontSize: 22)),
         automaticallyImplyLeading: false,
         actions: [
           TextButton(
@@ -178,13 +181,15 @@ class _TaskSelectionScreenState extends State<TaskSelectionScreen> {
         ],
       ),
       body: _loading
-          ? const Center(child: CircularProgressIndicator())
+          ? const Center(
+              child: CircularProgressIndicator(color: AppColors.teal))
           : Column(
               children: [
-                // Header card
+                // Header bar
                 Container(
-                  color: AppColors.primary,
-                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+                  color: AppColors.cardBg,
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
                   child: Row(children: [
                     Expanded(
                       child: Column(
@@ -205,7 +210,8 @@ class _TaskSelectionScreenState extends State<TaskSelectionScreen> {
                       crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
                         const Text('Total Hrs',
-                            style: TextStyle(color: Colors.white70, fontSize: 12)),
+                            style:
+                                TextStyle(color: Colors.white70, fontSize: 12)),
                         Text(totalHrs.toString(),
                             style: const TextStyle(
                                 color: Colors.white,
@@ -219,24 +225,26 @@ class _TaskSelectionScreenState extends State<TaskSelectionScreen> {
                 // Task list
                 Expanded(
                   child: _tasks.isEmpty
-                      ? const Center(child: Text('No tasks found'))
+                      ? const Center(
+                          child: Text('No tasks found',
+                              style: TextStyle(color: Colors.white70)))
                       : ListView.builder(
                           itemCount: _tasks.length,
                           itemBuilder: (_, i) {
-                            final t        = _tasks[i];
+                            final t = _tasks[i];
                             final selected = i == _selectedTaskIdx;
-                            return Card(
+                            return Container(
                               margin: const EdgeInsets.symmetric(
                                   horizontal: 12, vertical: 6),
-                              color: selected
-                                  ? AppColors.primary.withAlpha(20)
-                                  : null,
-                              shape: RoundedRectangleBorder(
+                              decoration: BoxDecoration(
+                                color: selected
+                                    ? AppColors.cardBg
+                                    : AppColors.cardStroke,
                                 borderRadius: BorderRadius.circular(8),
-                                side: selected
-                                    ? const BorderSide(
-                                        color: AppColors.primary, width: 1.5)
-                                    : BorderSide.none,
+                                border: selected
+                                    ? Border.all(
+                                        color: AppColors.teal, width: 1.5)
+                                    : null,
                               ),
                               child: ListTile(
                                 onTap: () => _onTaskSelected(i),
@@ -244,27 +252,38 @@ class _TaskSelectionScreenState extends State<TaskSelectionScreen> {
                                   value: i,
                                   groupValue: _selectedTaskIdx,
                                   onChanged: (v) => _onTaskSelected(v!),
-                                  activeColor: AppColors.primary,
+                                  activeColor: AppColors.teal,
+                                  fillColor: WidgetStateProperty.all(
+                                      selected
+                                          ? AppColors.teal
+                                          : Colors.white54),
                                 ),
                                 title: Text(t.task ?? '',
                                     style: const TextStyle(
+                                        color: Colors.white,
                                         fontWeight: FontWeight.w600)),
                                 subtitle: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  crossAxisAlignment:
+                                      CrossAxisAlignment.start,
                                   children: [
-                                    if (t.contract != null && t.contract!.isNotEmpty)
+                                    if (t.contract != null &&
+                                        t.contract!.isNotEmpty)
                                       Text('Contract: ${t.contract}',
-                                          style: const TextStyle(fontSize: 12)),
+                                          style: const TextStyle(
+                                              color: Colors.white60,
+                                              fontSize: 12)),
                                     if (t.laborCategory != null &&
                                         t.laborCategory!.isNotEmpty)
                                       Text('Category: ${t.laborCategory}',
-                                          style: const TextStyle(fontSize: 12)),
+                                          style: const TextStyle(
+                                              color: Colors.white60,
+                                              fontSize: 12)),
                                   ],
                                 ),
                                 trailing: Text('${t.hour ?? 0} hrs',
                                     style: const TextStyle(
                                         fontWeight: FontWeight.bold,
-                                        color: AppColors.primary)),
+                                        color: AppColors.teal)),
                               ),
                             );
                           },
@@ -274,14 +293,24 @@ class _TaskSelectionScreenState extends State<TaskSelectionScreen> {
                 // Done button
                 Padding(
                   padding: const EdgeInsets.all(16),
-                  child: ElevatedButton(
-                    onPressed: _done,
-                    style: ElevatedButton.styleFrom(
-                        minimumSize: const Size.fromHeight(48),
-                        backgroundColor: AppColors.punchIn),
-                    child: const Text('DONE',
-                        style: TextStyle(
-                            fontSize: 16, fontWeight: FontWeight.bold)),
+                  child: GestureDetector(
+                    onTap: _done,
+                    child: Container(
+                      width: double.infinity,
+                      height: 55,
+                      decoration: BoxDecoration(
+                        color: AppColors.cardBg,
+                        borderRadius: BorderRadius.circular(5),
+                        border:
+                            Border.all(color: AppColors.cardStroke, width: 2),
+                      ),
+                      alignment: Alignment.center,
+                      child: const Text('DONE',
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold)),
+                    ),
                   ),
                 ),
               ],

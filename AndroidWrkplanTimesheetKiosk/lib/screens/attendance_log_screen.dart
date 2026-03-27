@@ -4,7 +4,8 @@ import 'package:intl/intl.dart';
 import '../services/auth_provider.dart';
 import '../constants/app_colors.dart';
 
-/// Mirrors ActivityAttendanceLog from satabhisha.
+/// Mirrors ActivityAttendanceLog from satabhisha – dark navy bg, employee
+/// toolbar, date picker, IN/OUT table, break log.
 class AttendanceLogScreen extends StatefulWidget {
   const AttendanceLogScreen({super.key});
 
@@ -24,12 +25,20 @@ class _AttendanceLogScreenState extends State<AttendanceLogScreen> {
       initialDate: DateTime.now(),
       firstDate: DateTime(2020),
       lastDate: DateTime.now(),
+      builder: (ctx, child) => Theme(
+        data: ThemeData.dark().copyWith(
+          colorScheme: const ColorScheme.dark(
+            primary: AppColors.teal,
+            surface: AppColors.cardBg,
+          ),
+        ),
+        child: child!,
+      ),
     );
     if (picked != null) {
       setState(() {
         _selectedDate = picked;
         _shown = true;
-        // mirrors static JSON sample in ActivityAttendanceLog
         _logEntries
           ..clear()
           ..addAll([
@@ -55,58 +64,87 @@ class _AttendanceLogScreenState extends State<AttendanceLogScreen> {
         ? DateFormat('dd-MM-yyyy').format(_selectedDate!)
         : 'Select Date';
     return Scaffold(
-      appBar: AppBar(title: const Text('Attendance Log')),
+      backgroundColor: AppColors.darkNavy,
+      appBar: AppBar(
+        backgroundColor: AppColors.darkNavy,
+        title: const Text('Attendance Log',
+            style: TextStyle(color: Colors.white, fontSize: 22)),
+        iconTheme: const IconThemeData(color: Colors.white),
+      ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Text('Hello\n$empName',
-                style: const TextStyle(
-                    fontSize: 18, fontWeight: FontWeight.bold,
-                    color: AppColors.primary)),
+            // Employee name in teal area
+            Container(
+              padding: const EdgeInsets.all(14),
+              decoration: BoxDecoration(
+                color: AppColors.teal,
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: Text('Hello\n$empName',
+                  style: const TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white)),
+            ),
             const SizedBox(height: 16),
+
+            // Date picker
             GestureDetector(
               onTap: _pickDate,
               child: Container(
-                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
                 decoration: BoxDecoration(
-                  color: Colors.white,
+                  color: AppColors.cardBg,
                   borderRadius: BorderRadius.circular(8),
-                  border: Border.all(color: AppColors.primaryVariant),
+                  border: Border.all(color: AppColors.cardStroke),
                 ),
                 child: Row(children: [
-                  const Icon(Icons.calendar_today, color: AppColors.primaryVariant),
+                  const Icon(Icons.calendar_today, color: AppColors.teal),
                   const SizedBox(width: 12),
                   Text(dateLabel,
-                      style: const TextStyle(fontSize: 16, color: AppColors.primary)),
+                      style:
+                          const TextStyle(fontSize: 16, color: Colors.white)),
                   const Spacer(),
-                  const Icon(Icons.arrow_drop_down, color: AppColors.primaryVariant),
+                  const Icon(Icons.arrow_drop_down, color: Colors.white54),
                 ]),
               ),
             ),
             const SizedBox(height: 20),
+
             if (_shown) ...[
+              // Attendance log header
               Text('Attendance Log — $dateLabel',
-                  style: const TextStyle(fontSize: 15, fontWeight: FontWeight.bold,
-                      color: AppColors.primary)),
+                  style: const TextStyle(
+                      fontSize: 15,
+                      fontWeight: FontWeight.bold,
+                      color: AppColors.teal)),
               const SizedBox(height: 8),
               Table(
-                border: TableBorder.all(color: Colors.grey),
+                border: TableBorder.all(color: AppColors.cardStroke),
                 children: [
-                  _headerRow(AppColors.primary, ['Time In', 'Time Out']),
-                  ..._logEntries.map((e) => _dataRow([e['time_in']!, e['time_out']!])),
+                  _headerRow(AppColors.cardBg, ['Time In', 'Time Out']),
+                  ..._logEntries.map((e) =>
+                      _dataRow([e['time_in']!, e['time_out']!])),
                 ],
               ),
               const SizedBox(height: 20),
+
+              // Break log header
               const Text('Break Log',
-                  style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold,
+                  style: TextStyle(
+                      fontSize: 15,
+                      fontWeight: FontWeight.bold,
                       color: AppColors.breakColor)),
               const SizedBox(height: 8),
               Table(
-                border: TableBorder.all(color: Colors.grey),
+                border: TableBorder.all(color: AppColors.cardStroke),
                 children: [
-                  _headerRow(AppColors.breakColor, ['Start', 'End', 'Duration']),
+                  _headerRow(
+                      AppColors.cardBg, ['Start', 'End', 'Duration']),
                   ..._breakEntries.map((e) =>
                       _dataRow([e['start']!, e['end']!, e['duration']!])),
                 ],
@@ -116,23 +154,25 @@ class _AttendanceLogScreenState extends State<AttendanceLogScreen> {
         ),
       ),
     );
-    }
-
-    TableRow _headerRow(Color bg, List<String> cols) => TableRow(
-      decoration: BoxDecoration(color: bg),
-      children: cols
-        .map((c) => Padding(
-          padding: const EdgeInsets.all(8),
-          child: Text(c,
-            style: const TextStyle(
-              color: Colors.white, fontWeight: FontWeight.bold))))
-        .toList(),
-      );
-
-    TableRow _dataRow(List<String> cols) => TableRow(
-      children: cols
-        .map((c) =>
-          Padding(padding: const EdgeInsets.all(8), child: Text(c)))
-        .toList(),
-      );
   }
+
+  TableRow _headerRow(Color bg, List<String> cols) => TableRow(
+        decoration: BoxDecoration(color: bg),
+        children: cols
+            .map((c) => Padding(
+                padding: const EdgeInsets.all(8),
+                child: Text(c,
+                    style: const TextStyle(
+                        color: Colors.white, fontWeight: FontWeight.bold))))
+            .toList(),
+      );
+
+  TableRow _dataRow(List<String> cols) => TableRow(
+        children: cols
+            .map((c) => Padding(
+                padding: const EdgeInsets.all(8),
+                child: Text(c,
+                    style: const TextStyle(color: Colors.white70))))
+            .toList(),
+      );
+}

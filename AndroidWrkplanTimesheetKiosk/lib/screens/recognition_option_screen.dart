@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:intl/intl.dart';
 import '../services/auth_provider.dart';
 import '../services/api_service.dart';
 import '../models/task_model.dart';
@@ -234,44 +235,97 @@ class _RecognitionOptionScreenState extends State<RecognitionOptionScreen> {
   }) {
     showDialog(
       context: context,
-      builder: (_) => AlertDialog(
-        title: const Text('Leave Balance'),
-        content: SizedBox(
-          width: double.maxFinite,
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              if (employeeName.isNotEmpty)
-                Text(employeeName,
-                    style: const TextStyle(fontWeight: FontWeight.w700)),
-              if (dateUpto.isNotEmpty) ...[
-                const SizedBox(height: 4),
-                Text(dateUpto, style: const TextStyle(color: Colors.grey)),
-              ],
-              const SizedBox(height: 8),
-              Flexible(
-                child: ListView.builder(
-                  shrinkWrap: true,
-                  itemCount: items.length,
-                  itemBuilder: (_, i) => ListTile(
-                    dense: true,
-                    title: Text(items[i].leaveTypeName ?? ''),
-                    trailing: Text(
-                      items[i].balanceHrs ?? '',
-                      style: const TextStyle(fontWeight: FontWeight.bold),
-                    ),
-                  ),
+      builder: (_) => Dialog(
+        backgroundColor: Colors.transparent,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            // Header
+            Container(
+              width: double.infinity,
+              padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 16),
+              decoration: const BoxDecoration(
+                color: AppColors.dialogHeader,
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(10),
+                  topRight: Radius.circular(10),
                 ),
               ),
-            ],
-          ),
+              child: const Text('Current Leave Balance',
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 22,
+                      fontWeight: FontWeight.w600)),
+            ),
+            // Body
+            Container(
+              width: double.infinity,
+              padding: const EdgeInsets.all(16),
+              color: AppColors.dialogBody,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  if (employeeName.isNotEmpty)
+                    Text(employeeName,
+                        style: const TextStyle(
+                            color: AppColors.dialogText, fontSize: 20)),
+                  if (dateUpto.isNotEmpty) ...[
+                    const SizedBox(height: 4),
+                    Text(dateUpto,
+                        style: const TextStyle(
+                            color: AppColors.dialogText, fontSize: 18)),
+                  ],
+                  const Divider(color: Color(0xFF738BB0), height: 20),
+                  ...items.map((item) => Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 4),
+                        child: Row(
+                          children: [
+                            SizedBox(
+                              width: 190,
+                              child: Text(item.leaveTypeName ?? '',
+                                  style: const TextStyle(
+                                      color: AppColors.dialogText,
+                                      fontSize: 18)),
+                            ),
+                            const Text(' : ',
+                                style: TextStyle(
+                                    color: AppColors.dialogText,
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.bold)),
+                            Text(item.balanceHrs ?? '',
+                                style: const TextStyle(
+                                    color: AppColors.dialogText,
+                                    fontSize: 18)),
+                          ],
+                        ),
+                      )),
+                ],
+              ),
+            ),
+            // OK button
+            GestureDetector(
+              onTap: () => Navigator.pop(context),
+              child: Container(
+                width: double.infinity,
+                padding: const EdgeInsets.symmetric(vertical: 12),
+                decoration: const BoxDecoration(
+                  color: AppColors.dialogOk,
+                  borderRadius: BorderRadius.only(
+                    bottomLeft: Radius.circular(10),
+                    bottomRight: Radius.circular(10),
+                  ),
+                ),
+                alignment: Alignment.center,
+                child: const Text('OK',
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 20,
+                        fontWeight: FontWeight.w600)),
+              ),
+            ),
+          ],
         ),
-        actions: [
-          TextButton(
-              onPressed: () => Navigator.pop(context),
-              child: const Text('OK')),
-        ],
       ),
     );
   }
@@ -314,167 +368,227 @@ class _RecognitionOptionScreenState extends State<RecognitionOptionScreen> {
   Widget build(BuildContext context) {
     final auth = context.watch<AuthProvider>();
     final user = auth.user!;
+    final now  = DateTime.now();
 
     return Scaffold(
-      backgroundColor: AppColors.vkBackground,
+      backgroundColor: AppColors.darkNavy,
       appBar: AppBar(
-        title: const Text('Kiosk'),
+        backgroundColor: AppColors.darkNavy,
         automaticallyImplyLeading: false,
         actions: [
           IconButton(
-            icon: const Icon(Icons.refresh),
-            tooltip: 'Refresh',
+            icon: const Icon(Icons.refresh, color: Colors.white),
             onPressed: _checkAttendanceStatus,
           ),
         ],
       ),
       body: _loadingAction
-          ? const Center(child: CircularProgressIndicator())
+          ? const Center(child: CircularProgressIndicator(color: AppColors.teal))
           : SingleChildScrollView(
-              padding: const EdgeInsets.all(16),
+              padding: const EdgeInsets.fromLTRB(20, 0, 20, 24),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  // Employee name greeting
-                  Card(
-                    child: Padding(
-                      padding: const EdgeInsets.all(16),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text('Hello,',
-                              style: TextStyle(
-                                  color: Colors.grey[600], fontSize: 14)),
-                          Text(user.empName ?? user.userName ?? '',
-                              style: const TextStyle(
-                                  fontSize: 22,
-                                  fontWeight: FontWeight.bold,
-                                  color: AppColors.primary)),
-                          if (user.companyName != null)
-                            Text(user.companyName!,
+                  // ── Top info card (bg #DDE5FF, rounded 15) ───────────────
+                  Container(
+                    decoration: BoxDecoration(
+                      color: AppColors.lightCard,
+                      borderRadius: BorderRadius.circular(15),
+                      border: Border.all(color: AppColors.lightCard, width: 2),
+                    ),
+                    child: Column(
+                      children: [
+                        // ── Teal headline area (#55D5BE, top-rounded) ──────
+                        Container(
+                          width: double.infinity,
+                          padding: const EdgeInsets.all(16),
+                          decoration: const BoxDecoration(
+                            color: AppColors.teal,
+                            borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(10),
+                              topRight: Radius.circular(10),
+                            ),
+                          ),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'Hello\n ${user.empName ?? user.userName ?? ''}',
                                 style: const TextStyle(
-                                    fontSize: 13, color: Colors.grey)),
-                        ],
-                      ),
+                                    color: Colors.white,
+                                    fontSize: 25,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                              const SizedBox(height: 6),
+                              Row(
+                                children: [
+                                  Text(
+                                    'Date: ${DateFormat('dd-MMM-yyyy').format(now)}',
+                                    style: const TextStyle(
+                                        color: Colors.white, fontSize: 17),
+                                  ),
+                                  const SizedBox(width: 20),
+                                  Text(
+                                    'Time: ${DateFormat('HH:mm a').format(now)}',
+                                    style: const TextStyle(
+                                        color: Colors.white, fontSize: 17),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
+                        // ── Info fields (emp id, supervisors) ──────────────
+                        Padding(
+                          padding: const EdgeInsets.all(12),
+                          child: Column(
+                            children: [
+                              _infoRow('Employee ID', user.employeeCode ?? ''),
+                              _infoRow('Supervisor 1', user.supervisor1 ?? ''),
+                              _infoRow('Supervisor 2', user.supervisor2 ?? ''),
+                            ],
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                   const SizedBox(height: 16),
 
-                  // ─── Punch IN (visible when next_action = 'IN') ─────────
+                  // ── Punch IN ─────────────────────────────────────────────
                   if (_nextAction == 'IN' || _nextAction.isEmpty)
-                    _ActionCard(
-                      label: 'Punch IN',
-                      icon: Icons.login,
-                      color: AppColors.punchIn,
+                    _actionBtn(
+                      topText: 'Punch', bottomText: 'IN',
+                      color: AppColors.cardBg,
+                      height: 80,
                       onTap: _onPunchIn,
                     ),
 
-                  // ─── Break + Punch OUT (visible when next_action = 'OUT') ─
+                  // ── Break + Punch OUT side by side ───────────────────────
                   if (_nextAction == 'OUT') ...[
-                    _ActionCard(
-                      label: 'Break',
-                      icon: Icons.free_breakfast,
-                      color: AppColors.breakColor,
-                      onTap: _onBreak,
-                    ),
-                    const SizedBox(height: 12),
-                    _ActionCard(
-                      label: 'Punch OUT',
-                      icon: Icons.logout,
-                      color: AppColors.punchOut,
-                      onTap: _onPunchOut,
+                    Row(
+                      children: [
+                        Expanded(
+                          child: _actionBtn(
+                            topText: 'Take a', bottomText: 'BREAK',
+                            color: AppColors.breakColor,
+                            height: 80,
+                            onTap: _onBreak,
+                          ),
+                        ),
+                        const SizedBox(width: 10),
+                        Expanded(
+                          child: _actionBtn(
+                            topText: 'Punch', bottomText: 'OUT',
+                            color: AppColors.punchOut,
+                            height: 80,
+                            onTap: _onPunchOut,
+                          ),
+                        ),
+                      ],
                     ),
                   ],
+                  const SizedBox(height: 10),
 
-                  const SizedBox(height: 12),
-
-                  // ─── Select / View Task ──────────────────────────────────
-                  if (_nextAction == 'OUT')
-                    _ActionCard(
-                      label: 'Select / View Task',
-                      icon: Icons.task_alt,
-                      color: AppColors.primary,
-                      onTap: () => Navigator.of(context).pushNamed('/task-selection'),
+                  // ── View / Select Task ───────────────────────────────────
+                  if (_nextAction == 'OUT') ...[
+                    _actionBtn(
+                      bottomText: 'View / Select / Switch Task',
+                      color: AppColors.cardBg,
+                      height: 74,
+                      onTap: () =>
+                          Navigator.of(context).pushNamed('/task-selection'),
                     ),
+                    const SizedBox(height: 10),
+                  ],
 
-                  const SizedBox(height: 12),
-
-                  // ─── Leave Balance ───────────────────────────────────────
-                  _ActionCard(
-                    label: 'Leave Balance',
-                    icon: Icons.account_balance_wallet_outlined,
-                    color: AppColors.primaryVariant,
+                  // ── View Leave Balance ───────────────────────────────────
+                  _actionBtn(
+                    bottomText: 'View Leave Balance',
+                    color: AppColors.cardBg,
+                    height: 74,
                     onTap: _showLeaveBalance,
                   ),
-                  const SizedBox(height: 12),
+                  const SizedBox(height: 10),
 
-                  // ─── View Attendance ─────────────────────────────────────
-                  _ActionCard(
-                    label: 'View Attendance',
-                    icon: Icons.history,
-                    color: AppColors.secondary,
-                    onTap: () {
-                      Navigator.of(context).pushNamed('/attendance-log');
-                    },
+                  // ── View Attendance ──────────────────────────────────────
+                  _actionBtn(
+                    bottomText: 'View Attendance',
+                    color: AppColors.cardBg,
+                    height: 74,
+                    onTap: () =>
+                        Navigator.of(context).pushNamed('/attendance-log'),
                   ),
-                  const SizedBox(height: 24),
+                  const SizedBox(height: 10),
 
-                  // End session (returns to login)
-                  TextButton.icon(
-                    onPressed: () {
+                  // ── Logout ──────────────────────────────────────────────
+                  _actionBtn(
+                    bottomText: 'Logout',
+                    color: AppColors.cardBg,
+                    height: 74,
+                    onTap: () {
                       auth.endSession();
                       Navigator.of(context).pushReplacementNamed('/login');
                     },
-                    icon: const Icon(Icons.exit_to_app),
-                    label: const Text('End Session'),
                   ),
                 ],
               ),
             ),
     );
   }
-}
 
-class _ActionCard extends StatelessWidget {
-  final String   label;
-  final IconData icon;
-  final Color    color;
-  final VoidCallback onTap;
+  Widget _infoRow(String label, String value) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 3),
+      child: Row(
+        children: [
+          SizedBox(
+            width: 110,
+            child: Text(label,
+                style: const TextStyle(color: Colors.white, fontSize: 14)),
+          ),
+          const Text(' : ', style: TextStyle(color: Colors.white, fontSize: 14)),
+          Expanded(
+            child: Text(value,
+                style: const TextStyle(color: Colors.white, fontSize: 14)),
+          ),
+        ],
+      ),
+    );
+  }
 
-  const _ActionCard({
-    required this.label,
-    required this.icon,
-    required this.color,
-    required this.onTap,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Card(
-      elevation: 3,
-      child: InkWell(
-        borderRadius: BorderRadius.circular(12),
-        onTap: onTap,
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 18),
-          child: Row(children: [
-            Container(
-              padding: const EdgeInsets.all(10),
-              decoration:
-                  BoxDecoration(color: color.withAlpha(25), shape: BoxShape.circle),
-              child: Icon(icon, color: color, size: 28),
-            ),
-            const SizedBox(width: 16),
-            Text(label,
-                style: TextStyle(
-                    fontSize: 17,
-                    fontWeight: FontWeight.w600,
-                    color: color)),
-            const Spacer(),
-            Icon(Icons.arrow_forward_ios, size: 14, color: color),
-          ]),
+  Widget _actionBtn({
+    String? topText,
+    required String bottomText,
+    required Color color,
+    double height = 74,
+    required VoidCallback onTap,
+  }) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        width: double.infinity,
+        height: height,
+        decoration: BoxDecoration(
+          color: color,
+          borderRadius: BorderRadius.circular(5),
+          border: Border.all(color: AppColors.cardStroke, width: 2),
+        ),
+        alignment: Alignment.center,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            if (topText != null)
+              Text(topText,
+                  style: const TextStyle(color: Colors.white, fontSize: 13)),
+            Text(bottomText,
+                style: const TextStyle(
+                    color: Colors.white,
+                    fontSize: 22,
+                    fontWeight: FontWeight.w600)),
+          ],
         ),
       ),
     );
   }
 }
+
