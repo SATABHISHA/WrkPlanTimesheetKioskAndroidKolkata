@@ -27,7 +27,7 @@ class AppConstants {
   static String get taskHourSaveEndpoint   => '${kioskService}TaskHourSave';
   static String get taskHourUpdateEndpoint => '${kioskService}TaskHourUpdate';
   static String get taskHourSubmitEndpoint => '${kioskService}TaskHourSubmit';
-  static String get leaveBalanceEndpoint   => '${kioskService}GetLeaveBalance';
+  static String get leaveBalanceEndpoint   => '${kioskService}LeaveBalance';
   static String get listFacesEndpoint      => '${kioskService}ListFaces';
   static String get indexFacesEndpoint     => '${kioskService}IndexFaces';
   static String get deleteFaceEndpoint     => '${kioskService}DeleteFaces';

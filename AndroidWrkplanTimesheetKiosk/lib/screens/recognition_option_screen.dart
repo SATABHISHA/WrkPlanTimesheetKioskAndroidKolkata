@@ -103,21 +103,76 @@ class _RecognitionOptionScreenState extends State<RecognitionOptionScreen> {
   }
 
   void _onPunchOut() async {
-    // Show confirmation dialog like Android break_punchout()
-    final confirm = await showDialog<bool>(
+    // Mirrors native break_punchout() dialog: Yes = Punch Out, No = Break
+    final result = await showDialog<String>(
       context: context,
-      builder: (ctx) => AlertDialog(
-        title: const Text('Punch Out'),
-        content: const Text('Are you sure you want to punch out?'),
-        actions: [
-          TextButton(onPressed: () => Navigator.pop(ctx, false), child: const Text('Cancel')),
-          ElevatedButton(onPressed: () => Navigator.pop(ctx, true), child: const Text('Punch Out')),
-        ],
+      builder: (ctx) => Dialog(
+        backgroundColor: Colors.transparent,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Container(
+              width: double.infinity,
+              padding: const EdgeInsets.all(20),
+              decoration: const BoxDecoration(
+                color: AppColors.dialogHeader,
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(10),
+                  topRight: Radius.circular(10),
+                ),
+              ),
+              child: const Text('Punch Out?',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                      color: Colors.white, fontSize: 22, fontWeight: FontWeight.w600)),
+            ),
+            Row(
+              children: [
+                Expanded(
+                  child: GestureDetector(
+                    onTap: () => Navigator.pop(ctx, 'punchout'),
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(vertical: 14),
+                      decoration: const BoxDecoration(
+                        color: AppColors.dialogNo,
+                        borderRadius: BorderRadius.only(
+                          bottomLeft: Radius.circular(10)),
+                      ),
+                      alignment: Alignment.center,
+                      child: const Text('Punch Out',
+                          style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.w600)),
+                    ),
+                  ),
+                ),
+                Expanded(
+                  child: GestureDetector(
+                    onTap: () => Navigator.pop(ctx, 'break'),
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(vertical: 14),
+                      decoration: const BoxDecoration(
+                        color: AppColors.dialogOk,
+                        borderRadius: BorderRadius.only(
+                          bottomRight: Radius.circular(10)),
+                      ),
+                      alignment: Alignment.center,
+                      child: const Text('Break',
+                          style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.w600)),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
     );
-    if (confirm != true) return;
+    if (result == null) return;
     if (!await _validateLocation()) return;
-    _saveInOut('OUT', 'PUNCH_OUT');
+    if (result == 'punchout') {
+      _saveInOut('OUT', 'PUNCHED_OUT');
+    } else {
+      _saveInOut('OUT', 'BREAK_STARTS');
+    }
   }
 
   Future<void> _saveInOut(String inOut, String inOutText) async {
@@ -385,16 +440,15 @@ class _RecognitionOptionScreenState extends State<RecognitionOptionScreen> {
       body: _loadingAction
           ? const Center(child: CircularProgressIndicator(color: AppColors.teal))
           : SingleChildScrollView(
-              padding: const EdgeInsets.fromLTRB(20, 0, 20, 24),
+              padding: const EdgeInsets.fromLTRB(20, 20, 20, 24),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  // ── Top info card (bg #DDE5FF, rounded 15) ───────────────
+                  // ── Top info card (bg #42AE9B, rounded 10) ───────────────
                   Container(
                     decoration: BoxDecoration(
-                      color: AppColors.lightCard,
-                      borderRadius: BorderRadius.circular(15),
-                      border: Border.all(color: AppColors.lightCard, width: 2),
+                      color: AppColors.infoCardBg,
+                      borderRadius: BorderRadius.circular(10),
                     ),
                     child: Column(
                       children: [
@@ -410,10 +464,10 @@ class _RecognitionOptionScreenState extends State<RecognitionOptionScreen> {
                             ),
                           ),
                           child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
                                 'Hello\n ${user.empName ?? user.userName ?? ''}',
+                                textAlign: TextAlign.center,
                                 style: const TextStyle(
                                     color: Colors.white,
                                     fontSize: 25,
@@ -421,13 +475,14 @@ class _RecognitionOptionScreenState extends State<RecognitionOptionScreen> {
                               ),
                               const SizedBox(height: 6),
                               Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   Text(
                                     'Date: ${DateFormat('dd-MMM-yyyy').format(now)}',
                                     style: const TextStyle(
                                         color: Colors.white, fontSize: 17),
                                   ),
-                                  const SizedBox(width: 20),
+                                  const SizedBox(width: 10),
                                   Text(
                                     'Time: ${DateFormat('HH:mm a').format(now)}',
                                     style: const TextStyle(
@@ -440,7 +495,7 @@ class _RecognitionOptionScreenState extends State<RecognitionOptionScreen> {
                         ),
                         // ── Info fields (emp id, supervisors) ──────────────
                         Padding(
-                          padding: const EdgeInsets.all(12),
+                          padding: const EdgeInsets.fromLTRB(25, 23, 25, 10),
                           child: Column(
                             children: [
                               _infoRow('Employee ID', user.employeeCode ?? ''),
@@ -452,7 +507,7 @@ class _RecognitionOptionScreenState extends State<RecognitionOptionScreen> {
                       ],
                     ),
                   ),
-                  const SizedBox(height: 16),
+                  const SizedBox(height: 25),
 
                   // ── Punch IN ─────────────────────────────────────────────
                   if (_nextAction == 'IN' || _nextAction.isEmpty)
@@ -465,26 +520,29 @@ class _RecognitionOptionScreenState extends State<RecognitionOptionScreen> {
 
                   // ── Break + Punch OUT side by side ───────────────────────
                   if (_nextAction == 'OUT') ...[
-                    Row(
-                      children: [
-                        Expanded(
-                          child: _actionBtn(
-                            topText: 'Take a', bottomText: 'BREAK',
-                            color: AppColors.breakColor,
-                            height: 80,
-                            onTap: _onBreak,
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 5),
+                      child: Row(
+                        children: [
+                          Expanded(
+                            child: _actionBtn(
+                              topText: 'Take a', bottomText: 'BREAK',
+                              color: AppColors.breakColor,
+                              height: 80,
+                              onTap: _onBreak,
+                            ),
                           ),
-                        ),
-                        const SizedBox(width: 10),
-                        Expanded(
-                          child: _actionBtn(
-                            topText: 'Punch', bottomText: 'OUT',
-                            color: AppColors.punchOut,
-                            height: 80,
-                            onTap: _onPunchOut,
+                          const SizedBox(width: 34),
+                          Expanded(
+                            child: _actionBtn(
+                              topText: 'Punch', bottomText: 'OUT',
+                              color: AppColors.punchOut,
+                              height: 80,
+                              onTap: _onPunchOut,
+                            ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ],
                   const SizedBox(height: 10),

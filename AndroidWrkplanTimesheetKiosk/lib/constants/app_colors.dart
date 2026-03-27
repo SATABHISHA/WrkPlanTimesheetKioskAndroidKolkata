@@ -20,6 +20,7 @@ class AppColors {
 
   // ── Accent / teal ─────────────────────────────────────────────────────────
   static const Color teal          = Color(0xFF55D5BE); // headline area + btn text
+  static const Color infoCardBg    = Color(0xFF42AE9B); // layout_background_layer_view_vk1
 
   // ── Punch buttons ─────────────────────────────────────────────────────────
   static const Color punchIn       = Color(0xFF172A46); // same as reusable btn

@@ -24,13 +24,6 @@ class _TaskSelectionScreenState extends State<TaskSelectionScreen> {
   bool             _loading    = true;
   int              _selectedTaskIdx = -1;
 
-  // Mirrors static variables in TaskSelectionActivity
-  int    _contractID  = 0;
-  int    _taskId      = 0;
-  int    _laborCatId  = 0;
-  int    _costTypeId  = 0;
-  int    _acSuffix    = 0;
-
   @override
   void initState() {
     super.initState();
@@ -56,11 +49,6 @@ class _TaskSelectionScreenState extends State<TaskSelectionScreen> {
       for (int i = 0; i < list.length; i++) {
         if (list[i].defaultTaskYn == 1) {
           defaultIdx = i;
-          _contractID  = list[i].contractID  ?? 0;
-          _taskId      = list[i].taskID      ?? 0;
-          _laborCatId  = list[i].laborCategoryID ?? 0;
-          _costTypeId  = list[i].costTypeID  ?? 0;
-          _acSuffix    = list[i].acSuffix    ?? 0;
         }
       }
 
@@ -85,14 +73,8 @@ class _TaskSelectionScreenState extends State<TaskSelectionScreen> {
   }
 
   void _onTaskSelected(int idx) {
-    final t = _tasks[idx];
     setState(() {
       _selectedTaskIdx = idx;
-      _contractID = t.contractID  ?? 0;
-      _taskId     = t.taskID      ?? 0;
-      _laborCatId = t.laborCategoryID ?? 0;
-      _costTypeId = t.costTypeID  ?? 0;
-      _acSuffix   = t.acSuffix   ?? 0;
     });
   }
 
@@ -100,35 +82,46 @@ class _TaskSelectionScreenState extends State<TaskSelectionScreen> {
     final auth = context.read<AuthProvider>();
     _showLoading('Saving…');
     try {
-      Map<String, dynamic> json;
       if (!auth.isInOutButtonHit) {
-        // Mirror: saveInOut("TC","TASK_CHANGED")
-        json = await _api.saveAttendance(
+        // Mirror native: saveInOut("TC","TASK_CHANGED") first
+        final saveJson = await _api.saveAttendance(
           corpId:    auth.user!.corpID!,
           userId:    auth.user!.personId!,
           inOut:     'TC',
           inOutText: 'TASK_CHANGED',
         );
-      } else {
-        json = await _api.taskHourSave(
-          corpId:               auth.user!.corpID!,
-          userId:               auth.user!.personId!,
-          employeeAssignmentId: auth.employeeAssignmentID ?? '',
-          kioskAttendanceId:    auth.attendanceId ?? '',
-          contractId:           _contractID,
-          taskId:               _taskId,
-          laborCatId:           _laborCatId,
-          costTypeId:           _costTypeId,
-          suffixCode:           _acSuffix,
-        );
+
+        // Extract attendance_id from saveAttendance response
+        final aid = saveJson['attendance_id']?.toString() ?? '0';
+        auth.attendanceId = aid;
+
+        // Check nested response.status
+        final resp = saveJson['response'];
+        final status = (resp is Map ? resp['status']?.toString() : saveJson['status']?.toString()) ?? '';
+        if (status.toLowerCase() != 'true') {
+          if (mounted) Navigator.of(context).pop();
+          _showSnack(resp is Map ? resp['message']?.toString() ?? 'Internal error' : 'Internal error');
+          return;
+        }
       }
+
+      // Mirror native: save() → TaskHourSave with minimal params only
+      final json = await _api.taskHourSaveOnCancel(
+        corpId:               auth.user!.corpID!,
+        userId:               auth.user!.personId!,
+        employeeAssignmentId: auth.employeeAssignmentID ?? '0',
+        kioskAttendanceId:    auth.attendanceId ?? '0',
+      );
 
       if (!mounted) return;
       Navigator.of(context).pop(); // dismiss loading
 
-      final status = json['status']?.toString() ?? '';
+      final status = json['status']?.toString().toLowerCase() ?? '';
       if (status == 'true') {
-        Navigator.of(context).pushReplacementNamed('/recognition-option');
+        // Mirror native: show dialog then navigate back
+        if (mounted) {
+          Navigator.of(context).pushReplacementNamed('/recognition-option');
+        }
       } else {
         _showSnack(json['message']?.toString() ?? 'Save failed');
       }
@@ -172,13 +165,6 @@ class _TaskSelectionScreenState extends State<TaskSelectionScreen> {
         title: const Text('Select Task',
             style: TextStyle(color: Colors.white, fontSize: 22)),
         automaticallyImplyLeading: false,
-        actions: [
-          TextButton(
-            onPressed: _cancel,
-            child: const Text('CANCEL',
-                style: TextStyle(color: Colors.white)),
-          ),
-        ],
       ),
       body: _loading
           ? const Center(
@@ -290,27 +276,46 @@ class _TaskSelectionScreenState extends State<TaskSelectionScreen> {
                         ),
                 ),
 
-                // Done button
+                // Cancel + Done buttons (native: ll_button at bottom)
                 Padding(
-                  padding: const EdgeInsets.all(16),
-                  child: GestureDetector(
-                    onTap: _done,
-                    child: Container(
-                      width: double.infinity,
-                      height: 55,
-                      decoration: BoxDecoration(
-                        color: AppColors.cardBg,
-                        borderRadius: BorderRadius.circular(5),
-                        border:
-                            Border.all(color: AppColors.cardStroke, width: 2),
+                  padding: const EdgeInsets.fromLTRB(5, 5, 5, 5),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: GestureDetector(
+                          onTap: _cancel,
+                          child: Container(
+                            height: 50,
+                            margin: const EdgeInsets.only(right: 1),
+                            decoration: BoxDecoration(
+                              color: AppColors.dialogOk,
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            alignment: Alignment.center,
+                            child: const Text('Cancel',
+                                style: TextStyle(
+                                    color: Colors.white, fontSize: 20)),
+                          ),
+                        ),
                       ),
-                      alignment: Alignment.center,
-                      child: const Text('DONE',
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold)),
-                    ),
+                      Expanded(
+                        child: GestureDetector(
+                          onTap: _done,
+                          child: Container(
+                            height: 50,
+                            margin: const EdgeInsets.only(left: 1),
+                            decoration: BoxDecoration(
+                              color: AppColors.dialogNo,
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            alignment: Alignment.center,
+                            child: const Text('Done',
+                                style: TextStyle(
+                                    color: Colors.white, fontSize: 20)),
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ],

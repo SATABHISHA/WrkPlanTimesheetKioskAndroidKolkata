@@ -100,125 +100,131 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
               child: Stack(
                 children: [
-                  // ── Scrollable form (margin 35dp each side) ──────────────
-                  SingleChildScrollView(
-                    padding: const EdgeInsets.fromLTRB(35, 50, 35, 120),
-                    child: Column(
+                  // ── Title at top (marginTop 50, centerHorizontal) ────────
+                  Positioned(
+                    left: 0,
+                    right: 0,
+                    top: 50,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        // ── Logo + "KIOSK Admin" ───────────────────────────
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Image.asset('assets/images/kioskapplogo.png',
-                                width: 50, height: 50),
-                            const SizedBox(width: 8),
-                            const Text(
-                              'KIOSK Admin',
-                              style: TextStyle(
-                                color: _kTitleColor,
-                                fontSize: 22,
-                                fontWeight: FontWeight.w600,
-                              ),
-                            ),
-                          ],
-                        ),
-
-                        const SizedBox(height: 20),
-
-                        // ── Corp ID ────────────────────────────────────────
-                        _inputRow(
-                          controller: _corpIdCtrl,
-                          hint: 'Corporate ID',
-                          iconAsset: 'assets/images/orgvk1.png',
-                          action: TextInputAction.next,
-                        ),
-                        const SizedBox(height: 10),
-
-                        // ── Username ───────────────────────────────────────
-                        _inputRow(
-                          controller: _usernameCtrl,
-                          hint: 'Username',
-                          iconAsset: 'assets/images/usernamenewvk1.png',
-                          action: TextInputAction.next,
-                        ),
-                        const SizedBox(height: 10),
-
-                        // ── Password ───────────────────────────────────────
-                        _inputRow(
-                          controller: _passwordCtrl,
-                          hint: 'Password',
-                          iconAsset: 'assets/images/passwordnewvk1.png',
-                          action: TextInputAction.done,
-                          obscure: _obscure,
-                          suffixIcon: GestureDetector(
-                            onTap: () =>
-                                setState(() => _obscure = !_obscure),
-                            child: Padding(
-                              padding: const EdgeInsets.only(right: 10),
-                              child: Icon(
-                                _obscure
-                                    ? Icons.visibility
-                                    : Icons.visibility_off,
-                                color: Colors.white70,
-                                size: 22,
-                              ),
-                            ),
-                          ),
-                        ),
-                        const SizedBox(height: 20),
-
-                        // ── Login button (#0A192F, 55dp, rounded 10) ───────
-                        Consumer<AuthProvider>(
-                          builder: (_, auth, __) {
-                            return GestureDetector(
-                              onTap: auth.isLoading ? null : _handleLogin,
-                              child: Container(
-                                width: double.infinity,
-                                height: 55,
-                                decoration: BoxDecoration(
-                                  color: _kLoginBtn,
-                                  borderRadius: BorderRadius.circular(10),
-                                ),
-                                alignment: Alignment.center,
-                                child: auth.isLoading
-                                    ? const SizedBox(
-                                        width: 22,
-                                        height: 22,
-                                        child: CircularProgressIndicator(
-                                          strokeWidth: 2,
-                                          color: _kLoginBtnText,
-                                        ),
-                                      )
-                                    : const Text(
-                                        'Login  >',
-                                        style: TextStyle(
-                                          color: _kLoginBtnText,
-                                          fontSize: 18,
-                                          fontWeight: FontWeight.w600,
-                                        ),
-                                      ),
-                              ),
-                            );
-                          },
-                        ),
-
-                        const SizedBox(height: 14),
-
-                        // ── Admin Login link ───────────────────────────────
-                        GestureDetector(
-                          onTap: () =>
-                              Navigator.of(context).pushNamed('/admin-login'),
-                          child: const Text(
-                            'Admin Login',
-                            style: TextStyle(
-                              color: _kTitleColor,
-                              fontSize: 15,
-                              fontWeight: FontWeight.w700,
-                              decoration: TextDecoration.underline,
-                            ),
+                        Image.asset('assets/images/kioskapplogo.png',
+                            width: 50, height: 50),
+                        const SizedBox(width: 8),
+                        const Text(
+                          'KIOSK Admin',
+                          style: TextStyle(
+                            color: _kTitleColor,
+                            fontSize: 22,
+                            fontWeight: FontWeight.w600,
                           ),
                         ),
                       ],
+                    ),
+                  ),
+
+                  // ── Form fields centered vertically (layout_centerInParent) ─
+                  Center(
+                    child: SingleChildScrollView(
+                      padding: const EdgeInsets.symmetric(horizontal: 35),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          // ── Corp ID ──────────────────────────────────────
+                          _inputRow(
+                            controller: _corpIdCtrl,
+                            hint: 'Corporate ID',
+                            iconAsset: 'assets/images/orgvk1.png',
+                            action: TextInputAction.next,
+                          ),
+                          const SizedBox(height: 10),
+
+                          // ── Username ─────────────────────────────────────
+                          _inputRow(
+                            controller: _usernameCtrl,
+                            hint: 'Username',
+                            iconAsset: 'assets/images/usernamenewvk1.png',
+                            action: TextInputAction.next,
+                          ),
+                          const SizedBox(height: 10),
+
+                          // ── Password ─────────────────────────────────────
+                          _inputRow(
+                            controller: _passwordCtrl,
+                            hint: 'Password',
+                            iconAsset: 'assets/images/passwordnewvk1.png',
+                            action: TextInputAction.done,
+                            obscure: _obscure,
+                            suffixIcon: GestureDetector(
+                              onTap: () =>
+                                  setState(() => _obscure = !_obscure),
+                              child: Padding(
+                                padding: const EdgeInsets.only(right: 10),
+                                child: Icon(
+                                  _obscure
+                                      ? Icons.visibility
+                                      : Icons.visibility_off,
+                                  color: Colors.white70,
+                                  size: 22,
+                                ),
+                              ),
+                            ),
+                          ),
+                          const SizedBox(height: 20),
+
+                          // ── Login button (#0A192F, 55dp, rounded 10) ─────
+                          Consumer<AuthProvider>(
+                            builder: (_, auth, __) {
+                              return GestureDetector(
+                                onTap: auth.isLoading ? null : _handleLogin,
+                                child: Container(
+                                  width: double.infinity,
+                                  height: 55,
+                                  decoration: BoxDecoration(
+                                    color: _kLoginBtn,
+                                    borderRadius: BorderRadius.circular(10),
+                                  ),
+                                  alignment: Alignment.center,
+                                  child: auth.isLoading
+                                      ? const SizedBox(
+                                          width: 22,
+                                          height: 22,
+                                          child: CircularProgressIndicator(
+                                            strokeWidth: 2,
+                                            color: _kLoginBtnText,
+                                          ),
+                                        )
+                                      : const Text(
+                                          'Login  >',
+                                          style: TextStyle(
+                                            color: _kLoginBtnText,
+                                            fontSize: 18,
+                                            fontWeight: FontWeight.w600,
+                                          ),
+                                        ),
+                                ),
+                              );
+                            },
+                          ),
+
+                          const SizedBox(height: 14),
+
+                          // ── Admin Login link ─────────────────────────────
+                          GestureDetector(
+                            onTap: () =>
+                                Navigator.of(context).pushNamed('/admin-login'),
+                            child: const Text(
+                              'Admin Login',
+                              style: TextStyle(
+                                color: _kTitleColor,
+                                fontSize: 15,
+                                fontWeight: FontWeight.w700,
+                                decoration: TextDecoration.underline,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
 
