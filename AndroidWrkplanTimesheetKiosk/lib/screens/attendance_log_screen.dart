@@ -4,7 +4,7 @@ import 'package:intl/intl.dart';
 import '../services/auth_provider.dart';
 import '../constants/app_colors.dart';
 
-/// Attendance log screen – high-contrast tables with IN/OUT and BREAK TAKEN.
+/// Attendance log screen – redesigned per PDF page 7 with card-style tables.
 class AttendanceLogScreen extends StatefulWidget {
   const AttendanceLogScreen({super.key});
 
@@ -17,6 +17,8 @@ class _AttendanceLogScreenState extends State<AttendanceLogScreen> {
   final List<Map<String, String>> _logEntries   = [];
   final List<Map<String, String>> _breakEntries = [];
   bool _shown = false;
+
+  static const _green = AppColors.secondary; // #81B1AE
 
   void _pickDate() async {
     final picked = await showDatePicker(
@@ -57,114 +59,202 @@ class _AttendanceLogScreenState extends State<AttendanceLogScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final auth      = context.watch<AuthProvider>();
-    final empName   = auth.user?.empName ?? '';
+    final auth    = context.watch<AuthProvider>();
+    final empName = auth.user?.empName ?? '';
     final dateLabel = _selectedDate != null
         ? DateFormat('MM/dd/yy').format(_selectedDate!)
         : 'Select Date';
+
     return Scaffold(
       backgroundColor: AppColors.background,
       appBar: AppBar(
         backgroundColor: AppColors.background,
+        elevation: 0,
         title: const Text('Attendance Log',
-            style: TextStyle(color: AppColors.textColor, fontSize: 22)),
-        iconTheme: const IconThemeData(color: AppColors.textColor),
+            style: TextStyle(
+                color: AppColors.primary,
+                fontSize: 22,
+                fontWeight: FontWeight.w700)),
+        iconTheme: const IconThemeData(color: AppColors.primary),
       ),
       body: SingleChildScrollView(
-        padding: const EdgeInsets.all(16),
+        padding: const EdgeInsets.fromLTRB(16, 8, 16, 24),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            // Employee name row + date picker
-            Row(
-              children: [
-                Expanded(
-                  child: Text('Employee Name: $empName',
-                      style: const TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                          color: AppColors.textColor)),
-                ),
-                GestureDetector(
-                  onTap: _pickDate,
-                  child: Container(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 14, vertical: 10),
-                    decoration: BoxDecoration(
-                      border: Border.all(color: AppColors.cardStroke),
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        const Icon(Icons.calendar_today,
-                            color: AppColors.primary, size: 18),
-                        const SizedBox(width: 8),
-                        Text('Select Date: $dateLabel',
-                            style: const TextStyle(
-                                fontSize: 15, color: AppColors.textColor)),
-                      ],
+            // ── Employee + Date picker card ─────────────────────────────
+            Container(
+              padding: const EdgeInsets.all(14),
+              decoration: BoxDecoration(
+                color: AppColors.fieldBg,
+                borderRadius: BorderRadius.circular(12),
+                border: Border.all(color: _green.withOpacity(0.5)),
+              ),
+              child: Row(
+                children: [
+                  const Icon(Icons.person, color: AppColors.primary, size: 22),
+                  const SizedBox(width: 8),
+                  Expanded(
+                    child: Text(empName,
+                        style: const TextStyle(
+                            fontSize: 17,
+                            fontWeight: FontWeight.w600,
+                            color: AppColors.textColor)),
+                  ),
+                  InkWell(
+                    onTap: _pickDate,
+                    borderRadius: BorderRadius.circular(8),
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 12, vertical: 8),
+                      decoration: BoxDecoration(
+                        color: AppColors.background,
+                        borderRadius: BorderRadius.circular(8),
+                        border: Border.all(color: _green),
+                      ),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          const Icon(Icons.calendar_today,
+                              color: AppColors.primary, size: 16),
+                          const SizedBox(width: 6),
+                          Text(dateLabel,
+                              style: const TextStyle(
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w500,
+                                  color: AppColors.primary)),
+                        ],
+                      ),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-            const SizedBox(height: 24),
+            const SizedBox(height: 20),
 
             if (_shown) ...[
-              // IN / OUT table
-              Table(
-                border: TableBorder.all(color: AppColors.textColor, width: 0.5),
-                children: [
-                  _headerRow(['IN', 'OUT']),
-                  ..._logEntries.map((e) =>
-                      _dataRow([e['time_in']!, e['time_out']!])),
-                ],
+              // ── IN / OUT Section ──────────────────────────────────────
+              _sectionHeader(Icons.login, 'IN / OUT'),
+              const SizedBox(height: 10),
+              _styledTable(
+                headers: ['IN', 'OUT'],
+                rows: _logEntries
+                    .map((e) => [e['time_in']!, e['time_out']!])
+                    .toList(),
               ),
-              const SizedBox(height: 28),
+              const SizedBox(height: 24),
 
-              // BREAK TAKEN table
-              const Text('BREAK TAKEN',
-                  style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                      color: AppColors.textColor)),
-              const SizedBox(height: 8),
-              Table(
-                border: TableBorder.all(color: AppColors.textColor, width: 0.5),
-                children: [
-                  _headerRow(['START', 'END', 'DURATION']),
-                  ..._breakEntries.map((e) =>
-                      _dataRow([e['start']!, e['end']!, e['duration']!])),
-                ],
+              // ── BREAK TAKEN Section ───────────────────────────────────
+              _sectionHeader(Icons.coffee_outlined, 'BREAK TAKEN'),
+              const SizedBox(height: 10),
+              _styledTable(
+                headers: ['START', 'END', 'DURATION'],
+                rows: _breakEntries
+                    .map((e) => [e['start']!, e['end']!, e['duration']!])
+                    .toList(),
               ),
             ],
+
+            if (!_shown)
+              Padding(
+                padding: const EdgeInsets.only(top: 60),
+                child: Column(
+                  children: [
+                    Icon(Icons.calendar_month_outlined,
+                        size: 64, color: _green.withOpacity(0.6)),
+                    const SizedBox(height: 12),
+                    Text('Select a date to view attendance',
+                        style: TextStyle(
+                            fontSize: 16,
+                            color: Colors.grey.shade500,
+                            fontWeight: FontWeight.w400)),
+                  ],
+                ),
+              ),
           ],
         ),
       ),
     );
   }
 
-  TableRow _headerRow(List<String> cols) => TableRow(
-        decoration: BoxDecoration(color: Colors.grey.shade100),
-        children: cols
-            .map((c) => Padding(
-                padding: const EdgeInsets.all(10),
-                child: Text(c,
-                    style: const TextStyle(
-                        color: AppColors.textColor,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 15))))
-            .toList(),
-      );
+  // ── Section header with icon ────────────────────────────────────────────
 
-  TableRow _dataRow(List<String> cols) => TableRow(
-        children: cols
-            .map((c) => Padding(
-                padding: const EdgeInsets.all(10),
-                child: Text(c,
-                    style: const TextStyle(
-                        color: AppColors.textColor, fontSize: 15))))
-            .toList(),
-      );
+  Widget _sectionHeader(IconData icon, String title) {
+    return Row(
+      children: [
+        Container(
+          padding: const EdgeInsets.all(6),
+          decoration: BoxDecoration(
+            color: AppColors.primary.withOpacity(0.1),
+            borderRadius: BorderRadius.circular(6),
+          ),
+          child: Icon(icon, color: AppColors.primary, size: 18),
+        ),
+        const SizedBox(width: 10),
+        Text(title,
+            style: const TextStyle(
+                fontSize: 17,
+                fontWeight: FontWeight.w700,
+                color: AppColors.textColor,
+                letterSpacing: 0.5)),
+      ],
+    );
+  }
+
+  // ── Styled card-table ───────────────────────────────────────────────────
+
+  Widget _styledTable({
+    required List<String> headers,
+    required List<List<String>> rows,
+  }) {
+    return Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(10),
+        border: Border.all(color: _green.withOpacity(0.5)),
+      ),
+      clipBehavior: Clip.antiAlias,
+      child: Column(
+        children: [
+          // Header row
+          Container(
+            color: AppColors.primary,
+            padding: const EdgeInsets.symmetric(vertical: 12),
+            child: Row(
+              children: headers
+                  .map((h) => Expanded(
+                        child: Text(h,
+                            textAlign: TextAlign.center,
+                            style: const TextStyle(
+                                color: Colors.white,
+                                fontSize: 14,
+                                fontWeight: FontWeight.w700,
+                                letterSpacing: 0.8)),
+                      ))
+                  .toList(),
+            ),
+          ),
+          // Data rows
+          ...List.generate(rows.length, (i) {
+            final isEven = i.isEven;
+            return Container(
+              color: isEven ? AppColors.background : AppColors.fieldBg,
+              padding: const EdgeInsets.symmetric(vertical: 12),
+              child: Row(
+                children: rows[i]
+                    .map((val) => Expanded(
+                          child: Text(val,
+                              textAlign: TextAlign.center,
+                              style: const TextStyle(
+                                  color: AppColors.textColor,
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.w500)),
+                        ))
+                    .toList(),
+              ),
+            );
+          }),
+        ],
+      ),
+    );
+  }
 }
