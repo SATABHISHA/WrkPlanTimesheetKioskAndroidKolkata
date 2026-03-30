@@ -481,6 +481,7 @@ class _RecognitionOptionScreenState extends State<RecognitionOptionScreen> {
       _actionBtn(
         label: 'Take a BREAK',
         filled: true,
+        color: const Color(0xFFFFC107),
         onTap: _onBreak,
       ),
       const SizedBox(height: 12),
@@ -520,6 +521,9 @@ class _RecognitionOptionScreenState extends State<RecognitionOptionScreen> {
     required VoidCallback onTap,
   }) {
     final btnColor = color ?? AppColors.primary;
+    final fgColor = (btnColor == const Color(0xFFFFC107))
+        ? AppColors.textColor
+        : AppColors.white;
     return SizedBox(
       width: double.infinity,
       height: 56,
@@ -528,7 +532,7 @@ class _RecognitionOptionScreenState extends State<RecognitionOptionScreen> {
               onPressed: onTap,
               style: ElevatedButton.styleFrom(
                 backgroundColor: btnColor,
-                foregroundColor: AppColors.white,
+                foregroundColor: fgColor,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(8),
                 ),
@@ -541,7 +545,7 @@ class _RecognitionOptionScreenState extends State<RecognitionOptionScreen> {
               onPressed: onTap,
               style: OutlinedButton.styleFrom(
                 foregroundColor: AppColors.textColor,
-                side: const BorderSide(color: AppColors.cardStroke, width: 1.5),
+                side: const BorderSide(color: AppColors.secondary, width: 1.5),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(8),
                 ),
