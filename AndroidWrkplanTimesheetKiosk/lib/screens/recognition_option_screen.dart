@@ -425,6 +425,30 @@ class _RecognitionOptionScreenState extends State<RecognitionOptionScreen> {
                   ),
                   const SizedBox(height: 28),
 
+                  // ── Employee info card (Punch IN view only) ──────────
+                  if (_nextAction == 'IN' || _nextAction.isEmpty) ...[
+                    Container(
+                      width: double.infinity,
+                      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+                      decoration: BoxDecoration(
+                        color: AppColors.fieldBg,
+                        borderRadius: BorderRadius.circular(10),
+                        border: Border.all(color: AppColors.secondary.withOpacity(0.5)),
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          _infoCardRow(Icons.badge_outlined, 'Employee ID', user.employeeCode ?? ''),
+                          const SizedBox(height: 10),
+                          _infoCardRow(Icons.person_outline, 'Supervisor 1', user.supervisor1 ?? ''),
+                          const SizedBox(height: 10),
+                          _infoCardRow(Icons.person_outline, 'Supervisor 2', user.supervisor2 ?? ''),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(height: 24),
+                  ],
+
                   // ── Punch IN ─────────────────────────────────────────
                   if (_nextAction == 'IN' || _nextAction.isEmpty)
                     _actionBtn(
@@ -509,6 +533,27 @@ class _RecognitionOptionScreenState extends State<RecognitionOptionScreen> {
           ),
         ],
       ),
+    );
+  }
+
+  Widget _infoCardRow(IconData icon, String label, String value) {
+    return Row(
+      children: [
+        Icon(icon, size: 20, color: AppColors.primary),
+        const SizedBox(width: 10),
+        Text('$label: ',
+            style: const TextStyle(
+                color: AppColors.textColor,
+                fontSize: 15,
+                fontWeight: FontWeight.w500)),
+        Expanded(
+          child: Text(value,
+              style: const TextStyle(
+                  color: AppColors.primary,
+                  fontSize: 15,
+                  fontWeight: FontWeight.w600)),
+        ),
+      ],
     );
   }
 
