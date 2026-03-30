@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:intl/intl.dart';
 import '../services/auth_provider.dart';
+import '../services/api_service.dart';
+import '../models/task_model.dart';
 import '../constants/app_colors.dart';
 
 /// Punch status screen – shows "You Are In", "You are on Break!" or "Good Bye!"
@@ -128,9 +130,7 @@ class _PunchStatusScreenState extends State<PunchStatusScreen>
                     _outlinedBtn('View / Select / Switch Task',
                         () => Navigator.of(context).pushNamed('/task-selection')),
                     const SizedBox(height: 14),
-                    _outlinedBtn('View Leave Balance', () {
-                      Navigator.of(context).pushReplacementNamed('/recognition-option');
-                    }),
+                    _outlinedBtn('View Leave Balance', () => _showLeaveBalance(context)),
                     const SizedBox(height: 14),
                   ],
 
@@ -146,6 +146,122 @@ class _PunchStatusScreenState extends State<PunchStatusScreen>
             ),
           ),
         ),
+      ),
+    );
+  }
+
+  // ── Leave balance API call + dialog ────────────────────────────────────────
+
+  void _showLeaveBalance(BuildContext ctx) async {
+    final auth = ctx.read<AuthProvider>();
+    final api  = ApiService();
+
+    showDialog(
+      context: ctx,
+      barrierDismissible: false,
+      builder: (_) => const Center(child: CircularProgressIndicator(color: AppColors.primary)),
+    );
+
+    try {
+      final json = await api.getLeaveBalance(
+        corpId: auth.user!.corpID!,
+        employeeId: auth.user!.personId!,
+      );
+      if (!mounted) return;
+      Navigator.of(ctx).pop(); // dismiss loading
+
+      final status = (json['status'] ?? json['Status'] ?? '').toString().toLowerCase();
+      if (status == 'true') {
+        final raw = json['LeaveBalanceItems'] ?? json['leavebalancedata'];
+        final items = <LeaveBalanceItem>[];
+
+        if (raw is Map) {
+          for (final entry in raw.entries) {
+            items.add(LeaveBalanceItem.fromEntry(entry.key.toString(), entry.value));
+          }
+        } else if (raw is List) {
+          for (final e in raw) {
+            if (e is Map) {
+              items.add(LeaveBalanceItem.fromJson(Map<String, dynamic>.from(e)));
+            }
+          }
+        }
+
+        if (items.isEmpty) {
+          _showSnack(ctx, 'No leave balance data found');
+          return;
+        }
+
+        _showLeaveDialog(ctx, items,
+          dateUpto: json['LeaveDateUpto']?.toString() ?? '',
+          employeeName: auth.user?.empName ?? auth.user?.userName ?? '',
+        );
+      } else {
+        _showSnack(ctx, json['message']?.toString() ?? 'No data');
+      }
+    } catch (_) {
+      if (mounted) Navigator.of(ctx).pop();
+      _showSnack(ctx, 'Could not connect to server');
+    }
+  }
+
+  void _showSnack(BuildContext ctx, String msg) {
+    ScaffoldMessenger.of(ctx).showSnackBar(SnackBar(content: Text(msg)));
+  }
+
+  void _showLeaveDialog(
+    BuildContext ctx,
+    List<LeaveBalanceItem> items, {
+    required String dateUpto,
+    required String employeeName,
+  }) {
+    showDialog(
+      context: ctx,
+      builder: (_) => AlertDialog(
+        backgroundColor: AppColors.background,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+        title: const Text('Current Leave Balance',
+            style: TextStyle(
+                color: AppColors.textColor,
+                fontSize: 22,
+                fontWeight: FontWeight.w600)),
+        content: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            if (employeeName.isNotEmpty)
+              Text(employeeName,
+                  style: const TextStyle(color: AppColors.textColor, fontSize: 18)),
+            if (dateUpto.isNotEmpty) ...[
+              const SizedBox(height: 4),
+              Text('Up To $dateUpto',
+                  style: const TextStyle(color: Color(0xFF666666), fontSize: 16)),
+            ],
+            const Divider(height: 20),
+            ...items.map((item) => Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 4),
+                  child: Row(children: [
+                    Expanded(
+                      child: Text(item.leaveTypeName ?? '',
+                          style: const TextStyle(color: AppColors.textColor, fontSize: 16)),
+                    ),
+                    const Text(' : ',
+                        style: TextStyle(
+                            color: AppColors.textColor, fontSize: 16, fontWeight: FontWeight.bold)),
+                    Text(item.balanceHrs ?? '',
+                        style: const TextStyle(
+                            color: AppColors.primary, fontSize: 16, fontWeight: FontWeight.w600)),
+                  ]),
+                )),
+          ],
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(ctx).pop(),
+            child: const Text('OK',
+                style: TextStyle(color: AppColors.primary, fontSize: 16, fontWeight: FontWeight.w600)),
+          ),
+        ],
       ),
     );
   }

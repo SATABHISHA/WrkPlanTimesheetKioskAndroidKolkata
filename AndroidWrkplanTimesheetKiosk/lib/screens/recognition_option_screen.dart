@@ -403,7 +403,7 @@ class _RecognitionOptionScreenState extends State<RecognitionOptionScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   // ── Greeting ──────────────────────────────────────────
-                  const Text('Hello /',
+                  const Text('Hello',
                       style: TextStyle(
                           color: AppColors.textColor,
                           fontSize: 22,
@@ -418,13 +418,11 @@ class _RecognitionOptionScreenState extends State<RecognitionOptionScreen> {
                   const SizedBox(height: 8),
                   Text(
                     'Date: ${DateFormat('MM/dd/yy').format(now)}  Time: ${DateFormat('hh:mm a').format(now)}',
-                    style: TextStyle(
-                        color: Colors.grey.shade700, fontSize: 16),
+                    style: const TextStyle(
+                        color: AppColors.textColor,
+                        fontSize: 16,
+                        fontWeight: FontWeight.w600),
                   ),
-                  const SizedBox(height: 6),
-                  _infoRow('Employee ID', user.employeeCode ?? ''),
-                  _infoRow('Supervisor 1', user.supervisor1 ?? ''),
-                  _infoRow('Supervisor 2', user.supervisor2 ?? ''),
                   const SizedBox(height: 28),
 
                   // ── Punch IN ─────────────────────────────────────────
