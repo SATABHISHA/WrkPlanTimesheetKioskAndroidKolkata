@@ -4,8 +4,7 @@ import 'package:intl/intl.dart';
 import '../services/auth_provider.dart';
 import '../constants/app_colors.dart';
 
-/// Mirrors ActivityAttendanceLog from satabhisha – dark navy bg, employee
-/// toolbar, date picker, IN/OUT table, break log.
+/// Attendance log screen – high-contrast tables with IN/OUT and BREAK TAKEN.
 class AttendanceLogScreen extends StatefulWidget {
   const AttendanceLogScreen({super.key});
 
@@ -26,10 +25,10 @@ class _AttendanceLogScreenState extends State<AttendanceLogScreen> {
       firstDate: DateTime(2020),
       lastDate: DateTime.now(),
       builder: (ctx, child) => Theme(
-        data: ThemeData.dark().copyWith(
-          colorScheme: const ColorScheme.dark(
-            primary: AppColors.teal,
-            surface: AppColors.cardBg,
+        data: ThemeData.light().copyWith(
+          colorScheme: const ColorScheme.light(
+            primary: AppColors.primary,
+            surface: AppColors.background,
           ),
         ),
         child: child!,
@@ -61,90 +60,80 @@ class _AttendanceLogScreenState extends State<AttendanceLogScreen> {
     final auth      = context.watch<AuthProvider>();
     final empName   = auth.user?.empName ?? '';
     final dateLabel = _selectedDate != null
-        ? DateFormat('dd-MM-yyyy').format(_selectedDate!)
+        ? DateFormat('MM/dd/yy').format(_selectedDate!)
         : 'Select Date';
     return Scaffold(
-      backgroundColor: AppColors.darkNavy,
+      backgroundColor: AppColors.background,
       appBar: AppBar(
-        backgroundColor: AppColors.darkNavy,
+        backgroundColor: AppColors.background,
         title: const Text('Attendance Log',
-            style: TextStyle(color: Colors.white, fontSize: 22)),
-        iconTheme: const IconThemeData(color: Colors.white),
+            style: TextStyle(color: AppColors.textColor, fontSize: 22)),
+        iconTheme: const IconThemeData(color: AppColors.textColor),
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            // Employee name in teal area
-            Container(
-              padding: const EdgeInsets.all(14),
-              decoration: BoxDecoration(
-                color: AppColors.teal,
-                borderRadius: BorderRadius.circular(10),
-              ),
-              child: Text('Hello\n$empName',
-                  style: const TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white)),
-            ),
-            const SizedBox(height: 16),
-
-            // Date picker
-            GestureDetector(
-              onTap: _pickDate,
-              child: Container(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-                decoration: BoxDecoration(
-                  color: AppColors.cardBg,
-                  borderRadius: BorderRadius.circular(8),
-                  border: Border.all(color: AppColors.cardStroke),
+            // Employee name row + date picker
+            Row(
+              children: [
+                Expanded(
+                  child: Text('Employee Name: $empName',
+                      style: const TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                          color: AppColors.textColor)),
                 ),
-                child: Row(children: [
-                  const Icon(Icons.calendar_today, color: AppColors.teal),
-                  const SizedBox(width: 12),
-                  Text(dateLabel,
-                      style:
-                          const TextStyle(fontSize: 16, color: Colors.white)),
-                  const Spacer(),
-                  const Icon(Icons.arrow_drop_down, color: Colors.white54),
-                ]),
-              ),
+                GestureDetector(
+                  onTap: _pickDate,
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 14, vertical: 10),
+                    decoration: BoxDecoration(
+                      border: Border.all(color: AppColors.cardStroke),
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        const Icon(Icons.calendar_today,
+                            color: AppColors.primary, size: 18),
+                        const SizedBox(width: 8),
+                        Text('Select Date: $dateLabel',
+                            style: const TextStyle(
+                                fontSize: 15, color: AppColors.textColor)),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
             ),
-            const SizedBox(height: 20),
+            const SizedBox(height: 24),
 
             if (_shown) ...[
-              // Attendance log header
-              Text('Attendance Log — $dateLabel',
-                  style: const TextStyle(
-                      fontSize: 15,
-                      fontWeight: FontWeight.bold,
-                      color: AppColors.teal)),
-              const SizedBox(height: 8),
+              // IN / OUT table
               Table(
-                border: TableBorder.all(color: AppColors.cardStroke),
+                border: TableBorder.all(color: AppColors.textColor, width: 0.5),
                 children: [
-                  _headerRow(AppColors.cardBg, ['Time In', 'Time Out']),
+                  _headerRow(['IN', 'OUT']),
                   ..._logEntries.map((e) =>
                       _dataRow([e['time_in']!, e['time_out']!])),
                 ],
               ),
-              const SizedBox(height: 20),
+              const SizedBox(height: 28),
 
-              // Break log header
-              const Text('Break Log',
+              // BREAK TAKEN table
+              const Text('BREAK TAKEN',
                   style: TextStyle(
-                      fontSize: 15,
+                      fontSize: 16,
                       fontWeight: FontWeight.bold,
-                      color: AppColors.breakColor)),
+                      color: AppColors.textColor)),
               const SizedBox(height: 8),
               Table(
-                border: TableBorder.all(color: AppColors.cardStroke),
+                border: TableBorder.all(color: AppColors.textColor, width: 0.5),
                 children: [
-                  _headerRow(
-                      AppColors.cardBg, ['Start', 'End', 'Duration']),
+                  _headerRow(['START', 'END', 'DURATION']),
                   ..._breakEntries.map((e) =>
                       _dataRow([e['start']!, e['end']!, e['duration']!])),
                 ],
@@ -156,23 +145,26 @@ class _AttendanceLogScreenState extends State<AttendanceLogScreen> {
     );
   }
 
-  TableRow _headerRow(Color bg, List<String> cols) => TableRow(
-        decoration: BoxDecoration(color: bg),
+  TableRow _headerRow(List<String> cols) => TableRow(
+        decoration: BoxDecoration(color: Colors.grey.shade100),
         children: cols
             .map((c) => Padding(
-                padding: const EdgeInsets.all(8),
+                padding: const EdgeInsets.all(10),
                 child: Text(c,
                     style: const TextStyle(
-                        color: Colors.white, fontWeight: FontWeight.bold))))
+                        color: AppColors.textColor,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 15))))
             .toList(),
       );
 
   TableRow _dataRow(List<String> cols) => TableRow(
         children: cols
             .map((c) => Padding(
-                padding: const EdgeInsets.all(8),
+                padding: const EdgeInsets.all(10),
                 child: Text(c,
-                    style: const TextStyle(color: Colors.white70))))
+                    style: const TextStyle(
+                        color: AppColors.textColor, fontSize: 15))))
             .toList(),
       );
 }

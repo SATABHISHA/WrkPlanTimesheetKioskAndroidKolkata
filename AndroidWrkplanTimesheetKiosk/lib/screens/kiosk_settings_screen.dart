@@ -98,7 +98,8 @@ class _KioskSettingsScreenState extends State<KioskSettingsScreen> {
               onPressed: _save,
               style: ElevatedButton.styleFrom(
                   padding: const EdgeInsets.symmetric(vertical: 14),
-                  backgroundColor: AppColors.primary),
+                  backgroundColor: AppColors.primary,
+                  foregroundColor: AppColors.white),
               child: const Text('SAVE SETTINGS',
                   style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold)),
             ),

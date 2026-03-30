@@ -155,25 +155,25 @@ class _TaskSelectionScreenState extends State<TaskSelectionScreen> {
   @override
   Widget build(BuildContext context) {
     final auth     = context.watch<AuthProvider>();
-    final today    = DateFormat('dd-MMM-yyyy').format(DateTime.now());
+    final today    = DateFormat('MM/dd/yy').format(DateTime.now());
     final totalHrs = _round(_totalHours(), 2);
 
     return Scaffold(
-      backgroundColor: AppColors.darkNavy,
+      backgroundColor: AppColors.background,
       appBar: AppBar(
-        backgroundColor: AppColors.darkNavy,
+        backgroundColor: AppColors.background,
         title: const Text('Select Task',
-            style: TextStyle(color: Colors.white, fontSize: 22)),
+            style: TextStyle(color: AppColors.textColor, fontSize: 22)),
         automaticallyImplyLeading: false,
       ),
       body: _loading
           ? const Center(
-              child: CircularProgressIndicator(color: AppColors.teal))
+              child: CircularProgressIndicator(color: AppColors.primary))
           : Column(
               children: [
                 // Header bar
                 Container(
-                  color: AppColors.cardBg,
+                  color: Colors.grey.shade50,
                   padding:
                       const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
                   child: Row(children: [
@@ -183,24 +183,24 @@ class _TaskSelectionScreenState extends State<TaskSelectionScreen> {
                         children: [
                           Text(auth.user?.empName ?? '',
                               style: const TextStyle(
-                                  color: Colors.white,
+                                  color: AppColors.textColor,
                                   fontWeight: FontWeight.bold,
                                   fontSize: 16)),
                           Text(today,
-                              style: const TextStyle(
-                                  color: Colors.white70, fontSize: 13)),
+                              style: TextStyle(
+                                  color: Colors.grey.shade600, fontSize: 13)),
                         ],
                       ),
                     ),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
-                        const Text('Total Hrs',
+                        Text('Total Hrs',
                             style:
-                                TextStyle(color: Colors.white70, fontSize: 12)),
+                                TextStyle(color: Colors.grey.shade600, fontSize: 12)),
                         Text(totalHrs.toString(),
                             style: const TextStyle(
-                                color: Colors.white,
+                                color: AppColors.textColor,
                                 fontWeight: FontWeight.bold,
                                 fontSize: 18)),
                       ],
@@ -211,9 +211,9 @@ class _TaskSelectionScreenState extends State<TaskSelectionScreen> {
                 // Task list
                 Expanded(
                   child: _tasks.isEmpty
-                      ? const Center(
+                      ? Center(
                           child: Text('No tasks found',
-                              style: TextStyle(color: Colors.white70)))
+                              style: TextStyle(color: Colors.grey.shade500)))
                       : ListView.builder(
                           itemCount: _tasks.length,
                           itemBuilder: (_, i) {
@@ -223,14 +223,13 @@ class _TaskSelectionScreenState extends State<TaskSelectionScreen> {
                               margin: const EdgeInsets.symmetric(
                                   horizontal: 12, vertical: 6),
                               decoration: BoxDecoration(
-                                color: selected
-                                    ? AppColors.cardBg
-                                    : AppColors.cardStroke,
+                                color: AppColors.background,
                                 borderRadius: BorderRadius.circular(8),
-                                border: selected
-                                    ? Border.all(
-                                        color: AppColors.teal, width: 1.5)
-                                    : null,
+                                border: Border.all(
+                                    color: selected
+                                        ? AppColors.primary
+                                        : AppColors.cardStroke,
+                                    width: selected ? 2 : 1),
                               ),
                               child: ListTile(
                                 onTap: () => _onTaskSelected(i),
@@ -238,15 +237,15 @@ class _TaskSelectionScreenState extends State<TaskSelectionScreen> {
                                   value: i,
                                   groupValue: _selectedTaskIdx,
                                   onChanged: (v) => _onTaskSelected(v!),
-                                  activeColor: AppColors.teal,
+                                  activeColor: AppColors.primary,
                                   fillColor: WidgetStateProperty.all(
                                       selected
-                                          ? AppColors.teal
-                                          : Colors.white54),
+                                          ? AppColors.primary
+                                          : Colors.grey),
                                 ),
                                 title: Text(t.task ?? '',
                                     style: const TextStyle(
-                                        color: Colors.white,
+                                        color: AppColors.textColor,
                                         fontWeight: FontWeight.w600)),
                                 subtitle: Column(
                                   crossAxisAlignment:
@@ -255,64 +254,59 @@ class _TaskSelectionScreenState extends State<TaskSelectionScreen> {
                                     if (t.contract != null &&
                                         t.contract!.isNotEmpty)
                                       Text('Contract: ${t.contract}',
-                                          style: const TextStyle(
-                                              color: Colors.white60,
+                                          style: TextStyle(
+                                              color: Colors.grey.shade600,
                                               fontSize: 12)),
                                     if (t.laborCategory != null &&
                                         t.laborCategory!.isNotEmpty)
                                       Text('Category: ${t.laborCategory}',
-                                          style: const TextStyle(
-                                              color: Colors.white60,
+                                          style: TextStyle(
+                                              color: Colors.grey.shade600,
                                               fontSize: 12)),
                                   ],
                                 ),
                                 trailing: Text('${t.hour ?? 0} hrs',
                                     style: const TextStyle(
                                         fontWeight: FontWeight.bold,
-                                        color: AppColors.teal)),
+                                        color: AppColors.primary)),
                               ),
                             );
                           },
                         ),
                 ),
 
-                // Cancel + Done buttons (native: ll_button at bottom)
+                // Cancel + Done buttons
                 Padding(
-                  padding: const EdgeInsets.fromLTRB(5, 5, 5, 5),
+                  padding: const EdgeInsets.fromLTRB(12, 8, 12, 8),
                   child: Row(
                     children: [
                       Expanded(
-                        child: GestureDetector(
-                          onTap: _cancel,
-                          child: Container(
-                            height: 50,
-                            margin: const EdgeInsets.only(right: 1),
-                            decoration: BoxDecoration(
-                              color: AppColors.dialogOk,
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            alignment: Alignment.center,
-                            child: const Text('Cancel',
-                                style: TextStyle(
-                                    color: Colors.white, fontSize: 20)),
+                        child: OutlinedButton(
+                          onPressed: _cancel,
+                          style: OutlinedButton.styleFrom(
+                            foregroundColor: AppColors.textColor,
+                            side: const BorderSide(color: AppColors.cardStroke),
+                            padding: const EdgeInsets.symmetric(vertical: 14),
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(8)),
                           ),
+                          child: const Text('Cancel',
+                              style: TextStyle(fontSize: 18)),
                         ),
                       ),
+                      const SizedBox(width: 12),
                       Expanded(
-                        child: GestureDetector(
-                          onTap: _done,
-                          child: Container(
-                            height: 50,
-                            margin: const EdgeInsets.only(left: 1),
-                            decoration: BoxDecoration(
-                              color: AppColors.dialogNo,
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            alignment: Alignment.center,
-                            child: const Text('Done',
-                                style: TextStyle(
-                                    color: Colors.white, fontSize: 20)),
+                        child: ElevatedButton(
+                          onPressed: _done,
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: AppColors.primary,
+                            foregroundColor: AppColors.white,
+                            padding: const EdgeInsets.symmetric(vertical: 14),
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(8)),
                           ),
+                          child: const Text('Done',
+                              style: TextStyle(fontSize: 18)),
                         ),
                       ),
                     ],

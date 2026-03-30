@@ -4,45 +4,45 @@ import 'app_colors.dart';
 class AppTheme {
   static final ThemeData lightTheme = ThemeData(
     useMaterial3: true,
-    scaffoldBackgroundColor: AppColors.darkNavy,
+    scaffoldBackgroundColor: AppColors.background,
     colorScheme: const ColorScheme(
-      brightness: Brightness.dark,
-      primary: AppColors.teal,
+      brightness: Brightness.light,
+      primary: AppColors.primary,
       onPrimary: AppColors.white,
-      secondary: AppColors.teal,
+      secondary: AppColors.secondary,
       onSecondary: AppColors.white,
-      error: Color(0xFFCF6679),
+      error: Color(0xFFB00020),
       onError: AppColors.white,
-      surface: AppColors.darkNavy,
-      onSurface: AppColors.white,
+      surface: AppColors.background,
+      onSurface: AppColors.textColor,
     ),
     appBarTheme: const AppBarTheme(
-      backgroundColor: AppColors.darkNavy,
-      foregroundColor: AppColors.white,
+      backgroundColor: AppColors.background,
+      foregroundColor: AppColors.textColor,
       centerTitle: false,
       elevation: 0,
     ),
     cardTheme: CardThemeData(
-      color: AppColors.cardBg,
+      color: AppColors.background,
       elevation: 0,
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(5),
-        side: const BorderSide(color: AppColors.cardStroke, width: 2),
+        borderRadius: BorderRadius.circular(8),
+        side: const BorderSide(color: AppColors.cardStroke, width: 1),
       ),
     ),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
-        backgroundColor: AppColors.cardBg,
+        backgroundColor: AppColors.primary,
         foregroundColor: AppColors.white,
         padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 24),
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
       ),
     ),
     textButtonTheme: TextButtonThemeData(
-      style: TextButton.styleFrom(foregroundColor: AppColors.teal),
+      style: TextButton.styleFrom(foregroundColor: AppColors.primary),
     ),
     snackBarTheme: const SnackBarThemeData(
-      backgroundColor: AppColors.dialogHeader,
+      backgroundColor: AppColors.primary,
       contentTextStyle: TextStyle(color: AppColors.white),
     ),
   );

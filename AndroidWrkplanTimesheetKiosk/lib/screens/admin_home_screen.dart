@@ -16,15 +16,15 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
   Widget build(BuildContext context) {
     final auth = context.watch<AuthProvider>();
     return Scaffold(
-      backgroundColor: AppColors.darkNavy,
+      backgroundColor: AppColors.background,
       appBar: AppBar(
-        backgroundColor: AppColors.darkNavy,
+        backgroundColor: AppColors.background,
         title: const Text('Dashboard',
-            style: TextStyle(color: Colors.white, fontSize: 22)),
+            style: TextStyle(color: AppColors.textColor, fontSize: 22)),
         automaticallyImplyLeading: false,
         actions: [
           IconButton(
-            icon: const Icon(Icons.logout, color: Colors.white),
+            icon: const Icon(Icons.logout, color: AppColors.primary),
             onPressed: () {
               auth.endSession();
               Navigator.of(context).pushReplacementNamed('/login');
@@ -55,19 +55,20 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
   }
 
   Widget _dashCard({required String title, required VoidCallback onTap}) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Container(
-        height: 80,
-        decoration: BoxDecoration(
-          color: AppColors.dashCardBg,
-          borderRadius: BorderRadius.circular(10),
-          border: Border.all(color: AppColors.dashCardStroke, width: 2),
+    return SizedBox(
+      width: double.infinity,
+      height: 72,
+      child: OutlinedButton(
+        onPressed: onTap,
+        style: OutlinedButton.styleFrom(
+          foregroundColor: AppColors.textColor,
+          side: const BorderSide(color: AppColors.cardStroke, width: 1.5),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10),
+          ),
         ),
-        alignment: Alignment.center,
         child: Text(title,
             style: const TextStyle(
-                color: Colors.white,
                 fontSize: 20,
                 fontWeight: FontWeight.w600)),
       ),

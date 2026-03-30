@@ -103,67 +103,36 @@ class _RecognitionOptionScreenState extends State<RecognitionOptionScreen> {
   }
 
   void _onPunchOut() async {
-    // Mirrors native break_punchout() dialog: Yes = Punch Out, No = Break
     final result = await showDialog<String>(
       context: context,
-      builder: (ctx) => Dialog(
-        backgroundColor: Colors.transparent,
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Container(
-              width: double.infinity,
-              padding: const EdgeInsets.all(20),
-              decoration: const BoxDecoration(
-                color: AppColors.dialogHeader,
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(10),
-                  topRight: Radius.circular(10),
-                ),
-              ),
-              child: const Text('Punch Out?',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                      color: Colors.white, fontSize: 22, fontWeight: FontWeight.w600)),
+      builder: (ctx) => AlertDialog(
+        backgroundColor: AppColors.background,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+        title: const Text('Punch Out?',
+            textAlign: TextAlign.center,
+            style: TextStyle(
+                color: AppColors.textColor, fontSize: 22, fontWeight: FontWeight.w600)),
+        actionsAlignment: MainAxisAlignment.spaceEvenly,
+        actions: [
+          OutlinedButton(
+            onPressed: () => Navigator.pop(ctx, 'punchout'),
+            style: OutlinedButton.styleFrom(
+              foregroundColor: AppColors.punchOut,
+              side: const BorderSide(color: AppColors.punchOut),
+              padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
             ),
-            Row(
-              children: [
-                Expanded(
-                  child: GestureDetector(
-                    onTap: () => Navigator.pop(ctx, 'punchout'),
-                    child: Container(
-                      padding: const EdgeInsets.symmetric(vertical: 14),
-                      decoration: const BoxDecoration(
-                        color: AppColors.dialogNo,
-                        borderRadius: BorderRadius.only(
-                          bottomLeft: Radius.circular(10)),
-                      ),
-                      alignment: Alignment.center,
-                      child: const Text('Punch Out',
-                          style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.w600)),
-                    ),
-                  ),
-                ),
-                Expanded(
-                  child: GestureDetector(
-                    onTap: () => Navigator.pop(ctx, 'break'),
-                    child: Container(
-                      padding: const EdgeInsets.symmetric(vertical: 14),
-                      decoration: const BoxDecoration(
-                        color: AppColors.dialogOk,
-                        borderRadius: BorderRadius.only(
-                          bottomRight: Radius.circular(10)),
-                      ),
-                      alignment: Alignment.center,
-                      child: const Text('Break',
-                          style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.w600)),
-                    ),
-                  ),
-                ),
-              ],
+            child: const Text('Punch Out', style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600)),
+          ),
+          ElevatedButton(
+            onPressed: () => Navigator.pop(ctx, 'break'),
+            style: ElevatedButton.styleFrom(
+              backgroundColor: AppColors.primary,
+              foregroundColor: AppColors.white,
+              padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
             ),
-          ],
-        ),
+            child: const Text('Break', style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600)),
+          ),
+        ],
       ),
     );
     if (result == null) return;
@@ -290,97 +259,67 @@ class _RecognitionOptionScreenState extends State<RecognitionOptionScreen> {
   }) {
     showDialog(
       context: context,
-      builder: (_) => Dialog(
-        backgroundColor: Colors.transparent,
-        child: Column(
+      builder: (_) => AlertDialog(
+        backgroundColor: AppColors.background,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+        title: const Text('Current Leave Balance',
+            style: TextStyle(
+                color: AppColors.textColor,
+                fontSize: 22,
+                fontWeight: FontWeight.w600)),
+        content: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,
           children: [
-            // Header
-            Container(
-              width: double.infinity,
-              padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 16),
-              decoration: const BoxDecoration(
-                color: AppColors.dialogHeader,
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(10),
-                  topRight: Radius.circular(10),
-                ),
-              ),
-              child: const Text('Current Leave Balance',
+            if (employeeName.isNotEmpty)
+              Text(employeeName,
+                  style: const TextStyle(
+                      color: AppColors.textColor, fontSize: 18)),
+            if (dateUpto.isNotEmpty) ...[
+              const SizedBox(height: 4),
+              Text('Up To $dateUpto',
                   style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 22,
-                      fontWeight: FontWeight.w600)),
-            ),
-            // Body
-            Container(
-              width: double.infinity,
-              padding: const EdgeInsets.all(16),
-              color: AppColors.dialogBody,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  if (employeeName.isNotEmpty)
-                    Text(employeeName,
-                        style: const TextStyle(
-                            color: AppColors.dialogText, fontSize: 20)),
-                  if (dateUpto.isNotEmpty) ...[
-                    const SizedBox(height: 4),
-                    Text(dateUpto,
-                        style: const TextStyle(
-                            color: AppColors.dialogText, fontSize: 18)),
-                  ],
-                  const Divider(color: Color(0xFF738BB0), height: 20),
-                  ...items.map((item) => Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 4),
-                        child: Row(
-                          children: [
-                            SizedBox(
-                              width: 190,
-                              child: Text(item.leaveTypeName ?? '',
-                                  style: const TextStyle(
-                                      color: AppColors.dialogText,
-                                      fontSize: 18)),
-                            ),
-                            const Text(' : ',
-                                style: TextStyle(
-                                    color: AppColors.dialogText,
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.bold)),
-                            Text(item.balanceHrs ?? '',
-                                style: const TextStyle(
-                                    color: AppColors.dialogText,
-                                    fontSize: 18)),
-                          ],
-                        ),
-                      )),
-                ],
-              ),
-            ),
-            // OK button
-            GestureDetector(
-              onTap: () => Navigator.pop(context),
-              child: Container(
-                width: double.infinity,
-                padding: const EdgeInsets.symmetric(vertical: 12),
-                decoration: const BoxDecoration(
-                  color: AppColors.dialogOk,
-                  borderRadius: BorderRadius.only(
-                    bottomLeft: Radius.circular(10),
-                    bottomRight: Radius.circular(10),
+                      color: Colors.grey.shade600, fontSize: 16)),
+            ],
+            const Divider(height: 20),
+            ...items.map((item) => Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 4),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: Text(item.leaveTypeName ?? '',
+                            style: const TextStyle(
+                                color: AppColors.textColor,
+                                fontSize: 16)),
+                      ),
+                      const Text(' : ',
+                          style: TextStyle(
+                              color: AppColors.textColor,
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold)),
+                      Text(item.balanceHrs ?? '',
+                          style: const TextStyle(
+                              color: AppColors.textColor,
+                              fontSize: 16)),
+                    ],
                   ),
-                ),
-                alignment: Alignment.center,
-                child: const Text('OK',
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 20,
-                        fontWeight: FontWeight.w600)),
-              ),
-            ),
+                )),
           ],
         ),
+        actions: [
+          SizedBox(
+            width: double.infinity,
+            child: ElevatedButton(
+              onPressed: () => Navigator.pop(context),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: AppColors.primary,
+                foregroundColor: AppColors.white,
+              ),
+              child: const Text('OK',
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600)),
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -423,180 +362,119 @@ class _RecognitionOptionScreenState extends State<RecognitionOptionScreen> {
   Widget build(BuildContext context) {
     final auth = context.watch<AuthProvider>();
     if (auth.user == null) {
-      // Session expired — redirect to login
       WidgetsBinding.instance.addPostFrameCallback((_) {
         if (mounted) Navigator.of(context).pushReplacementNamed('/login');
       });
       return const Scaffold(
-        backgroundColor: AppColors.darkNavy,
-        body: Center(child: CircularProgressIndicator(color: AppColors.teal)),
+        backgroundColor: AppColors.background,
+        body: Center(child: CircularProgressIndicator(color: AppColors.primary)),
       );
     }
     final user = auth.user!;
     final now  = DateTime.now();
 
     return Scaffold(
-      backgroundColor: AppColors.darkNavy,
+      backgroundColor: AppColors.background,
       appBar: AppBar(
-        backgroundColor: AppColors.darkNavy,
+        backgroundColor: AppColors.background,
         automaticallyImplyLeading: false,
+        centerTitle: true,
+        title: const Text(
+          'WRKPLAN',
+          style: TextStyle(
+            color: AppColors.primary,
+            fontSize: 28,
+            fontWeight: FontWeight.w900,
+            letterSpacing: 3,
+          ),
+        ),
         actions: [
           IconButton(
-            icon: const Icon(Icons.refresh, color: Colors.white),
+            icon: const Icon(Icons.refresh, color: AppColors.primary),
             onPressed: _checkAttendanceStatus,
           ),
         ],
       ),
       body: _loadingAction
-          ? const Center(child: CircularProgressIndicator(color: AppColors.teal))
+          ? const Center(child: CircularProgressIndicator(color: AppColors.primary))
           : SingleChildScrollView(
-              padding: const EdgeInsets.fromLTRB(20, 20, 20, 24),
+              padding: const EdgeInsets.fromLTRB(24, 16, 24, 24),
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  // ── Top info card (bg #42AE9B, rounded 10) ───────────────
-                  Container(
-                    decoration: BoxDecoration(
-                      color: AppColors.infoCardBg,
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    child: Column(
-                      children: [
-                        // ── Teal headline area (#55D5BE, top-rounded) ──────
-                        Container(
-                          width: double.infinity,
-                          padding: const EdgeInsets.all(16),
-                          decoration: const BoxDecoration(
-                            color: AppColors.teal,
-                            borderRadius: BorderRadius.only(
-                              topLeft: Radius.circular(10),
-                              topRight: Radius.circular(10),
-                            ),
-                          ),
-                          child: Column(
-                            children: [
-                              Text(
-                                'Hello\n ${user.empName ?? user.userName ?? ''}',
-                                textAlign: TextAlign.center,
-                                style: const TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 25,
-                                    fontWeight: FontWeight.bold),
-                              ),
-                              const SizedBox(height: 6),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Text(
-                                    'Date: ${DateFormat('dd-MMM-yyyy').format(now)}',
-                                    style: const TextStyle(
-                                        color: Colors.white, fontSize: 17),
-                                  ),
-                                  const SizedBox(width: 10),
-                                  Text(
-                                    'Time: ${DateFormat('HH:mm a').format(now)}',
-                                    style: const TextStyle(
-                                        color: Colors.white, fontSize: 17),
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
-                        ),
-                        // ── Info fields (emp id, supervisors) ──────────────
-                        Padding(
-                          padding: const EdgeInsets.fromLTRB(25, 23, 25, 10),
-                          child: Column(
-                            children: [
-                              _infoRow('Employee ID', user.employeeCode ?? ''),
-                              _infoRow('Supervisor 1', user.supervisor1 ?? ''),
-                              _infoRow('Supervisor 2', user.supervisor2 ?? ''),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
+                  // ── Greeting ──────────────────────────────────────────
+                  const Text('Hello /',
+                      style: TextStyle(
+                          color: AppColors.textColor,
+                          fontSize: 22,
+                          fontWeight: FontWeight.w500)),
+                  Text(
+                    user.empName ?? user.userName ?? '',
+                    style: const TextStyle(
+                        color: AppColors.textColor,
+                        fontSize: 30,
+                        fontWeight: FontWeight.bold),
                   ),
-                  const SizedBox(height: 25),
+                  const SizedBox(height: 8),
+                  Text(
+                    'Date: ${DateFormat('MM/dd/yy').format(now)}  Time: ${DateFormat('hh:mm a').format(now)}',
+                    style: TextStyle(
+                        color: Colors.grey.shade700, fontSize: 16),
+                  ),
+                  const SizedBox(height: 6),
+                  _infoRow('Employee ID', user.employeeCode ?? ''),
+                  _infoRow('Supervisor 1', user.supervisor1 ?? ''),
+                  _infoRow('Supervisor 2', user.supervisor2 ?? ''),
+                  const SizedBox(height: 28),
 
-                  // ── Punch IN ─────────────────────────────────────────────
+                  // ── Punch IN ─────────────────────────────────────────
                   if (_nextAction == 'IN' || _nextAction.isEmpty)
                     _actionBtn(
-                      topText: 'Punch', bottomText: 'IN',
-                      color: AppColors.cardBg,
-                      height: 80,
+                      label: 'Punch IN',
+                      filled: true,
                       onTap: _onPunchIn,
                     ),
 
-                  // ── Break + Punch OUT side by side ───────────────────────
-                  if (_nextAction == 'OUT') ...[
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 5),
-                      child: Row(
-                        children: [
-                          Expanded(
-                            child: _actionBtn(
-                              topText: 'Take a', bottomText: 'BREAK',
-                              color: AppColors.breakColor,
-                              height: 80,
-                              onTap: _onBreak,
-                            ),
-                          ),
-                          const SizedBox(width: 34),
-                          Expanded(
-                            child: _actionBtn(
-                              topText: 'Punch', bottomText: 'OUT',
-                              color: AppColors.punchOut,
-                              height: 80,
-                              onTap: _onPunchOut,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                  const SizedBox(height: 10),
+                  // ── Break + Punch OUT ─────────────────────────────────
+                  if (_nextAction == 'OUT') ..._outButtons(),
 
-                  // ── View / Select Task ───────────────────────────────────
+                  const SizedBox(height: 12),
+
+                  // ── View / Select Task ───────────────────────────────
                   if (_nextAction == 'OUT') ...[
                     _actionBtn(
-                      bottomText: 'View / Select / Switch Task',
-                      color: AppColors.cardBg,
-                      height: 74,
+                      label: 'View / Select / Switch Task',
                       onTap: () =>
                           Navigator.of(context).pushNamed('/task-selection'),
                     ),
-                    const SizedBox(height: 10),
+                    const SizedBox(height: 12),
                   ],
 
-                  // ── View Leave Balance ───────────────────────────────────
                   _actionBtn(
-                    bottomText: 'View Leave Balance',
-                    color: AppColors.cardBg,
-                    height: 74,
+                    label: 'View Leave Balance',
                     onTap: _showLeaveBalance,
                   ),
-                  const SizedBox(height: 10),
+                  const SizedBox(height: 12),
 
-                  // ── View Attendance ──────────────────────────────────────
                   _actionBtn(
-                    bottomText: 'View Attendance',
-                    color: AppColors.cardBg,
-                    height: 74,
+                    label: 'View Attendance',
                     onTap: () =>
                         Navigator.of(context).pushNamed('/attendance-log'),
                   ),
-                  const SizedBox(height: 10),
+                  const SizedBox(height: 12),
 
-                  // ── Logout ──────────────────────────────────────────────
-                  _actionBtn(
-                    bottomText: 'Logout',
-                    color: AppColors.cardBg,
-                    height: 74,
-                    onTap: () {
-                      auth.endSession();
-                      Navigator.of(context).pushReplacementNamed('/login');
-                    },
+                  Center(
+                    child: TextButton(
+                      onPressed: () {
+                        auth.endSession();
+                        Navigator.of(context).pushReplacementNamed('/login');
+                      },
+                      child: const Text('Logout',
+                          style: TextStyle(
+                              color: AppColors.primary,
+                              fontSize: 18,
+                              fontWeight: FontWeight.w600)),
+                    ),
                   ),
                 ],
               ),
@@ -604,20 +482,37 @@ class _RecognitionOptionScreenState extends State<RecognitionOptionScreen> {
     );
   }
 
+  List<Widget> _outButtons() {
+    return [
+      _actionBtn(
+        label: 'Take a BREAK',
+        filled: true,
+        onTap: _onBreak,
+      ),
+      const SizedBox(height: 12),
+      _actionBtn(
+        label: 'Punch OUT',
+        filled: true,
+        color: AppColors.punchOut,
+        onTap: _onPunchOut,
+      ),
+    ];
+  }
+
   Widget _infoRow(String label, String value) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 3),
+      padding: const EdgeInsets.symmetric(vertical: 2),
       child: Row(
         children: [
           SizedBox(
-            width: 110,
+            width: 120,
             child: Text(label,
-                style: const TextStyle(color: Colors.white, fontSize: 14)),
+                style: TextStyle(color: Colors.grey.shade700, fontSize: 14)),
           ),
-          const Text(' : ', style: TextStyle(color: Colors.white, fontSize: 14)),
+          const Text(': ', style: TextStyle(color: AppColors.textColor, fontSize: 14)),
           Expanded(
             child: Text(value,
-                style: const TextStyle(color: Colors.white, fontSize: 14)),
+                style: const TextStyle(color: AppColors.textColor, fontSize: 14)),
           ),
         ],
       ),
@@ -625,37 +520,42 @@ class _RecognitionOptionScreenState extends State<RecognitionOptionScreen> {
   }
 
   Widget _actionBtn({
-    String? topText,
-    required String bottomText,
-    required Color color,
-    double height = 74,
+    required String label,
+    bool filled = false,
+    Color? color,
     required VoidCallback onTap,
   }) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Container(
-        width: double.infinity,
-        height: height,
-        decoration: BoxDecoration(
-          color: color,
-          borderRadius: BorderRadius.circular(5),
-          border: Border.all(color: AppColors.cardStroke, width: 2),
-        ),
-        alignment: Alignment.center,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            if (topText != null)
-              Text(topText,
-                  style: const TextStyle(color: Colors.white, fontSize: 13)),
-            Text(bottomText,
-                style: const TextStyle(
-                    color: Colors.white,
-                    fontSize: 22,
-                    fontWeight: FontWeight.w600)),
-          ],
-        ),
-      ),
+    final btnColor = color ?? AppColors.primary;
+    return SizedBox(
+      width: double.infinity,
+      height: 56,
+      child: filled
+          ? ElevatedButton(
+              onPressed: onTap,
+              style: ElevatedButton.styleFrom(
+                backgroundColor: btnColor,
+                foregroundColor: AppColors.white,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(8),
+                ),
+              ),
+              child: Text(label,
+                  style: const TextStyle(
+                      fontSize: 20, fontWeight: FontWeight.w600)),
+            )
+          : OutlinedButton(
+              onPressed: onTap,
+              style: OutlinedButton.styleFrom(
+                foregroundColor: AppColors.textColor,
+                side: const BorderSide(color: AppColors.cardStroke, width: 1.5),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(8),
+                ),
+              ),
+              child: Text(label,
+                  style: const TextStyle(
+                      fontSize: 18, fontWeight: FontWeight.w500)),
+            ),
     );
   }
 }
