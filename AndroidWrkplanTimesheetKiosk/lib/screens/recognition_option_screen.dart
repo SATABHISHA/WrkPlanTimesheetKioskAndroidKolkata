@@ -463,18 +463,12 @@ class _RecognitionOptionScreenState extends State<RecognitionOptionScreen> {
                   ),
                   const SizedBox(height: 12),
 
-                  Center(
-                    child: TextButton(
-                      onPressed: () {
-                        auth.endSession();
-                        Navigator.of(context).pushReplacementNamed('/login');
-                      },
-                      child: const Text('Logout',
-                          style: TextStyle(
-                              color: AppColors.primary,
-                              fontSize: 18,
-                              fontWeight: FontWeight.w600)),
-                    ),
+                  _actionBtn(
+                    label: 'Logout',
+                    onTap: () {
+                      auth.endSession();
+                      Navigator.of(context).pushReplacementNamed('/login');
+                    },
                   ),
                 ],
               ),

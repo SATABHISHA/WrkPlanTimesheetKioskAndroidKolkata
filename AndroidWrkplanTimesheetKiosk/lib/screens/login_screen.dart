@@ -16,13 +16,16 @@ class _LoginScreenState extends State<LoginScreen> {
   late TextEditingController _usernameCtrl;
   late TextEditingController _passwordCtrl;
   bool _obscure = true;
+  bool _rememberMe = false;
   final _prefs  = SharedPreferenceHelper();
 
   @override
   void initState() {
     super.initState();
     _corpIdCtrl   = TextEditingController(text: _prefs.getCorpIdAutofill());
-    _usernameCtrl = TextEditingController();
+    _rememberMe   = _prefs.getRememberMe();
+    _usernameCtrl = TextEditingController(
+        text: _rememberMe ? _prefs.getRememberedUsername() : '');
     _passwordCtrl = TextEditingController();
   }
 
@@ -49,6 +52,16 @@ class _LoginScreenState extends State<LoginScreen> {
     }
 
     final auth = context.read<AuthProvider>();
+    // Save corpId for future autofill
+    _prefs.saveCorpIdAutofill(_corpIdCtrl.text.trim());
+    // Save remember me preference
+    _prefs.saveRememberMe(_rememberMe);
+    if (_rememberMe) {
+      _prefs.saveRememberedUsername(_usernameCtrl.text.trim());
+    } else {
+      _prefs.saveRememberedUsername('');
+    }
+
     final ok = await auth.login(
       corpId:   _corpIdCtrl.text.trim(),
       username: _usernameCtrl.text.trim(),
@@ -91,18 +104,15 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                     ),
                   ),
-                  const SizedBox(height: 8),
-                  // ── Corp ID label ─────────────────────────────────────
-                  Center(
-                    child: Text(
-                      _corpIdCtrl.text,
-                      style: TextStyle(
-                        color: Colors.grey.shade600,
-                        fontSize: 14,
-                      ),
-                    ),
-                  ),
                   const SizedBox(height: 48),
+
+                  // ── Corporate ID field ────────────────────────────────
+                  _buildField(
+                    controller: _corpIdCtrl,
+                    label: 'Corporate ID',
+                    action: TextInputAction.next,
+                  ),
+                  const SizedBox(height: 16),
 
                   // ── Username field ────────────────────────────────────
                   _buildField(
@@ -126,7 +136,34 @@ class _LoginScreenState extends State<LoginScreen> {
                       onPressed: () => setState(() => _obscure = !_obscure),
                     ),
                   ),
-                  const SizedBox(height: 28),
+                  const SizedBox(height: 8),
+
+                  // ── Remember Me checkbox ──────────────────────────────
+                  Row(
+                    children: [
+                      SizedBox(
+                        width: 24,
+                        height: 24,
+                        child: Checkbox(
+                          value: _rememberMe,
+                          activeColor: AppColors.primary,
+                          onChanged: (v) => setState(() => _rememberMe = v ?? false),
+                        ),
+                      ),
+                      const SizedBox(width: 8),
+                      GestureDetector(
+                        onTap: () => setState(() => _rememberMe = !_rememberMe),
+                        child: Text(
+                          'Remember Me',
+                          style: TextStyle(
+                            color: Colors.grey.shade700,
+                            fontSize: 14,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 20),
 
                   // ── Login button ──────────────────────────────────────
                   Consumer<AuthProvider>(

@@ -89,5 +89,16 @@ class SharedPreferenceHelper {
       _prefs.getDouble(AppConstants.prefOfficeLon) ?? AppConstants.defaultOfficeLon;
   double getPunchRadius() =>
       _prefs.getDouble(AppConstants.prefPunchRadius) ?? AppConstants.defaultPunchRadius;
+
+  // ─── Remember Me ───────────────────────────────────────────────────────
+  static const String _prefRememberMe = 'remember_me';
+  static const String _prefRememberedUsername = 'remembered_username';
+
+  Future<void> saveRememberMe(bool value) => _prefs.setBool(_prefRememberMe, value);
+  bool getRememberMe() => _prefs.getBool(_prefRememberMe) ?? false;
+
+  Future<void> saveRememberedUsername(String username) =>
+      _prefs.setString(_prefRememberedUsername, username);
+  String getRememberedUsername() => _prefs.getString(_prefRememberedUsername) ?? '';
 }
 
