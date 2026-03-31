@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -21,6 +22,7 @@ class _PunchStatusScreenState extends State<PunchStatusScreen>
   late final AnimationController _tickCtrl;
   late final Animation<double> _scaleAnim;
   late final Animation<double> _checkAnim;
+  Timer? _autoLogoutTimer;
 
   static const _greenTick = Color(0xFF2E7D32); // green-800
   static const _borderGreen = AppColors.secondary; // #81B1AE slight green
@@ -43,10 +45,21 @@ class _PunchStatusScreenState extends State<PunchStatusScreen>
       curve: const Interval(0.4, 1.0, curve: Curves.easeOut),
     );
     _tickCtrl.forward();
+
+    // Auto-logout after 5 seconds
+    _autoLogoutTimer = Timer(const Duration(seconds: 5), _autoLogout);
+  }
+
+  void _autoLogout() {
+    if (!mounted) return;
+    final auth = context.read<AuthProvider>();
+    auth.endSession();
+    Navigator.of(context).pushReplacementNamed('/login');
   }
 
   @override
   void dispose() {
+    _autoLogoutTimer?.cancel();
     _tickCtrl.dispose();
     super.dispose();
   }

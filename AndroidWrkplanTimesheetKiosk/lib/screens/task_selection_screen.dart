@@ -118,9 +118,12 @@ class _TaskSelectionScreenState extends State<TaskSelectionScreen> {
 
       final status = json['status']?.toString().toLowerCase() ?? '';
       if (status == 'true') {
-        // Mirror native: show dialog then navigate back
+        // Show animated success then go back
         if (mounted) {
-          Navigator.of(context).pushReplacementNamed('/recognition-option');
+          await _showSuccessOverlay('Task Saved Successfully!');
+          if (mounted) {
+            Navigator.of(context).pop(); // return to punch status screen
+          }
         }
       } else {
         _showSnack(json['message']?.toString() ?? 'Save failed');
@@ -131,8 +134,74 @@ class _TaskSelectionScreenState extends State<TaskSelectionScreen> {
     }
   }
 
+  Future<void> _showSuccessOverlay(String message) async {
+    showGeneralDialog(
+      context: context,
+      barrierDismissible: false,
+      barrierColor: Colors.black54,
+      transitionDuration: const Duration(milliseconds: 400),
+      pageBuilder: (ctx, anim1, anim2) => const SizedBox.shrink(),
+      transitionBuilder: (ctx, anim1, anim2, child) {
+        final curved = CurvedAnimation(parent: anim1, curve: Curves.elasticOut);
+        return ScaleTransition(
+          scale: curved,
+          child: FadeTransition(
+            opacity: anim1,
+            child: AlertDialog(
+              backgroundColor: AppColors.background,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20),
+              ),
+              content: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  const SizedBox(height: 12),
+                  TweenAnimationBuilder<double>(
+                    tween: Tween(begin: 0, end: 1),
+                    duration: const Duration(milliseconds: 700),
+                    curve: Curves.elasticOut,
+                    builder: (_, value, __) => Transform.scale(
+                      scale: value,
+                      child: Container(
+                        width: 80,
+                        height: 80,
+                        decoration: const BoxDecoration(
+                          color: Color(0xFF2E7D32),
+                          shape: BoxShape.circle,
+                        ),
+                        child: const Icon(Icons.check_rounded,
+                            color: Colors.white, size: 48),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 20),
+                  Text(
+                    message,
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.w600,
+                      color: AppColors.primary,
+                    ),
+                  ),
+                  const SizedBox(height: 8),
+                ],
+              ),
+            ),
+          ),
+        );
+      },
+    );
+
+    // Auto-dismiss after 2 seconds
+    await Future.delayed(const Duration(seconds: 2));
+    if (mounted && Navigator.of(context).canPop()) {
+      Navigator.of(context).pop(); // dismiss the success dialog
+    }
+  }
+
   void _cancel() {
-    Navigator.of(context).pushReplacementNamed('/recognition-option');
+    Navigator.of(context).pop();
   }
 
   void _showLoading(String msg) {

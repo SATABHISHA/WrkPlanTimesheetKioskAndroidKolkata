@@ -166,8 +166,9 @@ class _RecognitionOptionScreenState extends State<RecognitionOptionScreen> {
         auth.isInOutButtonHit = (inOut == 'IN');
 
         if (inOut == 'IN') {
-          // Mirror: go to AttendanceRecordActivity
-          Navigator.of(context).pushNamed('/task-selection');
+          auth.punchOutBreak = '';
+          auth.checkedInOut  = 'You Are In';
+          Navigator.of(context).pushReplacementNamed('/punch-status');
         } else {
           if (inOutText == 'BREAK_STARTS') {
             auth.punchOutBreak = 'break';
