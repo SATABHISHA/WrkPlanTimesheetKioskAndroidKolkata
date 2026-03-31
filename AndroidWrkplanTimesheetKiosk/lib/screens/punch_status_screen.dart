@@ -46,8 +46,13 @@ class _PunchStatusScreenState extends State<PunchStatusScreen>
     );
     _tickCtrl.forward();
 
-    // Auto-logout after 5 seconds
-    _autoLogoutTimer = Timer(const Duration(seconds: 5), _autoLogout);
+    // Auto-logout only on Punch Out (Good Bye) – after 3 seconds
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      final auth = context.read<AuthProvider>();
+      if (auth.punchOutBreak == 'out') {
+        _autoLogoutTimer = Timer(const Duration(seconds: 3), _autoLogout);
+      }
+    });
   }
 
   void _autoLogout() {
