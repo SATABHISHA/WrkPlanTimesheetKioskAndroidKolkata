@@ -92,16 +92,11 @@ class _LoginScreenState extends State<LoginScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  // ── WRKPLAN logo text ─────────────────────────────────
-                  const Center(
-                    child: Text(
-                      'WRKPLAN',
-                      style: TextStyle(
-                        color: AppColors.primary,
-                        fontSize: 48,
-                        fontWeight: FontWeight.w900,
-                        letterSpacing: 4,
-                      ),
+                  // ── WRKPLAN logo ────────────────────────────────────
+                  Center(
+                    child: Image.asset(
+                      'assets/images/KioskLogoV1.png',
+                      height: 80,
                     ),
                   ),
                   const SizedBox(height: 48),
