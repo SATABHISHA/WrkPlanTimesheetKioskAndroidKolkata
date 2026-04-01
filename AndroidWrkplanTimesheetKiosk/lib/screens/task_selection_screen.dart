@@ -250,7 +250,8 @@ class _TaskSelectionScreenState extends State<TaskSelectionScreen> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(auth.user?.empName ?? '',
+                          // Text(auth.user?.empName ?? '',
+                          Text('Emma Beck',
                               style: const TextStyle(
                                   color: AppColors.textColor,
                                   fontWeight: FontWeight.bold,

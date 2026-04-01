@@ -242,7 +242,8 @@ class _RecognitionOptionScreenState extends State<RecognitionOptionScreen> {
         _showLeaveDialog(
           items,
           dateUpto: json['LeaveDateUpto']?.toString() ?? '',
-          employeeName: auth.user?.empName ?? auth.user?.userName ?? '',
+          // employeeName: auth.user?.empName ?? auth.user?.userName ?? '',
+          employeeName: 'Emma Beck',
         );
       } else {
         _showSnack(json['message']?.toString() ?? 'No data');
@@ -410,7 +411,8 @@ class _RecognitionOptionScreenState extends State<RecognitionOptionScreen> {
                           fontSize: 22,
                           fontWeight: FontWeight.w500)),
                   Text(
-                    user.empName ?? user.userName ?? '',
+                    // user.empName ?? user.userName ?? '',
+                    'Emma Beck',
                     style: const TextStyle(
                         color: AppColors.textColor,
                         fontSize: 30,

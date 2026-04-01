@@ -212,7 +212,8 @@ class _PunchStatusScreenState extends State<PunchStatusScreen>
 
         _showLeaveDialog(ctx, items,
           dateUpto: json['LeaveDateUpto']?.toString() ?? '',
-          employeeName: auth.user?.empName ?? auth.user?.userName ?? '',
+          // employeeName: auth.user?.empName ?? auth.user?.userName ?? '',
+          employeeName: 'Emma Beck',
         );
       } else {
         _showSnack(ctx, json['message']?.toString() ?? 'No data');

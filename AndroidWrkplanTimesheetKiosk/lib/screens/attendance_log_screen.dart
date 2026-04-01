@@ -60,7 +60,8 @@ class _AttendanceLogScreenState extends State<AttendanceLogScreen> {
   @override
   Widget build(BuildContext context) {
     final auth    = context.watch<AuthProvider>();
-    final empName = auth.user?.empName ?? '';
+    // final empName = auth.user?.empName ?? '';
+    final empName = 'Emma Beck';
     final dateLabel = _selectedDate != null
         ? DateFormat('MM/dd/yy').format(_selectedDate!)
         : 'Select Date';
