@@ -1,5 +1,5 @@
 package org.arb.wrkplan_timesheet_kiosk
 
-import io.flutter.embedding.android.FlutterActivity
+import io.flutter.embedding.android.FlutterFragmentActivity
 
-class MainActivity : FlutterActivity()
+class MainActivity : FlutterFragmentActivity()

@@ -202,5 +202,11 @@ class ApiService {
   /// Mirrors EmployeeImageSettingsActivity.createGallery()
   Future<Map<String, dynamic>> createGallery({required String corpId}) =>
       _soapPost(AppConstants.createGalleryEndpoint, {'CorpId': corpId});
+
+  // ─── Kiosk Info ───────────────────────────────────────────────────────────
+
+  /// Mirrors KioskUnitSettingsActivity.loadData()
+  Future<Map<String, dynamic>> getKioskInfo({required String corpId}) =>
+      _soapPost(AppConstants.getKioskInfoEndpoint, {'CorpId': corpId});
 }
 

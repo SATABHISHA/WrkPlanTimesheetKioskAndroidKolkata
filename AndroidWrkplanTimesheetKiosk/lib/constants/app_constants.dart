@@ -32,6 +32,8 @@ class AppConstants {
   static String get indexFacesEndpoint     => '${kioskService}IndexFaces';
   static String get deleteFaceEndpoint     => '${kioskService}DeleteFaces';
   static String get createGalleryEndpoint  => '${kioskService}CreateGallery';
+  static String get getKioskInfoEndpoint   => '${kioskService}GetKioskInfo';
+  static String get saveKioskInfoEndpoint  => '${kioskService}SaveKioskInfo';
 
   // SharedPreferences keys (mirrors Android SharedPreferences keys)
   static const String prefUserID           = 'UserID';
@@ -66,10 +68,10 @@ class AppConstants {
   static const String prefOfficeLon        = 'office_longitude';
   static const String prefPunchRadius      = 'punch_radius_meters';
 
-  // Default office GPS (can be changed via KioskSettings)
-  static const double defaultOfficeLat    = 0.0;
-  static const double defaultOfficeLon    = 0.0;
-  static const double defaultPunchRadius  = 200.0; // metres
+  // Default office GPS (from satabhisha branch — Kolkata office coordinates)
+  static const double defaultOfficeLat    = 22.574147;
+  static const double defaultOfficeLon    = 88.4351112;
+  static const double defaultPunchRadius  = 100.0; // metres
 
   // App info
   static const String appVersion = '1.11';

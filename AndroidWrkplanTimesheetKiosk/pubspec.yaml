@@ -34,6 +34,9 @@ dependencies:
   # Location for location-based punch
   geolocator: ^12.0.0
 
+  # Biometric / device authentication
+  local_auth: ^2.3.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

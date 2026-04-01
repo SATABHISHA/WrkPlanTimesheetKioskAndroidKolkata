@@ -6,6 +6,7 @@ import '../services/auth_provider.dart';
 import '../services/api_service.dart';
 import '../models/task_model.dart';
 import '../utils/shared_preference_helper.dart';
+import '../utils/punch_validator.dart';
 import '../constants/app_colors.dart';
 
 /// Mirrors RecognitionOptionActivity from satabhisha.
@@ -93,12 +94,12 @@ class _RecognitionOptionScreenState extends State<RecognitionOptionScreen> {
   // ─── Punch actions ────────────────────────────────────────────────────────
 
   void _onPunchIn() async {
-    if (!await _validateLocation()) return;
+    if (!await PunchValidator.validate(context)) return;
     _saveInOut('IN', 'PUNCHED_IN');
   }
 
   void _onBreak() async {
-    if (!await _validateLocation()) return;
+    if (!await PunchValidator.validate(context)) return;
     _saveInOut('OUT', 'BREAK_STARTS');
   }
 
@@ -136,7 +137,7 @@ class _RecognitionOptionScreenState extends State<RecognitionOptionScreen> {
       ),
     );
     if (result == null) return;
-    if (!await _validateLocation()) return;
+    if (!await PunchValidator.validate(context)) return;
     if (result == 'punchout') {
       _saveInOut('OUT', 'PUNCHED_OUT');
     } else {
